@@ -1,6 +1,13 @@
 # Trabalho Pratico PDS2
 <h3>JOGO DE RPG COM ENIGMAS</h3>
 
+<h4>INTEGRANTES</h4>
+
+- Caroline Campos Carvalho
+- Deborah Brito Yamamoto
+- Iago Zagnoli Albergaria
+- Mateus Cursino Gomes Costa
+
 <h4>DESCRICAO</h4>
 
 Jogo de RPG em que serão realizadas perguntas ao usuário e, para caso ele acerte a resposta passará 
@@ -23,10 +30,3 @@ para a próxima fase, entretanto se errar a resposta, entrará em um combate com
 - Ser possivel realizar ações randomizadas. 
 - Ser possivel salvar itens no inventário.
 - Haver monstros para combate.
-
-<h4>INTEGRANTES</h4>
-
-- Caroline Campos Carvalho
-- Deborah Brito Yamamoto
-- Iago Zagnoli Albergaria
-- Mateus Cursino Gomes Costa
