@@ -5,7 +5,7 @@
 - Deborah Brito Yamamoto
 - Iago Zagnoli Albergaria
 - Mateus Cursino Gomes Costa
-- 
+
 <h3>JOGO DE RPG COM ENIGMAS</h3>
 
 <h4>DESCRICAO</h4>
