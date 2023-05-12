@@ -1,12 +1,12 @@
 # Trabalho Pratico PDS2
-<h3>JOGO DE RPG COM ENIGMAS</h3>
-
 <h4>INTEGRANTES</h4>
 
 - Caroline Campos Carvalho
 - Deborah Brito Yamamoto
 - Iago Zagnoli Albergaria
 - Mateus Cursino Gomes Costa
+- 
+<h3>JOGO DE RPG COM ENIGMAS</h3>
 
 <h4>DESCRICAO</h4>
 
