@@ -9,11 +9,10 @@ Heroi::Heroi(
     int dano,
     string classe
 ):  Personagem(nome, dano, vida),
-    _classe(classe),
     _exp(0) {}
 
-std::string Heroi::get_classe(){
-    return _classe;
+Classes Heroi::get_classe() const{
+    return Classes::GUERREIRO;
 }
 
 unsigned int Heroi::get_exp(){

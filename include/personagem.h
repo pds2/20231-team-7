@@ -3,7 +3,9 @@
 
 #include <string>
 
-class dano_negativo_e{};
+class dano_negativo_e {};
+class valor_dado_negativo_e {};
+class personagem_ataca_a_si_mesmo_e {};
 
 class Personagem{
     private:
@@ -58,6 +60,11 @@ class Personagem{
          * @brief Retorna o estado do personagem (morto / vivo).
          */
         bool morto();
+
+        /*
+         * @brief Retorna o dano de ataque do heroi.
+         */
+        virtual void ataque(Personagem &inimigo, int valor_dado);
 
         /*
          * @brief Aumenta o nível do personagem.

@@ -10,9 +10,12 @@ class impossivel_adicionar_exp_negativa_e {};
 class habilidade_ja_existe_e {};
 class habilidade_nao_existe_e {};
 
+enum Classes {
+    DRUIDA, GUERREIRO, MAGO, PALADINO
+};
+
 class Heroi: public Personagem {
     private:
-        std::string _classe;
         unsigned int _exp;
         std::map<std::string,bool> _habilidades;
     public:
@@ -24,7 +27,7 @@ class Heroi: public Personagem {
         /*
          * @brief Retorna a classe do personagem.
          */
-        std::string get_classe();
+        virtual Classes get_classe() const;
 
         /*
          * @brief Retorna a experiencia do heroi (exp).
@@ -43,7 +46,7 @@ class Heroi: public Personagem {
         void aumenta_nivel() override; 
 
         /*
-         * @brief Adiciona habilidade ao personagem.
+         * @brief Adiciona habilidade ao personagem, mas ainda bloqueada.
          */
         void adiciona_habilidade(std::string habilidade);
 

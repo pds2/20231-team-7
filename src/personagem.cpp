@@ -48,6 +48,18 @@ bool Personagem::morto(){
     return _morto;
 }
 
+void Personagem::ataque(Personagem &inimigo, int valor_dado){
+    if(_nome == inimigo._nome)
+        throw personagem_ataca_a_si_mesmo_e();
+    if(valor_dado < 1)
+        throw valor_dado_negativo_e();
+
+    if(valor_dado == 1) inimigo.recebe_dano(_dano - 3);
+    if(valor_dado == 2) inimigo.recebe_dano(_dano - 2);
+    else if(valor_dado == 3) inimigo.recebe_dano(_dano);
+    else inimigo.recebe_dano(_dano + (valor_dado / 2));
+}
+
 void Personagem::aumenta_nivel(){
     _nivel++;
     _vida += 4;
