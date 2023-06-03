@@ -17,7 +17,7 @@ class Personagem{
         /*
          * @brief Cria um personagem.
          */
-        Personagem(std::string nome);
+        Personagem(std::string nome, int vida, int dano);
 
         /*
          * @brief Retorna o nome do personagem.
@@ -30,9 +30,19 @@ class Personagem{
         int get_vida();
 
         /*
+         * @brief Altera vida do personagem.
+         */
+        void set_vida(int vida);
+
+        /*
          * @brief Retorna o dano do personagem.
          */
         int get_dano();
+
+        /*
+         * @brief Altera dano do personagem.
+         */
+        void set_dano(int dano);
 
         /*
          * @brief Retorna o nivel do personagem.
@@ -52,7 +62,7 @@ class Personagem{
         /*
          * @brief Aumenta o nível do personagem.
          */
-        void aumenta_nivel();
+        virtual void aumenta_nivel();
 };
 
 #endif

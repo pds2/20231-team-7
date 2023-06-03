@@ -1,5 +1,5 @@
 #include "../include/sistema.h"
-#include "../include/personagem.h"
+#include "../include/heroi.h"
 
 #include <iostream>
 using namespace std;
@@ -59,7 +59,9 @@ void Sistema::inicia_jogo(){
     cout << "Qual o nome do seu jogador?" << endl;
     cin >> nome;
 
-    Personagem *p = new Personagem(nome);
+    Heroi *p = new Heroi(nome, 10, 10, "paladino");
+    cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
+    p->ganha_exp(101);
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
 
     delete p;
