@@ -9,7 +9,7 @@ class nao_pode_transformar_para_transformacao_atual_e{};
 
 enum Tranformacao{
     Humano, Urso, Lobo, Falcao
-    };
+};
 
 
 class Druida: public Heroi{
@@ -19,7 +19,7 @@ class Druida: public Heroi{
          /*
          * @brief Cria um duida.
          */       
-        Druida(std::string nome, int vida, int dano, std::string classe);
+        Druida(std::string nome, int vida, int vida_max, int dano);
 
         /*
          * @brief Retorna a classe do personagem.

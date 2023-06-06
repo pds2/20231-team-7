@@ -7,9 +7,9 @@ using namespace std;
    Druida::Druida(
     string nome,
     int vida,
-    int dano,
-    string classe
-):  Heroi(nome, vida, dano),
+    int vida_max,
+    int dano
+):  Heroi(nome, vida, vida_max, dano),
      _trans(Humano) {}
 
     

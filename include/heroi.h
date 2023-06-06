@@ -18,16 +18,23 @@ class Heroi: public Personagem {
     private:
         unsigned int _exp;
         std::map<std::string,bool> _habilidades;
+    protected:
+        int _vida_max;
     public:
          /*
          * @brief Cria um heroi.
          */       
-        Heroi(std::string nome, int vida, int dano, std::string classe);
+        Heroi(std::string nome, int vida, int vida_max, int dano);
 
         /*
          * @brief Retorna a classe do personagem.
          */
         virtual Classes get_classe() const;
+
+        /*
+         * @brief Retorna a vida maxima do heroi.
+         */
+        int get_vida_max();
 
         /*
          * @brief Retorna a experiencia do heroi (exp).

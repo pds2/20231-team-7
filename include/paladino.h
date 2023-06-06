@@ -13,7 +13,7 @@ class Paladino: public Heroi{
          /*
          * @brief Cria um paladino.
          */       
-        Paladino(std::string nome, int vida, int dano, std::string classe);
+        Paladino(std::string nome, int vida, int vida_max, int dano);
 
         /*
          * @brief Retorna a classe do personagem.
