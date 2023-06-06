@@ -8,7 +8,7 @@ Heroi::Heroi(
     int vida,
     int dano,
     string classe
-):  Personagem(nome, dano, vida),
+):  Personagem(nome, vida, dano),
     _exp(0) {}
 
 Classes Heroi::get_classe() const{
