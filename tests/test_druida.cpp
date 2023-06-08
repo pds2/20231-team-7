@@ -3,7 +3,7 @@
 
 
 TEST_CASE("testa transformacao"){
-    Druida d("d",1,1,"");
+    Druida d("d",1,1,10);
     CHECK_THROWS_AS(d.transformar(Humano),nao_pode_transformar_para_transformacao_atual_e);
     CHECK_EQ(d.get_tranformacao(),Humano);
     d.transformar(Urso);
@@ -17,7 +17,7 @@ TEST_CASE("testa transformacao"){
 }
 
 TEST_CASE("testa ataque humano") {
-    Druida d("d", 10, 8,"druida");
+    Druida d("d", 10, 8,10);
     Personagem p1("p1", 12, 5);
     Personagem p2("p2", 12, 5);
     Personagem p3("p3", 12, 5);
@@ -29,7 +29,7 @@ TEST_CASE("testa ataque humano") {
     CHECK_EQ(p2.get_vida(), 12);
 }
 TEST_CASE("testa ataque urso") {
-    Druida d("d", 10, 8,"druida");
+    Druida d("d", 10, 8,10);
     Personagem p1("p1", 12, 5);
     Personagem p2("p2", 12, 5);
     Personagem p3("p3", 12, 5);
@@ -43,7 +43,7 @@ TEST_CASE("testa ataque urso") {
 }
 
 TEST_CASE("testa ataque falcao") {
-    Druida d("d", 10, 8,"druida");
+    Druida d("d", 10, 8,10);
     Personagem p1("p1", 12, 5);
     Personagem p2("p2", 12, 5);
     Personagem p3("p3", 12, 5);
@@ -57,7 +57,7 @@ TEST_CASE("testa ataque falcao") {
 }
 
 TEST_CASE("testa ataque lobo") {
-    Druida d("d", 10, 8,"druida");
+    Druida d("d", 10, 8,10);
     Personagem p1("p1", 12, 5);
     Personagem p2("p2", 12, 5);
     Personagem p3("p3", 12, 5);

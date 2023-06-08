@@ -2,7 +2,8 @@
 #define PERSONAGEM_H
 
 #include <string>
-
+#include "posicao.h"
+#include <iostream>
 class dano_negativo_e {};
 class valor_dado_negativo_e {};
 class personagem_ataca_a_si_mesmo_e {};
@@ -15,6 +16,7 @@ class Personagem{
         int _dano;
         bool _morto;
         unsigned int _nivel;
+        Posicao lugar;
     public:
         /*
          * @brief Cria um personagem.

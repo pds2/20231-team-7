@@ -7,8 +7,7 @@ Heroi::Heroi(
     string nome,
     int vida,
     int vida_max,
-    int dano,
-    string classe
+    int dano
 ):  Personagem(nome, vida, dano),
     _vida_max(vida_max),
     _exp(0) {}
