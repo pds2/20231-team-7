@@ -29,8 +29,8 @@ void Heroi::ganha_exp(int exp){
 
     _exp += exp;
     if(_exp >= 100){
-        aumenta_nivel();
-        _exp = 0;
+        aumenta_nivel()
+        _exp -= 100;
     }
 }
 
