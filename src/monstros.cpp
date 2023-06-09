@@ -2,9 +2,9 @@
 
 Monstros::Monstros(std::string nome, int vida, int dano,
 int nivel_de_desafio, int classe_de_armadura,
-int valor_xp_minimo): Personagem(nome, vida, dano),_nivel_de_desafio
+int valor_nivel_minimo): Personagem(nome, vida, dano),_nivel_de_desafio
 (nivel_de_desafio),_classe_de_armadura(classe_de_armadura),
-_valor_xp_minimo(valor_xp_minimo){}
+_valor_nivel_minimo(valor_nivel_minimo){}
 
 Monstros::~Monstros()
  {
@@ -17,4 +17,4 @@ tamanho Monstros::get_tamanho(){
 
 habilidade Monstros::get_habilidade(){
     return habilidade::_INTELIGENCIA;
-}   
+}
