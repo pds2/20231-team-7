@@ -8,7 +8,7 @@ _valor_nivel_minimo(valor_nivel_minimo){}
 
 Monstros::~Monstros()
  {
-    std::cout << get_nome() << "morreu!" << std::endl;
+    std::cout << get_nome() << " morreu!" << std::endl;
  }
  
 tamanho Monstros::get_tamanho(){ 

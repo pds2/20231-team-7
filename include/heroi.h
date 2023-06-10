@@ -27,6 +27,11 @@ class Heroi: public Personagem {
         Heroi(std::string nome, int vida, int vida_max, int dano);
 
         /*
+         * @brief Destroi um heroi.
+         */  
+        virtual ~Heroi();
+
+        /*
          * @brief Retorna a classe do personagem.
          */
         virtual Classes get_classe() const;

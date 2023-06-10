@@ -1,10 +1,11 @@
 #include "../include/sistema.h"
-#include "../include/heroi.h"
+#include "../include/druida.h"
+#include "../include/rolar_dados.h"
 
 #include <iostream>
 using namespace std;
 
-Sistema::Sistema(){}
+Sistema::Sistema() {}
 
 void Sistema::mostra_menu(){
     cout << string(50, ' ') << "JOGO DE RPG COM ENIGMAS\n\n";
@@ -55,6 +56,8 @@ void Sistema::inicia_menu(){
 void Sistema::inicia_jogo(){
     system("clear");
 
+    Rolar_Dados *dados = new Rolar_Dados();
+
     string nome;
     cout << "Qual o nome do seu jogador?" << endl;
     cin >> nome;
@@ -64,5 +67,38 @@ void Sistema::inicia_jogo(){
     p->ganha_exp(101);
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
 
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d04() << " ";  
+    }
+    cout << endl;
+
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d06() << " ";  
+    }
+    cout << endl;
+
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d08() << " ";  
+    }
+    cout << endl;
+
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d12() << " ";  
+    }
+    cout << endl;
+
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d20() << " ";  
+    }
+    cout << endl;
+
+    for(int i = 0; i < 3; i++){
+        cout << dados->rolar_d100() << " ";  
+    }
+    cout << endl;
+
+    cout << "posicao: " << p->get_posicao().get_x() << ", " << p->get_posicao().get_y() << endl;
+
     delete p;
+    delete dados;
 }

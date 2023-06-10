@@ -11,7 +11,8 @@ Personagem::Personagem(
     _vida(vida),
     _dano(dano),
     _morto(false),
-    _nivel(1) {}
+    _nivel(1),
+    _lugar(Posicao()) {}
 
 string Personagem::get_nome() const{
     return _nome;
@@ -31,6 +32,10 @@ int Personagem::get_dano(){
 
 void Personagem::set_dano(int dano){
     _dano = dano;
+}
+
+Posicao Personagem::get_posicao(){
+    return _lugar;
 }
 
 unsigned int Personagem::get_nivel(){

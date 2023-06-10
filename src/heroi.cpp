@@ -9,8 +9,12 @@ Heroi::Heroi(
     int vida_max,
     int dano
 ):  Personagem(nome, vida, dano),
-    _vida_max(vida_max),
-    _exp(0) {}
+    _exp(0),
+    _vida_max(vida_max) {}
+
+Heroi::~Heroi(){
+    std::cout << get_nome() << " morreu!" << std::endl;
+}
 
 Classes Heroi::get_classe() const{
     return Classes::GUERREIRO;
@@ -29,7 +33,7 @@ void Heroi::ganha_exp(int exp){
 
     _exp += exp;
     if(_exp >= 100){
-        aumenta_nivel()
+        aumenta_nivel();
         _exp -= 100;
     }
 }

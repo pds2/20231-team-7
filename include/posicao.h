@@ -9,8 +9,8 @@ class Posicao{
         Posicao();
         Posicao(int x, int y);
         double distancia(Posicao &adversario);
-        Posicao get_posicao();
-
+        int get_x();
+        int get_y();
 };
 
 #endif
