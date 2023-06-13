@@ -6,10 +6,9 @@ using namespace std;
    Druida::Druida(
     string nome,
     int vida,
-    int vida_max,
     int dano
-):  Heroi(nome, vida, vida_max, dano),
-     _trans(Humano) {}
+):  Heroi(nome, vida, dano),
+     _trans(Humano){}
 
     
 Classes Druida::get_classe() const{
@@ -23,7 +22,17 @@ Tranformacao Druida::get_tranformacao(){
 void Druida::transformar(Tranformacao trans){
     if(_trans==trans) 
         throw nao_pode_transformar_para_transformacao_atual_e();
+    
+    if(_trans==Urso) _vida=_vida-5;
+    if(_trans==Lobo) _vida=_vida-3;
+    if(_trans==Falcao) _vida--;
+
+    if(trans==Urso) _vida=_vida+5;
+    if(trans==Lobo) _vida=_vida+3;
+    if(trans==Falcao) _vida++;
+
     _trans= trans;
+    if(_vida<=0) _vida=1;
 }
 
 void Druida::ataque(Personagem &inimigo1, Personagem &inimigo2, Personagem &inimigo3, int valor_dado){

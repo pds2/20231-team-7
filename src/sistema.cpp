@@ -62,7 +62,7 @@ void Sistema::inicia_jogo(){
     cout << "Qual o nome do seu jogador?" << endl;
     cin >> nome;
 
-    Heroi *p = new Heroi(nome, 10, 10, 10);
+    Heroi *p = new Heroi(nome, 10, 10);
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
     p->ganha_exp(101);
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;

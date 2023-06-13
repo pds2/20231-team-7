@@ -8,9 +8,8 @@ using namespace std;
 Paladino::Paladino(
     string nome, 
     int vida,
-    int vida_max,
     int dano
-    ): Heroi(nome, vida, vida_max, dano),
+    ): Heroi(nome, vida, dano),
     _mana(10), _manamax(10) {}
 
 
@@ -23,6 +22,24 @@ unsigned int Paladino::get_mana(){
     return _mana;
 }
 
+void Paladino::aumenta_nivel(){
+    _nivel++;
+    _vida += 3;
+    _vida_max +=3;
+    _dano += 3;
+    _mana += 4;
+    _manamax += 4;
+
+
+    string msg = "Nivel subiu para ";
+    msg += std::to_string(_nivel);
+    msg += "!!";
+
+    // colore a mensagem
+	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
+    cout << endl;
+}
+
    
 void Paladino::recuperar_mana(){
     if(_mana <= (_manamax-2)) _mana=_mana+2;
@@ -31,9 +48,21 @@ void Paladino::recuperar_mana(){
 
     
 void Paladino::magia_cura(Heroi &alvo, int valor_dado){
+    if(_mana<2) throw mana_insuficiente_e();
+    if(valor_dado < 1) throw valor_dado_negativo_e();
 
+    alvo.recebe_cura(valor_dado);
+    _mana-=2;
 }
    
 void Paladino::ataque(Personagem &inimigo, int valor_dado){
-        
+    if(get_nome() == inimigo.get_nome())
+        throw personagem_ataca_a_si_mesmo_e();
+    if(valor_dado < 1)
+        throw valor_dado_negativo_e();
+
+    if(valor_dado == 1) inimigo.recebe_dano(_dano - 2);
+    if(valor_dado == 2) inimigo.recebe_dano(_dano - 1);
+    else if(valor_dado == 3) inimigo.recebe_dano(_dano);
+    else inimigo.recebe_dano(_dano + ((valor_dado / 2)+1));
 }

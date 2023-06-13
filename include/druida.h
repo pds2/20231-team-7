@@ -19,7 +19,7 @@ class Druida: public Heroi{
          /*
          * @brief Cria um duida.
          */       
-        Druida(std::string nome, int vida, int vida_max, int dano);
+        Druida(std::string nome, int vida, int dano);
 
         /*
          * @brief Retorna a classe do personagem.

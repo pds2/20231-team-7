@@ -9,6 +9,8 @@
 class impossivel_adicionar_exp_negativa_e {};
 class habilidade_ja_existe_e {};
 class habilidade_nao_existe_e {};
+class cura_negativa_e{};
+class nao_pode_curar_morto_e{};
 
 enum Classes {
     DRUIDA, GUERREIRO, MAGO, PALADINO
@@ -24,7 +26,7 @@ class Heroi: public Personagem {
          /*
          * @brief Cria um heroi.
          */       
-        Heroi(std::string nome, int vida, int vida_max, int dano);
+        Heroi(std::string nome, int vida, int dano);
 
         /*
          * @brief Destroi um heroi.
@@ -56,6 +58,11 @@ class Heroi: public Personagem {
          * @brief Aumenta o nivel do heroi e seus atributos base.
          */
         void aumenta_nivel() override; 
+
+        /*
+         * @brief Diminui a vida do personagem de acordo com o dano.
+         */
+        void recebe_cura(int cura);
 
         /*
          * @brief Adiciona habilidade ao personagem, mas ainda bloqueada.

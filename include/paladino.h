@@ -4,6 +4,7 @@
 #include "heroi.h"
 #include "personagem.h"
 
+class mana_insuficiente_e{};
 
 class Paladino: public Heroi{
     private:
@@ -13,12 +14,17 @@ class Paladino: public Heroi{
          /*
          * @brief Cria um paladino.
          */       
-        Paladino(std::string nome, int vida, int vida_max, int dano);
+        Paladino(std::string nome, int vida, int dano);
 
         /*
          * @brief Retorna a classe do personagem.
          */
         Classes get_classe() const override;
+
+        /*
+         * @brief Aumenta o nivel do paladino e seus atributos base.
+         */
+        void aumenta_nivel() override; 
 
         /*
          * @brief Retorna a mana atual do paladino.
