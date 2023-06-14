@@ -1,17 +1,15 @@
 #include <iostream>
 using namespace std;
 
-#include "../include/mago.h"
-#include "../include/grimorio.h"
-#include <set>
+#include "../../../include/herois/mago/mago.h"
+#include "../../../include/herois/mago/grimorio.h"
 
 Mago::Mago(
     string nome,
     int vida,
-    int vida_max,
     int dano
-) : Heroi (nome, vida, vida_max, dano),
-   _mana(5) {}
+) : Heroi (nome, vida, dano),
+   _mana(10) {}
 
 void Mago::ataque(Personagem &inimigo, int valor_dado){
     if(get_nome()==inimigo.get_nome()){
@@ -35,11 +33,23 @@ int Mago::get_mana(){
 
 void Mago::aumenta_nivel(){
     _nivel ++;
+    _vida += 3;
+    _vida_max += 3;
+    _dano += 3;
+    _mana += 3;
+
+    grimorio.adiciona_magia(_nivel);
+
+    string msg = "Nivel subiu para ";
+    msg += std::to_string(_nivel);
+    msg += "!!";
+
+    // colore a mensagem
+	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
+    cout << endl;
 }
 
 void Mago::get_grimorio(){
-   for(auto it = livro.begin(); it != livro.end(); it++){
-       cout << *it << " ";
-   }
+    grimorio.get_magias();
 }
 

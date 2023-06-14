@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-#include "personagem.h"
+#include "../personagem.h"
 
 class impossivel_adicionar_exp_negativa_e {};
 class habilidade_ja_existe_e {};
@@ -36,7 +36,7 @@ class Heroi: public Personagem {
         /*
          * @brief Retorna a classe do personagem.
          */
-        virtual Classes get_classe() const;
+        virtual Classes get_classe() const = 0;
 
         /*
          * @brief Retorna a vida maxima do heroi.

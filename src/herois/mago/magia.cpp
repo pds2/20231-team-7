@@ -1,10 +1,10 @@
-#include "../include/magia.h"
+#include "../../../include/herois/mago/magia.h"
 
 Magia::Magia(
     std::string nome,
     int nivel,
     int dano,
-    float distancia
+    int distancia
 ):  _nome(nome),
     _nivel(nivel),
     _dano(dano),
@@ -22,6 +22,6 @@ int Magia::get_dano(){
     return _dano;
 }
 
-float Magia::get_distancia(){
+int Magia::get_distancia(){
     return _distancia;
 }

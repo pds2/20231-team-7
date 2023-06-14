@@ -1,5 +1,5 @@
 #include "../include/sistema.h"
-#include "../include/druida.h"
+#include "../include/herois/mago/mago.h"
 #include "../include/rolar_dados.h"
 
 #include <iostream>
@@ -62,10 +62,14 @@ void Sistema::inicia_jogo(){
     cout << "Qual o nome do seu jogador?" << endl;
     cin >> nome;
 
-    Heroi *p = new Heroi(nome, 10, 10);
+    Mago *p = new Mago(nome, 10, 10);
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
+    p->get_grimorio();
+
     p->ganha_exp(101);
+
     cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
+    p->get_grimorio();
 
     for(int i = 0; i < 3; i++){
         cout << dados->rolar_d04() << " ";  

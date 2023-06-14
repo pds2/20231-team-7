@@ -2,7 +2,7 @@
 #define DRUIDA_H
 
 #include "heroi.h"
-#include "personagem.h"
+#include "../personagem.h"
 
 class nao_pode_transformar_para_transformacao_atual_e{};
 

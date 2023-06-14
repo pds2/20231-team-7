@@ -1,17 +1,18 @@
 #ifndef MAGO_H
 #define MAGO_H
 
-#include "heroi.h"
+#include "../heroi.h"
 #include "grimorio.h"
 
 class Mago : public Heroi {
     private:
         int _mana;
+        Grimorio grimorio;
     public:
         /*
         * @brief cria um mago 
         */
-        Mago(std::string nome, int vida, int vida_max, int dano);
+        Mago(std::string nome, int vida, int dano);
 
         /*
         * @brief Retorna o dano de ataque do heroi.

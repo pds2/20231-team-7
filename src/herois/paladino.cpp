@@ -2,9 +2,8 @@
 #include <string>
 using namespace std;
 
-#include "../include/paladino.h"
+#include "../../include/herois/paladino.h"
 
-   
 Paladino::Paladino(
     string nome, 
     int vida,

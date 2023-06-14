@@ -2,7 +2,7 @@
 #define PALADINO_H
 
 #include "heroi.h"
-#include "personagem.h"
+#include "../personagem.h"
 
 class mana_insuficiente_e{};
 

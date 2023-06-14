@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "../include/heroi.h"
+#include "../../include/herois/heroi.h"
 
 Heroi::Heroi(
     string nome,
@@ -13,10 +13,6 @@ Heroi::Heroi(
 
 Heroi::~Heroi(){
     std::cout << get_nome() << " morreu!" << std::endl;
-}
-
-Classes Heroi::get_classe() const{
-    return Classes::GUERREIRO;
 }
 
 int Heroi::get_vida_max(){
@@ -55,7 +51,6 @@ void Heroi::aumenta_nivel(){
 void Heroi::recebe_cura(int cura){
     if(cura <= 0) throw cura_negativa_e();
     if(_morto==true) throw nao_pode_curar_morto_e();
-
 
     if((_vida_max - _vida)<=cura) _vida = _vida_max;
     else _vida += cura;

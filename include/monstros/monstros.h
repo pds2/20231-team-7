@@ -1,7 +1,7 @@
 #ifndef MONSTROS_H
 #define MONSTROS_H
 
-#include "personagem.h"
+#include "../personagem.h"
 #include <vector>
 #include <string>
 

@@ -1,7 +1,7 @@
 #ifndef GUERREIRO_H
 #define GUERREIRO_H
 
-#include "guerreiro.h"
+#include "heroi.h"
 
 class Guerreiro : public Heroi {
     private:
@@ -10,7 +10,7 @@ class Guerreiro : public Heroi {
     /*
      * @brief Cria um guerreiro
      */
-    Guerreiro();
+    Guerreiro(std::string nome, int vida, int dano);
     /*
      * @brief Retorna o dano de ataque do heroi.
      */
@@ -20,5 +20,6 @@ class Guerreiro : public Heroi {
      */
     Classes get_classe() const override;
      
-}
+};
+
 #endif

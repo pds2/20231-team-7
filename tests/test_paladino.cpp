@@ -1,5 +1,5 @@
 #include "../third_party/doctest.h"
-#include "../include/paladino.h"
+#include "../include/herois/paladino.h"
 
 
 TEST_CASE("testa ataque") {

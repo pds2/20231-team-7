@@ -1,5 +1,5 @@
 #include "../third_party/doctest.h"
-#include "../include/druida.h"
+#include "../include/herois/druida.h"
 
 
 TEST_CASE("testa transformacao"){

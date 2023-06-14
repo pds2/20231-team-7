@@ -1,4 +1,4 @@
-#include "../include/monstros.h"
+#include "../../include/monstros/monstros.h"
 
 Monstros::Monstros(std::string nome, int vida, int dano,
 int nivel_de_desafio, int classe_de_armadura,

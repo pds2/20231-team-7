@@ -77,7 +77,7 @@ class Personagem{
         /*
          * @brief Aumenta o nível do personagem.
          */
-        virtual void aumenta_nivel();
+        virtual void aumenta_nivel() = 0;
 };
 
 #endif

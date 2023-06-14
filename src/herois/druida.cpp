@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "../include/druida.h"
+#include "../../include/herois/druida.h"
 
    Druida::Druida(
     string nome,
