@@ -4,7 +4,7 @@
 
 TEST_CASE("testa ataque") {
     Paladino p("p", 10, 8);
-    Personagem p1("p1", 12, 5);
+    Paladino p1("p1", 12, 5);
     CHECK_THROWS_AS(p.ataque(p1, -1), valor_dado_negativo_e);
     CHECK_THROWS_AS(p.ataque(p, -1), personagem_ataca_a_si_mesmo_e);
     p.ataque(p1, 2);
@@ -16,7 +16,7 @@ TEST_CASE("testa ataque") {
 
 TEST_CASE("cura aliado"){
     Paladino p("p", 10, 8);
-    Heroi p1("p1", 12, 10);
+    Paladino p1("p1", 12, 10);
     p1.recebe_dano(10);
     p.magia_cura(p1,5);
     CHECK_EQ(p1.get_vida(),7);

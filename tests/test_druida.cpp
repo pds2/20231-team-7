@@ -23,9 +23,9 @@ TEST_CASE("testa transformacao"){
 
 TEST_CASE("testa ataque humano") {
     Druida d("d", 10,8);
-    Personagem p1("p1", 12, 5);
-    Personagem p2("p2", 12, 5);
-    Personagem p3("p3", 12, 5);
+    Druida p1("p1", 12, 5);
+    Druida p2("p2", 12, 5);
+    Druida p3("p3", 12, 5);
     CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
     CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
     d.ataque(p1,p2,p3,2);
@@ -35,9 +35,9 @@ TEST_CASE("testa ataque humano") {
 }
 TEST_CASE("testa ataque urso") {
     Druida d("d", 10, 8);
-    Personagem p1("p1", 12, 5);
-    Personagem p2("p2", 12, 5);
-    Personagem p3("p3", 12, 5);
+    Druida p1("p1", 12, 5);
+    Druida p2("p2", 12, 5);
+    Druida p3("p3", 12, 5);
     CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
     CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
     d.transformar(Urso);
@@ -49,9 +49,9 @@ TEST_CASE("testa ataque urso") {
 
 TEST_CASE("testa ataque falcao") {
     Druida d("d", 10,8);
-    Personagem p1("p1", 12, 5);
-    Personagem p2("p2", 12, 5);
-    Personagem p3("p3", 12, 5);
+    Druida p1("p1", 12, 5);
+    Druida p2("p2", 12, 5);
+    Druida p3("p3", 12, 5);
     CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
     CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
     d.transformar(Falcao);
@@ -63,9 +63,9 @@ TEST_CASE("testa ataque falcao") {
 
 TEST_CASE("testa ataque lobo") {
     Druida d("d", 10, 8);
-    Personagem p1("p1", 12, 5);
-    Personagem p2("p2", 12, 5);
-    Personagem p3("p3", 12, 5);
+    Druida p1("p1", 12, 5);
+    Druida p2("p2", 12, 5);
+    Druida p3("p3", 12, 5);
     CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
     CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
     d.transformar(Lobo);
