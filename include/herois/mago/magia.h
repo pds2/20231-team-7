@@ -8,12 +8,12 @@ class Magia{
         std::string _nome;
         int _nivel;
         int _dano;
-        int _distancia;
+        double _distancia;
     public:
         /*
         * @brief Constroi uma magia
         */
-        Magia(std::string nome, int nivel, int dano, int distancia);
+        Magia(std::string nome, int nivel, int dano, double distancia);
 
         /*
         * @brief Retorna o nome
@@ -33,7 +33,7 @@ class Magia{
         /*
         * @brief Retorna a distancia 
         */
-        int get_distancia();
+        double get_distancia();
 };
 
 #endif

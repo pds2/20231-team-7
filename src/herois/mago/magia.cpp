@@ -4,7 +4,7 @@ Magia::Magia(
     std::string nome,
     int nivel,
     int dano,
-    int distancia
+    double distancia
 ):  _nome(nome),
     _nivel(nivel),
     _dano(dano),
@@ -22,6 +22,6 @@ int Magia::get_dano(){
     return _dano;
 }
 
-int Magia::get_distancia(){
+double Magia::get_distancia(){
     return _distancia;
 }
