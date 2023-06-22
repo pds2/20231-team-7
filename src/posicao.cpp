@@ -19,6 +19,14 @@ int Posicao::get_x(){
     return _x;
 }
 
+void Posicao::set_x(int x){
+    _x = x;
+}
+
 int Posicao::get_y(){
     return _y;
+}
+
+void Posicao::set_y(int y){
+    _y = y;
 }

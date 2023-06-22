@@ -11,9 +11,7 @@ Heroi::Heroi(
     _exp(0),
     _vida_max(vida) {}
 
-Heroi::~Heroi(){
-    std::cout << get_nome() << " morreu!" << std::endl;
-}
+Heroi::~Heroi() {}
 
 int Heroi::get_vida_max(){
     return _vida_max;
@@ -49,7 +47,6 @@ void Heroi::recebe_cura(int cura){
     if((_vida_max - _vida)<=cura) _vida = _vida_max;
     else _vida += cura;
 }
-
 
 void Heroi::adiciona_habilidade(string habilidade){
     if(_habilidades.count(habilidade) != 0)

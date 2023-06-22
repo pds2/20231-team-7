@@ -8,7 +8,14 @@ class Time_h{
         std::pair<Heroi *,Heroi *> _time;
     public:
         Time_h(Heroi& h1, Heroi& h2);
+        
+        ~Time_h();
 
+        Heroi* get_h1();
+
+        Heroi* get_h2();
+
+        void desenha_hud();
 };
 
 #endif

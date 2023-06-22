@@ -14,7 +14,7 @@
  };
 
 
- class Monstros : public Personagem{
+ class Monstro : public Personagem{
     private:
         int _nivel_de_desafio;
         int _classe_de_armadura;
@@ -24,23 +24,25 @@
         /*
          * @brief Cria um monstro.
          */  
-        Monstros(std::string nome, int vida, int dano,int nivel_de_desafio,
+        Monstro(std::string nome, int vida, int dano,int nivel_de_desafio,
                  int classe_de_armadura, int valor_nivel_minimo);
        
         /*
          * @brief Destroi um monstro.
          */          
-        ~Monstros();
+        virtual ~Monstro();
 
         /*
          * @brief Retorna o tamanho do monstro.
          */
-        virtual tamanho get_tamanho();
+        tamanho get_tamanho();
 
         /*
          * @brief Retorna a habilidade do monstro.
          */
-        virtual habilidade get_habilidade();
+        habilidade get_habilidade();
+
+        void aumenta_nivel() override;
  };
 
 

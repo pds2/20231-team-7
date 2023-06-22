@@ -61,6 +61,8 @@ class Personagem{
          */
         Posicao get_posicao();
 
+        void set_posicao(int x, int y);
+
         /*
          * @brief Diminui a vida do personagem de acordo com o dano.
          */

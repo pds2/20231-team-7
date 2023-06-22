@@ -4,6 +4,8 @@
 #include "../include/herois/druida.h"
 #include "../include/herois/paladino.h"
 #include "../include/rolar_dados.h"
+#include "../include/herois/time_heroi.h"
+#include "../include/combate.h"
 
 #include <iostream>
 #include <string>
@@ -64,52 +66,39 @@ void Sistema::inicia_jogo(){
 
     Rolar_Dados *dados = new Rolar_Dados();
 
+    Combate combate;
+
     string nome;
-    cout << "Qual o nome do seu jogador?" << endl;
-    cin >> nome;
+    do{
+        cout << "Qual o nome do seu jogador? (max 8 caracteres)" << endl;
+        cin >> nome;
 
-    Mago *p = new Mago(nome, 10, 10);
-    cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
-    p->get_grimorio();
+        if(nome.size() > 8){
+            cout << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n";
+            system("read -p 'Aperte ENTER para continuar...' var");
 
-    p->ganha_exp(101);
+            system("clear");
+        }
+    } while(nome.size() > 8);
 
-    cout << p->get_nome() << " de nivel " << p->get_nivel() << endl;
-    p->get_grimorio();
+    Mago *p = new Mago(nome, 9, 10);
+    Druida *d = new Druida("druida", 7, 10);
 
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d04() << " ";  
-    }
-    cout << endl;
+    Time_h herois(*p, *d);
+
+    Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
+    Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
 
     for(int i = 0; i < 3; i++){
         cout << dados->rolar_d06() << " ";  
     }
     cout << endl;
 
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d08() << " ";  
-    }
-    cout << endl;
+    system("read -p 'Aperte ENTER para entrar no combate!' var");
+    combate.entra_combate(herois, *m1, *m2);
 
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d12() << " ";  
-    }
-    cout << endl;
-
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d20() << " ";  
-    }
-    cout << endl;
-
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d100() << " ";  
-    }
-    cout << endl;
-
-    cout << "posicao: " << p->get_posicao().get_x() << ", " << p->get_posicao().get_y() << endl;
-
-    delete p;
+    delete m1;
+    delete m2;
     delete dados;
 }
 

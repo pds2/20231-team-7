@@ -38,6 +38,11 @@ Posicao Personagem::get_posicao(){
     return _lugar;
 }
 
+void Personagem::set_posicao(int x, int y){
+    _lugar.set_x(x);
+    _lugar.set_y(y);
+}
+
 unsigned int Personagem::get_nivel(){
     return _nivel;
 }
