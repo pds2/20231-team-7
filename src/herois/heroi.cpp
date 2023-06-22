@@ -39,13 +39,7 @@ void Heroi::aumenta_nivel(){
     _vida_max += 3;
     _dano += 3;
 
-    string msg = "Nivel subiu para ";
-    msg += std::to_string(_nivel);
-    msg += "!!";
-
-    // colore a mensagem
-	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
-    cout << endl;
+	cout << "Nivel subiu para " << termcolor::green << _nivel << termcolor::reset << endl;
 }
 
 void Heroi::recebe_cura(int cura){

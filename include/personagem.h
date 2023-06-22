@@ -2,8 +2,10 @@
 #define PERSONAGEM_H
 
 #include <string>
-#include "posicao.h"
 #include <iostream>
+
+#include "posicao.h"
+#include "../third_party/termcolor.h"
 
 class dano_negativo_e {};
 class valor_dado_negativo_e {};
