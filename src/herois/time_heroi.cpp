@@ -4,6 +4,8 @@
 
 using namespace std;
 
+Time_h::Time_h() {}
+
 Time_h::Time_h(Heroi& h1, Heroi& h2){
     _time.first = &h1;
     _time.second = &h2;
@@ -18,8 +20,16 @@ Heroi* Time_h::get_h1(){
     return _time.first;
 }
 
+void Time_h::set_h1(Heroi& h1){
+    _time.first = &h1;
+}
+
 Heroi* Time_h::get_h2(){
     return _time.second;
+}
+
+void Time_h::set_h2(Heroi& h2){
+    _time.second = &h2;
 }
 
 void Time_h::desenha_hud(){

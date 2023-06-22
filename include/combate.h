@@ -8,7 +8,7 @@
 
 class Combate{
     public:
-        void entra_combate(Time_h &time, Monstro &m1, Monstro &m2);
+        bool entra_combate(Time_h &time, Monstro &m1, Monstro &m2);
 };
 
 #endif

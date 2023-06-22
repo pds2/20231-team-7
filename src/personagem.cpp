@@ -50,8 +50,13 @@ unsigned int Personagem::get_nivel(){
 void Personagem::recebe_dano(int dano){
     if(dano <= 0) throw dano_negativo_e();
 
+    if(_vida <= dano){
+        _vida = 0;
+        _morto = true;
+        return;
+    }
+
     _vida -= dano;
-    if(_vida <= 0) _morto = true;
 }
 
 bool Personagem::morto(){

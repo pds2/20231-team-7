@@ -4,7 +4,6 @@
 #include "../include/herois/druida.h"
 #include "../include/herois/paladino.h"
 #include "../include/rolar_dados.h"
-#include "../include/herois/time_heroi.h"
 #include "../include/combate.h"
 
 #include <iostream>
@@ -12,6 +11,29 @@
 #include <fstream>
 #include <sstream>
 using namespace std;
+
+pair<string,string> valida_nome(){
+    pair<string,string> nomes;
+
+    for(int i = 1; i <= 2; i++){
+        string nome;
+        do{
+            cout << "Qual o nome do jogador " << i << "? (max 8 caracteres)" << endl;
+            cin >> nome;
+
+            if(i == 1) nomes.first = nome;
+            else nomes.second = nome;
+
+            if(nome.size() > 8){
+                cout << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n";
+                system("read -p 'Aperte ENTER para continuar...' var");
+
+                system("clear");
+            }
+        } while(nome.size() > 8);
+    }
+    return nomes;
+}
 
 Sistema::Sistema() {}
 
@@ -41,15 +63,19 @@ void Sistema::inicia_menu(){
     system("clear");
     mostra_menu();
 
+    int op;
     while(cin >> _opcao){
-        if(_opcao == "1"){
+        istringstream is(_opcao);
+        is >> op;
+
+        if(op == 1){
             // START GAME
             inicia_jogo(); 
             break;
-        } else if(_opcao == "2"){
+        } else if(op == 2){
             system("clear");
             mostra_creditos();
-        } else if(_opcao == "3"){
+        } else if(op == 3){
             exit(0);
         } else{
             cout << "Opção inválida. Tente novamente!\n";
@@ -61,45 +87,64 @@ void Sistema::inicia_menu(){
     }
 }
 
+void Sistema::cria_personagens(){
+    pair<string,string> nomes;
+    nomes = valida_nome();
+
+    Mago *p = new Mago(nomes.first, 9, 10);
+    Druida *d = new Druida(nomes.second, 7, 10); 
+
+    _herois.set_h1(*p);
+    _herois.set_h2(*d);
+}
+
 void Sistema::inicia_jogo(){
     system("clear");
 
     Rolar_Dados *dados = new Rolar_Dados();
-
     Combate combate;
+    bool continua = true;
 
-    string nome;
-    do{
-        cout << "Qual o nome do seu jogador? (max 8 caracteres)" << endl;
-        cin >> nome;
-
-        if(nome.size() > 8){
-            cout << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n";
-            system("read -p 'Aperte ENTER para continuar...' var");
-
-            system("clear");
-        }
-    } while(nome.size() > 8);
-
-    Mago *p = new Mago(nome, 9, 10);
-    Druida *d = new Druida("druida", 7, 10);
-
-    Time_h herois(*p, *d);
+    cria_personagens();
 
     Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
     Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
 
-    for(int i = 0; i < 3; i++){
-        cout << dados->rolar_d06() << " ";  
-    }
-    cout << endl;
-
     system("read -p 'Aperte ENTER para entrar no combate!' var");
-    combate.entra_combate(herois, *m1, *m2);
-
+    continua = combate.entra_combate(_herois, *m1, *m2);
+    
+    if(!continua) encerra_jogo();
     delete m1;
     delete m2;
     delete dados;
+}
+
+void Sistema::encerra_jogo(){
+    system("clear");
+
+    cout << termcolor::red << "GAME OVER SEU OTARIO!" << termcolor::reset << endl;
+
+    cout << "Deseja tentar de novo? (1 - Sim, 0 - Não)" << endl;
+    cout << "> ";
+
+    int op;
+    while(cin >> _opcao){
+        istringstream is(_opcao);
+        is >> op;
+
+        if(op == 1){
+            // RESTART GAME
+            cout << "Agora vê se faz direito." << endl;
+            system("read -p 'Aperte ENTER para recomeçar...' var");
+            inicia_menu(); 
+        } else if(op == 0){
+            cout << "fraco." << endl;
+            exit(0);
+        } else {
+            cout << "Opção inválida. Tente novamente!\n";
+            system("read -p 'Aperte ENTER para continuar...' var");
+        }
+    }
 }
 
 void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
