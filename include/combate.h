@@ -10,10 +10,14 @@
 class Combate: public Ataque {
     private:
         Time_h _time;
+        std::vector<Monstro *> _monstros;
     public:
         Combate(Time_h &time);
+        ~Combate();
         bool entra_combate(std::vector<Monstro *> monstros);
-        void seta_posicoes(std::vector<Monstro *> monstros);
+        void seta_posicoes();
+        void hud_monstro();
+        void desenha_hud();
 };
 
 #endif

@@ -105,17 +105,22 @@ void Sistema::inicia_jogo(){
     bool continua = true;
 
     cria_personagens();
-    Combate combate(_herois);
+    Combate *combate = new Combate(_herois);
 
     Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
     Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
+    Monstro *m3 = new Monstro("boss", 10, 10, 1, 1, 1);
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
-    continua = combate.entra_combate({m1, m2});
+    continua = combate->entra_combate({m1, m2, m3});
     
     if(!continua) encerra_jogo();
-    delete m1;
-    delete m2;
+    else{
+        system("clear");
+        cout << "ganhou combate." << endl;
+    }
+
+    delete combate;
     delete dados;
 }
 
@@ -139,7 +144,6 @@ void Sistema::encerra_jogo(){
             inicia_menu(); 
         } else if(op == 0){
             cout << "fraco." << endl;
-            exit(0);
         } else {
             cout << "Opção inválida. Tente novamente!\n";
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");

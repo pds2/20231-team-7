@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-    Sistema sistema;
-    sistema.inicia_menu();
+    Sistema *sistema = new Sistema();
+    sistema->inicia_menu();
 
     return 0;
 }

@@ -33,23 +33,32 @@ void Time_h::set_h2(Heroi& h2){
 }
 
 void Time_h::desenha_hud(){
-    cout << "| " << left << setw(12) << setfill(' ') << _time.first->get_nome() << string(19, ' ')
+    cout << "| " << termcolor::blue << left << setw(12) << setfill(' ') << _time.first->get_nome()
+         << string(16, ' ') << termcolor::reset
          << "Nível: " << _time.first->get_nivel() << " | "
-         << setw(12) << setfill(' ') << _time.second->get_nome() << string(19, ' ') << right
+         << termcolor::blue << setw(12) << setfill(' ') << _time.second->get_nome() << string(16, ' ') << right
+         << termcolor::reset
          << "Nível: " << _time.second->get_nivel() << " |" << endl
 
-         << "| Vida: " << setw(2) << setfill('0') << _time.first->get_vida() << string(32, ' ') << "| "
-         << "Vida: " << setw(2) << setfill('0') << _time.second->get_vida() << string(32, ' ') << "|" << endl
+         << "| Vida: " << left << setw(2) << setfill(' ');
+         (_time.first->get_vida() == 0) ? cout << termcolor::red << left << setw(2) << setfill(' ') << _time.first->get_vida() << termcolor::reset
+         : cout << _time.first->get_vida();
+         cout << string(29, ' ') << "| "
+
+         << "Vida: " << setw(2) << setfill(' ');
+         (_time.second->get_vida() == 0) ? cout << termcolor::red << setw(2) << setfill(' ') << _time.second->get_vida() << termcolor::reset
+         : cout << _time.second->get_vida();
+         cout << string(29, ' ') << right << "|" << endl
          
-         << "| Dano: " << setw(2) << setfill('0') << _time.first->get_dano() << string(32, ' ')<< "| "
-         << "Dano: " << setw(2) << setfill('0') << _time.second->get_dano() << string(32, ' ')<< "|" << endl;
+         << "| Dano: " << setw(2) << setfill(' ') << _time.first->get_dano() << string(29, ' ')<< "| "
+         << "Dano: " << setw(2) << setfill(' ') << _time.second->get_dano() << string(29, ' ')<< "|" << endl;
 
     Posicao posicao;
     posicao = _time.first->get_posicao();
-    cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(28, ' ') << "| ";
+    cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(25, ' ') << "| ";
 
     posicao = _time.second->get_posicao();
-    cout << "Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(28, ' ') << "|" << endl;
+    cout << "Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(25, ' ') << "|" << endl;
 
-    cout << string(85, '-') << endl;
+    cout << string(79, '-') << endl;
 }
