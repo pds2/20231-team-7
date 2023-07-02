@@ -76,7 +76,7 @@ class Personagem{
         /*
          * @brief Retorna o dano de ataque do heroi.
          */
-        virtual void ataque(Personagem &inimigo, int valor_dado);
+        virtual void ataque(Personagem &inimigo, int valor_dado) = 0;
 
         /*
          * @brief Aumenta o nível do personagem.

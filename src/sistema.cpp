@@ -109,10 +109,10 @@ void Sistema::inicia_jogo(){
 
     Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
     Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
-    Monstro *m3 = new Monstro("boss", 10, 10, 1, 1, 1);
+    // Monstro *m3 = new Monstro("boss", 10, 10, 1, 1, 1);
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
-    continua = combate->entra_combate({m1, m2, m3});
+    continua = combate->entra_combate({m1, m2});
     
     if(!continua) encerra_jogo();
     else{
