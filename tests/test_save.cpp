@@ -1,4 +1,8 @@
 #include "../third_party/doctest.h"
+#include "../include/herois/druida.h"
+#include "../include/herois/paladino.h"
+#include "../include/herois/guerreiro.h"
+#include "../include/herois/mago/mago.h"
 #include "../include/sistema.h"
 
 TEST_CASE("save"){
@@ -7,7 +11,9 @@ TEST_CASE("save"){
     Paladino p("p",10,10);
     Guerreiro g("g",10,10);
     Mago m("m",10,10);
+
     CHECK_THROWS_AS(sis.salva_jogo(4,d,p, 1),slot_invalido_e());
+
     d.transformar(Falcao);
     d.ataque(p,g,m,3);
     sis.salva_jogo(1,d,p,2);

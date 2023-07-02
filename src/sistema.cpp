@@ -26,7 +26,7 @@ pair<string,string> valida_nome(){
 
             if(nome.size() > 8){
                 cout << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n";
-                system("read -p 'Aperte ENTER para continuar...' var");
+                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
 
                 system("clear");
             }
@@ -56,7 +56,7 @@ void Sistema::mostra_creditos(){
     cout << "- Iago Zagnoli Albergaria\n";
     cout << "- Mateus Cursino Gomes Costa\n" << flush;
 
-    system("read -p 'Aperte ENTER para retornar ao menu...' var");
+    system("read -n 1 -s -r -p 'Aperte qualquer tecla para retornar ao menu...'");
 }
 
 void Sistema::inicia_menu(){
@@ -79,7 +79,7 @@ void Sistema::inicia_menu(){
             exit(0);
         } else{
             cout << "Opção inválida. Tente novamente!\n";
-            system("read -p 'Aperte ENTER para continuar...' var");
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
 
         system("clear");
@@ -102,16 +102,16 @@ void Sistema::inicia_jogo(){
     system("clear");
 
     Rolar_Dados *dados = new Rolar_Dados();
-    Combate combate;
     bool continua = true;
 
     cria_personagens();
+    Combate combate(_herois);
 
     Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
     Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
 
-    system("read -p 'Aperte ENTER para entrar no combate!' var");
-    continua = combate.entra_combate(_herois, *m1, *m2);
+    system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
+    continua = combate.entra_combate({m1, m2});
     
     if(!continua) encerra_jogo();
     delete m1;
@@ -135,14 +135,14 @@ void Sistema::encerra_jogo(){
         if(op == 1){
             // RESTART GAME
             cout << "Agora vê se faz direito." << endl;
-            system("read -p 'Aperte ENTER para recomeçar...' var");
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para recomeçar...'");
             inicia_menu(); 
         } else if(op == 0){
             cout << "fraco." << endl;
             exit(0);
         } else {
             cout << "Opção inválida. Tente novamente!\n";
-            system("read -p 'Aperte ENTER para continuar...' var");
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
     }
 }
