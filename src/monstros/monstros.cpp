@@ -21,3 +21,7 @@ void Monstro::aumenta_nivel(){
     _dano += 3;
     _nivel_de_desafio++;
 }
+
+void Monstro::ataque(Personagem &inimigo1, int valor_dado){
+
+}

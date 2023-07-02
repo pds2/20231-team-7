@@ -43,6 +43,8 @@
         habilidade get_habilidade();
 
         void aumenta_nivel() override;
+
+        void ataque(Personagem &inimigo1, int valor_dado) override;
  };
 
 
