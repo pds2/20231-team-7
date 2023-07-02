@@ -20,6 +20,16 @@ void Combate::desenha_hud(){
     hud_monstro(); 
 }
 
+void completa_hud_monstro(unsigned tam){
+    if(tam == 3)
+        cout << "|" << endl;
+    else{
+        for(unsigned i = 0; i < (3-tam); i++)
+            cout << "|" << string(25, ' ');
+        cout << "|" << endl;
+    }
+}
+
 Combate::Combate(
     Time_h &time
 ): _time(time) {}
@@ -45,7 +55,7 @@ void Combate::hud_monstro(){
         cout << "| " << termcolor::red << left << setw(12) << setfill(' ') << _monstros.at(i)->get_nome()
              << string(12, ' ') << right << termcolor::reset;
     }
-    cout << "|" << endl;
+    completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
         cout << "| Vida: " << left << setw(2) << setfill(' ');
@@ -54,20 +64,18 @@ void Combate::hud_monstro(){
         : cout << _monstros.at(i)->get_vida();
         cout << string(16, ' ') << right;
     }
-    cout << "|" << endl;
+    completa_hud_monstro(_monstros.size());
 
-    for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| Dano: " << setw(2) << setfill(' ') << _monstros.at(i)->get_dano() << string(16, ' ')
-             << right;
-    }
-    cout << "|" << endl;
+    for(unsigned i = 0; i < _monstros.size(); i++)
+        cout << "| Dano: " << setw(2) << setfill(' ') << _monstros.at(i)->get_dano() << string(16, ' ') << right;
+    completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
         Posicao posicao;
         posicao = _monstros.at(i)->get_posicao();
         cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(12, ' ');
     }
-    cout << "|" << endl;
+    completa_hud_monstro(_monstros.size());
 
     cout << string(79, '-') << endl; 
 }
@@ -77,26 +85,22 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
-    Monstro *m1 = monstros.at(0);
-    Monstro *m2 = monstros.at(1);
-    Monstro *m3 = monstros.at(2);
 
     seta_posicoes();
 
     bool player_venceu = false;
-    while((h1->morto() == false || h2->morto() == false) &&
-          (m1->morto() == false || m2->morto() == false || m3->morto() == false))
+    while(h1->morto() == false || h2->morto() == false)
     {
         desenha_hud();
 
         h1->recebe_dano(4);
         h2->recebe_dano(3);
-        m1->recebe_dano(10);
-        m2->recebe_dano(10);
-        m3->recebe_dano(10);
+        for(auto m: _monstros) m->recebe_dano(9);
 
         player_venceu = verifica_monstros(_monstros);
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
+
+        if(player_venceu) break;
     }
 
     desenha_hud();
