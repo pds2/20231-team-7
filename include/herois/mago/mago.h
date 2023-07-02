@@ -17,7 +17,7 @@ class Mago : public Heroi {
         /*
         * @brief Retorna o dano de ataque do heroi.
          */
-        void ataque(Personagem &inimigo, int valor_dado) override;
+        void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
         /*
         * @brief Retorna a classe do personagem.

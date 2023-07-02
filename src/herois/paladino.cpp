@@ -54,7 +54,7 @@ void Paladino::magia_cura(Heroi &alvo, int valor_dado){
     _mana-=2;
 }
    
-void Paladino::ataque(Personagem &inimigo, int valor_dado){
+void Paladino::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     if(get_nome() == inimigo.get_nome())
         throw personagem_ataca_a_si_mesmo_e();
     if(valor_dado < 1)

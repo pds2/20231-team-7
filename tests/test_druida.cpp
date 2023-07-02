@@ -22,55 +22,77 @@ TEST_CASE("testa transformacao"){
 }
 
 TEST_CASE("testa ataque humano") {
-    Druida d("d", 10,8);
-    Druida p1("p1", 12, 5);
-    Druida p2("p2", 12, 5);
-    Druida p3("p3", 12, 5);
-    CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
-    d.ataque(p1,p2,p3,2);
-    CHECK_EQ(p1.get_vida(), 6);
-    CHECK_EQ(p3.get_vida(), 12);
-    CHECK_EQ(p2.get_vida(), 12);
+    Druida *d = new Druida("d", 10, 8);
+    Druida *p1 = new Druida("p1", 12, 5);
+    Druida *p2 = new Druida("p2", 12, 5);
+    Druida *p3 = new Druida("p3", 12, 5);
+
+    CHECK_THROWS_AS(d->ataque(-1, {p1,p2,p3}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(-1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
+    d->ataque(2, {p1,p2,p3});
+    CHECK_EQ(p1->get_vida(), 6);
+    CHECK_EQ(p3->get_vida(), 12);
+    CHECK_EQ(p2->get_vida(), 12);
+
+    delete d;
+    delete p1;
+    delete p2;
+    delete p3;
 }
 TEST_CASE("testa ataque urso") {
-    Druida d("d", 10, 8);
-    Druida p1("p1", 12, 5);
-    Druida p2("p2", 12, 5);
-    Druida p3("p3", 12, 5);
-    CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
-    d.transformar(Urso);
-    d.ataque(p1,p2,p3, 2);
-    CHECK_EQ(p1.get_vida(), 4);
-    CHECK_EQ(p3.get_vida(), 12);
-    CHECK_EQ(p2.get_vida(), 12);
+    Druida *d = new Druida("d", 10, 8);
+    Druida *p1 = new Druida("p1", 12, 5);
+    Druida *p2 = new Druida("p2", 12, 5);
+    Druida *p3 = new Druida("p3", 12, 5);
+    CHECK_THROWS_AS(d->ataque(-1, {p1,p2,p3}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(-1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
+    d->transformar(Urso);
+    d->ataque(2, {p1,p2,p3});
+    CHECK_EQ(p1->get_vida(), 4);
+    CHECK_EQ(p3->get_vida(), 12);
+    CHECK_EQ(p2->get_vida(), 12);
+
+    delete d;
+    delete p1;
+    delete p2;
+    delete p3;
 }
 
 TEST_CASE("testa ataque falcao") {
-    Druida d("d", 10,8);
-    Druida p1("p1", 12, 5);
-    Druida p2("p2", 12, 5);
-    Druida p3("p3", 12, 5);
-    CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
-    d.transformar(Falcao);
-    d.ataque(p1,p2,p3, 2);
-    CHECK_EQ(p1.get_vida(), 6);
-    CHECK_EQ(p2.get_vida(), 6);
-    CHECK_EQ(p3.get_vida(), 6);
+    Druida *d = new Druida("d", 10, 8);
+    Druida *p1 = new Druida("p1", 12, 5);
+    Druida *p2 = new Druida("p2", 12, 5);
+    Druida *p3 = new Druida("p3", 12, 5);
+
+    CHECK_THROWS_AS(d->ataque(-1, {p1,p2,p3}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(-1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
+    d->transformar(Falcao);
+    d->ataque(2, {p1,p2,p3});
+    CHECK_EQ(p1->get_vida(), 6);
+    CHECK_EQ(p2->get_vida(), 6);
+    CHECK_EQ(p3->get_vida(), 6);
+
+    delete d;
+    delete p1;
+    delete p2;
+    delete p3;
 }
 
 TEST_CASE("testa ataque lobo") {
-    Druida d("d", 10, 8);
-    Druida p1("p1", 12, 5);
-    Druida p2("p2", 12, 5);
-    Druida p3("p3", 12, 5);
-    CHECK_THROWS_AS(d.ataque(p1,p2,p3, -1), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d.ataque(d,p3,p2, -1), personagem_ataca_a_si_mesmo_e);
-    d.transformar(Lobo);
-    d.ataque(p1,p2,p3, 2);
-    CHECK_EQ(p1.get_vida(), 5);
-    CHECK_EQ(p2.get_vida(), 5);
-    CHECK_EQ(p3.get_vida(), 12);
+    Druida *d = new Druida("d", 10, 8);
+    Druida *p1 = new Druida("p1", 12, 5);
+    Druida *p2 = new Druida("p2", 12, 5);
+    Druida *p3 = new Druida("p3", 12, 5);
+    CHECK_THROWS_AS(d->ataque(-1, {p1,p2,p3}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(-1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
+    d->transformar(Lobo);
+    d->ataque(2, {p1,p2,p3});
+    CHECK_EQ(p1->get_vida(), 5);
+    CHECK_EQ(p2->get_vida(), 5);
+    CHECK_EQ(p3->get_vida(), 12);
+
+    delete d;
+    delete p1;
+    delete p2;
+    delete p3;
 }

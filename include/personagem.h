@@ -2,6 +2,7 @@
 #define PERSONAGEM_H
 
 #include <string>
+#include <vector>
 #include <iostream>
 
 #include "posicao.h"
@@ -76,7 +77,7 @@ class Personagem{
         /*
          * @brief Retorna o dano de ataque do heroi.
          */
-        virtual void ataque(Personagem &inimigo, int valor_dado) = 0;
+        virtual void ataque(int valor_dado, std::vector<Personagem *>) = 0;
 
         /*
          * @brief Aumenta o nível do personagem.

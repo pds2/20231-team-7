@@ -3,11 +3,10 @@
 
 #include "herois/heroi.h"
 #include "monstros/monstros.h"
-#include "ataque.h"
 
 #include "herois/time_heroi.h"
 
-class Combate: public Ataque {
+class Combate{
     private:
         Time_h _time;
         std::vector<Monstro *> _monstros;

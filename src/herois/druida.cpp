@@ -35,7 +35,7 @@ void Druida::transformar(Tranformacao trans){
     if(_vida<=0) _vida=1;
 }
 
-void Druida::ataque(Personagem &inimigo1, Personagem &inimigo2, Personagem &inimigo3, int valor_dado){
+void Druida::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     if(get_nome() == inimigo1.get_nome()||get_nome() == inimigo2.get_nome()||get_nome() == inimigo3.get_nome())
         throw personagem_ataca_a_si_mesmo_e();
     if(valor_dado < 1)

@@ -1,5 +1,7 @@
 #include "../../include/monstros/monstros.h"
 
+using namespace std;
+
 Monstro::Monstro(std::string nome, int vida, int dano,
 int nivel_de_desafio, int classe_de_armadura,
 int valor_nivel_minimo): Personagem(nome, vida, dano),_nivel_de_desafio
@@ -22,6 +24,6 @@ void Monstro::aumenta_nivel(){
     _nivel_de_desafio++;
 }
 
-void Monstro::ataque(Personagem &inimigo1, int valor_dado){
+void Monstro::ataque(int valor_dado, std::vector<Personagem *> inimigos){
 
 }

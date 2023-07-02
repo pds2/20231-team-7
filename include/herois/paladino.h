@@ -44,7 +44,7 @@ class Paladino: public Heroi{
         /*
          * @brief Ação de ataque do paladino.
          */
-        void ataque(Personagem &inimigo, int valor_dado) override;
+        void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
 };
 

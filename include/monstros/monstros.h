@@ -44,7 +44,7 @@
 
         void aumenta_nivel() override;
 
-        void ataque(Personagem &inimigo1, int valor_dado) override;
+        void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
  };
 
 
