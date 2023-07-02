@@ -10,7 +10,7 @@ class Ataque {
     private:
 
     public:
-
+        virtual void ataque(unsigned atq) = 0;
 };
 
 #endif

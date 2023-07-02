@@ -7,6 +7,7 @@ Posicao::Posicao(){
 }
 
 Posicao::Posicao(int x, int y){
+    if((x < 0 || x > 4) || (y < 0 || y > 3)) throw posicao_invalida_e();
     _x = x;
     _y = y;
 }

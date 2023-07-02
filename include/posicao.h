@@ -1,6 +1,8 @@
 #ifndef POSICAO_H
 #define POSICAO_H
 
+class posicao_invalida_e {};
+
 class Posicao{
     private:
         int _x;
