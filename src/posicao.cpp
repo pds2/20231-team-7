@@ -1,10 +1,9 @@
 #include "../include/posicao.h"
 #include <cmath>
 
-Posicao::Posicao(){
-    _x = 0;
-    _y = 0;
-}
+Posicao::Posicao(
+):_x(0),
+_y(0){}
 
 Posicao::Posicao(int x, int y){
     if((x < 0 || x > 4) || (y < 0 || y > 3)) throw posicao_invalida_e();

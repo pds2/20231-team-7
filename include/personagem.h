@@ -62,6 +62,9 @@ class Personagem{
          */
         Posicao get_posicao();
 
+        /*
+         * @brief Define a posicao do personagem.
+         */
         void set_posicao(int x, int y);
 
         /*
@@ -75,7 +78,7 @@ class Personagem{
         bool morto();
 
         /*
-         * @brief Retorna o dano de ataque do heroi.
+         * @brief Retorna o dano de ataque do personagem.
          */
         virtual void ataque(int valor_dado, std::vector<Personagem *>) = 0;
 

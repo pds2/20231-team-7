@@ -37,6 +37,26 @@ class Druida: public Heroi{
         void transformar(Tranformacao trans);
 
         /*
+         * @brief Retorna o dano de ataque do urso.
+         */
+        void ataqueUrso(int valor_dado, std::vector<Personagem *> inimigos);
+
+        /*
+         * @brief Retorna o dano de ataque do humano.
+         */
+        void ataqueHumano(int valor_dado, std::vector<Personagem *> inimigos);
+
+        /*
+         * @brief Retorna o dano de ataque do falcao.
+         */
+        void ataqueFalcao(int valor_dado, std::vector<Personagem *> inimigos);
+
+        /*
+         * @brief Retorna o dano de ataque do lobo.
+         */
+        void ataqueLobo(int valor_dado, std::vector<Personagem *> inimigos);
+
+        /*
          * @brief Retorna o dano de ataque do druida baseado na tranformação.
          */
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;

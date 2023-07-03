@@ -25,7 +25,7 @@ void Heroi::ganha_exp(int exp){
     if(exp <= 0) throw impossivel_adicionar_exp_negativa_e();
 
     _exp += exp;
-    if(_exp >= 100){
+    while(_exp >= 100){
         aumenta_nivel();
         _exp -= 100;
     }
@@ -34,10 +34,16 @@ void Heroi::ganha_exp(int exp){
 void Heroi::aumenta_nivel(){
     _nivel++;
     _vida += 3;
-    _vida_max += 3;
+    _vida_max +=3;
     _dano += 3;
 
-	cout << "Nivel subiu para " << termcolor::green << _nivel << termcolor::reset << endl;
+    string msg = "Nivel subiu para ";
+    msg += std::to_string(_nivel);
+    msg += "!!";
+
+    // colore a mensagem
+	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
+    cout << endl;
 }
 
 void Heroi::recebe_cura(int cura){

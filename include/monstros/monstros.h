@@ -21,29 +21,35 @@
         int _valor_nivel_minimo;
         std::vector<std::string> imune;
     public:
-        /*
+         /*
          * @brief Cria um monstro.
          */  
         Monstro(std::string nome, int vida, int dano,int nivel_de_desafio,
                  int classe_de_armadura, int valor_nivel_minimo);
        
-        /*
+         /*
          * @brief Destroi um monstro.
          */          
         virtual ~Monstro();
 
-        /*
+         /*
          * @brief Retorna o tamanho do monstro.
          */
         tamanho get_tamanho();
 
-        /*
+         /*
          * @brief Retorna a habilidade do monstro.
          */
         habilidade get_habilidade();
 
+        /*
+        * @brief Aumenta o nível do personagem.
+        */
         void aumenta_nivel() override;
 
+        /*
+        * @brief Retorna o dano de ataque do heroi.
+        */
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
  };
 

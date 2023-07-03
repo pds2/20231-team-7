@@ -6,6 +6,7 @@
 #include "../include/rolar_dados.h"
 #include "../include/combate.h"
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -152,21 +153,23 @@ void Sistema::encerra_jogo(){
 }
 
 void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
-    if(numslot >3)throw slot_invalido_e();
+    if(numslot >3)
+        throw slot_invalido_e();
     if(numslot==1){
-        ofstream save("../saveslots/save1.txt",ios::trunc);
+        ofstream save("../saveslots/save1.txt");
+        if(save.bad()==true) std::cout<<"deu ruim "<<std::endl;
         save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
         save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
     }
     if(numslot==2){
-        ofstream save("../saveslots/save2.txt",ios::trunc);
+        ofstream save("../saveslots/save2.txt");
         save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
         save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
     }
     if(numslot==3){
-        ofstream save("../saveslots/save3.txt",ios::trunc);
+        ofstream save("../saveslots/save3.txt");
         save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
         save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
