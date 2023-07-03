@@ -19,7 +19,6 @@
         int _nivel_de_desafio;
         int _classe_de_armadura;
         int _valor_nivel_minimo;
-        std::vector<std::string> imune;
     public:
          /*
          * @brief Cria um monstro.
@@ -35,12 +34,12 @@
          /*
          * @brief Retorna o tamanho do monstro.
          */
-        tamanho get_tamanho();
+        virtual tamanho get_tamanho();
 
          /*
          * @brief Retorna a habilidade do monstro.
          */
-        habilidade get_habilidade();
+        virtual habilidade get_habilidade();
 
         /*
         * @brief Aumenta o nível do personagem.
