@@ -30,6 +30,14 @@ void mostra_menu(){
     cout << "2. Créditos\n";
     cout << "3. Sair\n";
     cout << "> ";
+
+    /* Nova forma
+    cout << "1. Novo Jogo\n";
+    cout << "2. Carregar Jogo\n";
+    cout << "3. Créditos\n";
+    cout << "4. Sair\n";
+    cout << "> ";
+    */
 }
 
 void mostra_creditos(){
@@ -225,26 +233,48 @@ void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int f
     if(numslot >3)
         throw slot_invalido_e();
     if(numslot==1){
-        ofstream save("../saveslots/save1.txt");
-        if(save.bad()==true) std::cout<<"deu ruim "<<std::endl;
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
+        ofstream save ("saveslots/save1.txt");
+        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
+        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
+        save.close();
     }
     if(numslot==2){
-        ofstream save("../saveslots/save2.txt");
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
+        ofstream save("saveslots/save2.txt");
+        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
+        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
+        save.close();
     }
     if(numslot==3){
-        ofstream save("../saveslots/save3.txt");
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida_max()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_dano()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida_max()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_dano()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
+        ofstream save("saveslots/save3.txt");
+        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
+        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
         save<<faseatual<<endl;
+        save.close();
     }
 }
 
-void Sistema::carrega_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
-
+void Sistema::carrega_jogo(unsigned int numslot){
+    string linha, nome;
+    int classe, vida, nivel, exp, faseatual;
+    if(numslot==1){
+        ifstream save("saveslots/save1.txt");
+        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+        for(int i=0;getline(save,linha);i++){
+            stringstream str(linha);
+            if(i<2){
+                str>>nome>>classe>>vida>>nivel>>exp;
+                cout<<nome<<" "<<classe<<" "<<vida<<" "<<nivel<<" "<<exp<<endl;
+            }
+            if(i==2){
+                str>>faseatual;
+                cout<<faseatual<<endl;
+            }
+        }
+        save.close();
+    }
 }

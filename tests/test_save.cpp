@@ -22,7 +22,8 @@ TEST_CASE("save"){
     g->ganha_exp(105);
     p->magia_cura(*g,1);
     sis->salva_jogo(2,*p,*g,3);
-
+    sis->carrega_jogo(1);
+    
     delete sis;
     delete d;
     delete p;
