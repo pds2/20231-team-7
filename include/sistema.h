@@ -2,7 +2,6 @@
 #define SISTEMA_H
 
 #include "../include/herois/time_heroi.h"
-#include "../include/rolar_dados.h"
 
 #include <string>
 
@@ -15,8 +14,6 @@ class Sistema{
         Time_h _herois;
     public:
         Sistema();
-        void mostra_menu();
-        void mostra_creditos();
         void inicia_menu();
         void cria_personagens();
         void inicia_jogo();

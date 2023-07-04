@@ -6,39 +6,24 @@
 #include "../include/rolar_dados.h"
 #include "../include/combate.h"
 
-#include <cstddef>
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
+
+#include "../include/rolar_dados.h"
 using namespace std;
 
-pair<string,string> valida_nome(){
-    pair<string,string> nomes;
-
-    for(int i = 1; i <= 2; i++){
-        string nome;
-        do{
-            cout << "Qual o nome do jogador " << i << "? (max 8 caracteres)" << endl;
-            cin >> nome;
-
-            if(i == 1) nomes.first = nome;
-            else nomes.second = nome;
-
-            if(nome.size() > 8){
-                cout << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n";
-                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
-
-                system("clear");
-            }
-        } while(nome.size() > 8);
-    }
-    return nomes;
+void pausa_tela(){
+    #ifdef _WIN32
+        system("pause >nul"); // para sistemas Windows
+    #else
+        system("read -n1 -r -p 'Pressione qualquer tecla para continuar...'"); // para sistemas baseados em Unix
+    #endif
 }
 
-Sistema::Sistema() {}
-
-void Sistema::mostra_menu(){
+void mostra_menu(){
     cout << string(50, ' ') << "JOGO DE RPG COM ENIGMAS\n\n";
     cout << "Escolha uma opção para seguir:\n";
     cout << "1. Começar\n";
@@ -47,7 +32,7 @@ void Sistema::mostra_menu(){
     cout << "> ";
 }
 
-void Sistema::mostra_creditos(){
+void mostra_creditos(){
     system("clear");
     cout << "TRABALHO PRÁTICO DE PDS2\n";
     cout << "JOGO DE RPG COM ENIGMAS\n\n";
@@ -59,6 +44,91 @@ void Sistema::mostra_creditos(){
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para retornar ao menu...'");
 }
+
+void mostra_classes(int i){
+    cout << "Qual será a classe do herói " << i << "?" << endl;
+    cout << "1. Druida\n";
+    cout << "2. Guerreiro\n";
+    cout << "3. Mago\n";
+    cout << "4. Paladino\n";
+    cout << "> ";
+}
+
+Heroi* instancia_personagem(string nome, int i){
+    string op1;
+    int op;
+
+    mostra_classes(i);
+    while(cin >> op1){
+        istringstream is(op1);
+        is >> op;
+
+        if(op == 1){
+            // START GAME
+            Heroi *p = new Druida(nome, 10, 10); 
+            return p;
+        } else if(op == 2){
+            Heroi *p = new Guerreiro(nome, 10, 10); 
+            return p;
+        } else if(op == 3){
+            Heroi *p = new Mago(nome, 10, 10); 
+            return p;
+        } else if(op == 4){
+            Heroi *p = new Paladino(nome, 10, 10); 
+            return p;
+        } else{
+            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+        }
+
+        cout << "\n\n";
+        mostra_classes(i);
+    }
+
+    Heroi *h = new Druida("",0,0);
+    return h;
+}
+
+pair<Heroi *,Heroi *> valida_personagens(){
+    pair<Heroi *,Heroi *> personagens;
+
+    for(int i = 1; i <= 2; i++){
+        string nome;
+        do{
+            cout << "Qual o nome do herói " << i << "? (max 8 caracteres)" << endl;
+            cout << "> ";
+            cin >> nome;
+
+            if(nome.size() > 8){
+                cout << termcolor::red << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n"
+                     << termcolor::reset;
+                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+
+                system("clear");
+            }
+        } while(nome.size() > 8);
+
+        
+        if(i == 1) 
+            personagens.first = instancia_personagem(nome, i);
+        else{
+            personagens.second = instancia_personagem(nome, i);
+            while(personagens.first->get_classe() == personagens.second->get_classe()){
+                cout << termcolor::red << "Não é permitido heróis de mesma classe! Tente novamente.\n"
+                     << termcolor::reset;
+                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+                cout << "\n\n";
+
+                personagens.second = instancia_personagem(nome, i);
+            }
+        }
+
+        cout << endl;
+    }
+    return personagens;
+}
+
+Sistema::Sistema() {}
 
 void Sistema::inicia_menu(){
     system("clear");
@@ -79,7 +149,7 @@ void Sistema::inicia_menu(){
         } else if(op == 3){
             exit(0);
         } else{
-            cout << "Opção inválida. Tente novamente!\n";
+            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
 
@@ -89,14 +159,13 @@ void Sistema::inicia_menu(){
 }
 
 void Sistema::cria_personagens(){
-    pair<string,string> nomes;
-    nomes = valida_nome();
+    pair<Heroi *,Heroi *> personagens;
 
-    Mago *p = new Mago(nomes.first, 9, 10);
-    Druida *d = new Druida(nomes.second, 7, 10); 
+    cout << termcolor::green << "Crie sua equipe:" << termcolor::reset << endl;
+    personagens = valida_personagens();
 
-    _herois.set_h1(*p);
-    _herois.set_h2(*d);
+    _herois.set_h1(*personagens.first);
+    _herois.set_h2(*personagens.second);
 }
 
 void Sistema::inicia_jogo(){
@@ -146,7 +215,7 @@ void Sistema::encerra_jogo(){
         } else if(op == 0){
             cout << "fraco." << endl;
         } else {
-            cout << "Opção inválida. Tente novamente!\n";
+            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
     }

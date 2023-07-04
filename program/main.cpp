@@ -15,7 +15,5 @@ int main()
     Sistema *sistema = new Sistema();
     sistema->inicia_menu();
 
-    delete sistema;
-
     return 0;
 }
