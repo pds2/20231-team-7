@@ -24,20 +24,12 @@ void pausa_tela(){
 }
 
 void mostra_menu(){
-    cout << string(50, ' ') << "JOGO DE RPG COM ENIGMAS\n\n";
-    cout << "Escolha uma opção para seguir:\n";
-    cout << "1. Começar\n";
-    cout << "2. Créditos\n";
-    cout << "3. Sair\n";
-    cout << "> ";
-
-    /* Nova forma
+    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
     cout << "1. Novo Jogo\n";
     cout << "2. Carregar Jogo\n";
     cout << "3. Créditos\n";
     cout << "4. Sair\n";
     cout << "> ";
-    */
 }
 
 void mostra_creditos(){
@@ -48,7 +40,7 @@ void mostra_creditos(){
     cout << "- Caroline Campos Carvalho\n";
     cout << "- Deborah Brito Yamamoto\n";
     cout << "- Iago Zagnoli Albergaria\n";
-    cout << "- Mateus Cursino Gomes Costa\n" << flush;
+    cout << "- Mateus Cursino Gomes Costa\n";
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para retornar ao menu...'");
 }
@@ -152,9 +144,12 @@ void Sistema::inicia_menu(){
             inicia_jogo(); 
             break;
         } else if(op == 2){
+            carrega_jogo(1);
+            break;
+        }else if(op == 3){
             system("clear");
             mostra_creditos();
-        } else if(op == 3){
+        } else if(op == 4){
             exit(0);
         } else{
             cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;

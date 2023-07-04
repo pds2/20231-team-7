@@ -69,3 +69,5 @@ void Paladino::ataque(int valor_dado, std::vector<Personagem *> inimigos){
         else g->recebe_dano(_dano + ((valor_dado / 2)+1));
     }
 }
+
+void Paladino::print_habilidades() {}

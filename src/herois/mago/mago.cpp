@@ -49,7 +49,6 @@ void Mago::aumenta_nivel(){
     cout << endl;
 }
 
-void Mago::get_grimorio(){
+void Mago::print_habilidades(){
     grimorio.get_magias();
 }
-

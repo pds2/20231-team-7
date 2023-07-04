@@ -94,14 +94,13 @@ void Combate::desenha_hud(){
             is >> op;
 
             if(op == 1){
-            
-            
+                break;
             } else if(op == 2){
-            
+                break;
             } else if(op == 3){
-            
+                break;
             } else if(op == 4){
-            
+                break;
             } else{
             cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");

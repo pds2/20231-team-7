@@ -67,13 +67,3 @@ void Heroi::desbloqueia_habilidade(string habilidade){
 
     _habilidades.at(habilidade) = true;
 }
-
-void Heroi::print_habilidades(){
-    int i = 0;
-    for(auto h: _habilidades){
-        if(h.second == true){
-            cout << i << " - " << h.first << endl;
-            i++;
-        }
-    }
-}

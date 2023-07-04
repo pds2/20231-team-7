@@ -62,9 +62,3 @@ void Personagem::recebe_dano(int dano){
 bool Personagem::morto(){
     return _morto;
 }
-
-void Personagem::aumenta_nivel(){
-    _nivel++;
-    _vida += 4;
-    _dano += 4;
-}

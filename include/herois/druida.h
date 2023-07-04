@@ -6,11 +6,9 @@
 
 class nao_pode_transformar_para_transformacao_atual_e{};
 
-
 enum Tranformacao{
     Humano, Urso, Lobo, Falcao
 };
-
 
 class Druida: public Heroi{
     private:
@@ -25,6 +23,8 @@ class Druida: public Heroi{
          * @brief Retorna a classe do personagem.
          */
         Classes get_classe() const override;
+
+        void aumenta_nivel() override;
 
         /*
          * @brief Retorna a transformação atual do druida.
@@ -60,6 +60,11 @@ class Druida: public Heroi{
          * @brief Retorna o dano de ataque do druida baseado na tranformação.
          */
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
+
+        /*
+         * @brief Retorna as habilidades do druida.
+         */
+        void print_habilidades() override;
 };
 
 #endif

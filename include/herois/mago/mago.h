@@ -37,7 +37,7 @@ class Mago : public Heroi {
         /*
         @brief Retorna o grimorio do mago
         */
-        void get_grimorio();
+        void print_habilidades() override;
 };
 
 #endif

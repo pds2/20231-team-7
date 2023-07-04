@@ -3,9 +3,11 @@
 
 #include "heroi.h"
 
+#include <set>
+
 class Guerreiro : public Heroi {
     private:
-    
+        std::set<std::string> _ataques;
     public:
     /*
      * @brief Cria um guerreiro
@@ -22,6 +24,12 @@ class Guerreiro : public Heroi {
      */
     Classes get_classe() const override;
      
+    void aumenta_nivel() override;
+
+    /*
+     * @brief Retorna as habilidades do guerreiro.
+     */
+    void print_habilidades() override;
 };
 
 #endif

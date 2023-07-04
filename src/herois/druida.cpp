@@ -3,20 +3,38 @@ using namespace std;
 
 #include "../../include/herois/druida.h"
 
-   Druida::Druida(
+Druida::Druida(
     string nome,
     int vida,
     int dano
 ):  Heroi(nome, vida, dano),
-     _trans(Humano){}
+    _trans(Humano) {}
 
-    
 Classes Druida::get_classe() const{
     return Classes::DRUIDA;
 }
 
+void Druida::print_habilidades() {
+    cout << "a" << endl;
+}
+
 Tranformacao Druida::get_tranformacao(){
     return _trans;
+}
+
+void Druida::aumenta_nivel(){
+    _nivel ++;
+    _vida += 3;
+    _vida_max += 3;
+    _dano += 3;
+
+    string msg = "Nivel subiu para ";
+    msg += std::to_string(_nivel);
+    msg += "!!";
+
+    // colore a mensagem
+	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
+    cout << endl;
 }
 
 void Druida::transformar(Tranformacao trans){

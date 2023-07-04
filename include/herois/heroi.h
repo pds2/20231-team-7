@@ -78,7 +78,7 @@ class Heroi: public Personagem {
         /*
          * @brief Printa todas as habilidades já desbloqueadas pelo heroi.
          */
-        void print_habilidades();
+        virtual void print_habilidades() = 0;
 };
 
 #endif

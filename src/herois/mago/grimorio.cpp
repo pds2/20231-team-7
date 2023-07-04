@@ -4,7 +4,7 @@ using namespace std;
 #include "../../../include/herois/mago/grimorio.h"
 
 Grimorio::Grimorio() {
-    adiciona_magia(1); 
+    adiciona_magia(1);
 }
 
 void Grimorio::adiciona_magia(int nivel){
@@ -21,7 +21,9 @@ void Grimorio::adiciona_magia(int nivel){
 }
 
 void Grimorio::get_magias(){
+    int i = 1;
     for(auto magia: _livro){
-        std::cout << magia.get_nome() << std::endl;
+        cout << i << " - " << magia.get_nome() << std::endl;
+        i++;
     }
 }
