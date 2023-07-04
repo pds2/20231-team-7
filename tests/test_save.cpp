@@ -16,19 +16,12 @@ TEST_CASE("save"){
     CHECK_THROWS_AS(sis->salva_jogo(4,*d,*p, 1),slot_invalido_e);
 
     d->transformar(Falcao);
-    CHECK(1==2);
     d->ataque(2, {p,g,m});
-    CHECK(1==2);
     sis->salva_jogo(1,*d,*p,2);
-    CHECK(1==2);
     p->ganha_exp(249);
-    CHECK(1==2);
     g->ganha_exp(105);
-    CHECK(1==2);
     p->magia_cura(*g,1);
-    CHECK(1==2);
     sis->salva_jogo(2,*p,*g,3);
-    CHECK(1==2);
 
     delete sis;
     delete d;

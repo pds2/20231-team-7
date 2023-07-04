@@ -14,12 +14,6 @@ bool verifica_monstros(vector<Monstro *> monstros){
     return(mortos == monstros.size());
 }
 
-void Combate::desenha_hud(){
-    system("clear");
-    _time.desenha_hud();
-    hud_monstro(); 
-}
-
 void completa_hud_monstro(unsigned tam){
     if(tam == 3)
         cout << "|" << endl;
@@ -80,6 +74,47 @@ void Combate::hud_monstro(){
     cout << string(79, '-') << endl; 
 }
 
+void Combate::desenha_hud(){
+    Heroi *h1 = _time.get_h1();
+    Heroi *h2 = _time.get_h2();
+
+    system("clear");
+    _time.desenha_hud();
+    hud_monstro();
+
+    string op1;
+    int op;
+    for(int i = 1; i <= 2; i++){
+        cout << "Qual ataque " << h1->get_nome() << " devera lançar: \n";
+        h1->print_habilidades();
+        cout << "> ";
+
+        while(cin >> op1){
+            istringstream is(op1);
+            is >> op;
+
+            if(op == 1){
+            
+            
+            } else if(op == 2){
+            
+            } else if(op == 3){
+            
+            } else if(op == 4){
+            
+            } else{
+            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+            }
+
+            cout << "\n\n";
+            cout << "Qual ataque " << h1->get_nome() << " devera lançar: \n";
+            h1->print_habilidades();
+            cout << "> ";
+        }
+    }
+}
+
 bool Combate::entra_combate(vector<Monstro *> monstros){
     _monstros = monstros;
 
@@ -97,9 +132,10 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         h2->recebe_dano(3);
         for(auto m: _monstros) m->recebe_dano(9);
 
-        player_venceu = verifica_monstros(_monstros);
+        
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 
+        player_venceu = verifica_monstros(_monstros);
         if(player_venceu) break;
     }
 
