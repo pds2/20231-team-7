@@ -74,6 +74,12 @@ void Combate::hud_monstro(){
     cout << string(79, '-') << endl; 
 }
 
+void mostra_habilidades(Heroi* h){
+    cout << "Qual ataque " << h->get_nome() << " devera lançar: \n";
+    h->print_habilidades();
+    cout << "> ";
+}
+
 void Combate::desenha_hud(){
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
@@ -85,9 +91,10 @@ void Combate::desenha_hud(){
     string op1;
     int op;
     for(int i = 1; i <= 2; i++){
-        cout << "Qual ataque " << h1->get_nome() << " devera lançar: \n";
-        h1->print_habilidades();
-        cout << "> ";
+        mostra_habilidades(h1);
+        cout << endl;
+        mostra_habilidades(h2);
+        cout << endl;
 
         while(cin >> op1){
             istringstream is(op1);
@@ -128,10 +135,9 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         desenha_hud();
 
         h1->recebe_dano(4);
-        h2->recebe_dano(3);
+        h2->recebe_dano(4);
         for(auto m: _monstros) m->recebe_dano(9);
 
-        
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 
         player_venceu = verifica_monstros(_monstros);

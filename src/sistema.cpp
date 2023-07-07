@@ -5,32 +5,15 @@
 #include "../include/herois/paladino.h"
 #include "../include/rolar_dados.h"
 #include "../include/combate.h"
+#include "../include/verifica_opcao.h"
 
-
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 
-#include "../include/rolar_dados.h"
 using namespace std;
-
-void pausa_tela(){
-    #ifdef _WIN32
-        system("pause >nul"); // para sistemas Windows
-    #else
-        system("read -n1 -r -p 'Pressione qualquer tecla para continuar...'"); // para sistemas baseados em Unix
-    #endif
-}
-
-void mostra_menu(){
-    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
-    cout << "1. Novo Jogo\n";
-    cout << "2. Carregar Jogo\n";
-    cout << "3. Créditos\n";
-    cout << "4. Sair\n";
-    cout << "> ";
-}
 
 void mostra_creditos(){
     system("clear");
@@ -45,86 +28,66 @@ void mostra_creditos(){
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para retornar ao menu...'");
 }
 
-void mostra_classes(int i){
-    cout << "Qual será a classe do herói " << i << "?" << endl;
-    cout << "1. Druida\n";
-    cout << "2. Guerreiro\n";
-    cout << "3. Mago\n";
-    cout << "4. Paladino\n";
-    cout << "> ";
-}
-
-Heroi* instancia_personagem(string nome, int i){
-    string op1;
-    int op;
-
-    mostra_classes(i);
-    while(cin >> op1){
-        istringstream is(op1);
-        is >> op;
-
-        if(op == 1){
-            // START GAME
+Heroi* instancia_personagem(string nome, int op){
+    switch(op) {
+        case 1:{
             Heroi *p = new Druida(nome, 10, 10); 
             return p;
-        } else if(op == 2){
+        }
+        case 2:{
             Heroi *p = new Guerreiro(nome, 10, 10); 
             return p;
-        } else if(op == 3){
+        }
+        case 3:{
             Heroi *p = new Mago(nome, 10, 10); 
             return p;
-        } else if(op == 4){
+        }
+        case 4:{
             Heroi *p = new Paladino(nome, 10, 10); 
             return p;
-        } else{
-            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
-            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
-
-        cout << "\n\n";
-        mostra_classes(i);
+        default:{
+            Heroi *p = new Druida("",0,0);
+            return p; 
+        }
     }
+}
 
-    Heroi *h = new Druida("",0,0);
-    return h;
+string valida_nome(int i){
+    string nome;
+    do{
+        cout << "Qual o nome do herói " << i << "? (max 8 caracteres)" << endl;
+        cout << "> ";
+        cin >> nome;
+
+        if(nome.size() > 8){
+            cout << termcolor::red << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n"
+                 << termcolor::reset;
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+
+            system("clear");
+        }
+    } while(nome.size() > 8);
+
+    return nome;
 }
 
 pair<Heroi *,Heroi *> valida_personagens(){
     pair<Heroi *,Heroi *> personagens;
 
+    Verifica_opcao *e = new Escolhe_classe(4);
     for(int i = 1; i <= 2; i++){
-        string nome;
-        do{
-            cout << "Qual o nome do herói " << i << "? (max 8 caracteres)" << endl;
-            cout << "> ";
-            cin >> nome;
+        string nome = valida_nome(i);
 
-            if(nome.size() > 8){
-                cout << termcolor::red << "O nome ultrapassa 8 caracteres. Por favor, tente novamente!\n"
-                     << termcolor::reset;
-                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+        cout << "Qual será a classe do herói " << i << "?" << endl;
+        int op = e->retorna_opcao();
 
-                system("clear");
-            }
-        } while(nome.size() > 8);
-
-        
-        if(i == 1) 
-            personagens.first = instancia_personagem(nome, i);
-        else{
-            personagens.second = instancia_personagem(nome, i);
-            while(personagens.first->get_classe() == personagens.second->get_classe()){
-                cout << termcolor::red << "Não é permitido heróis de mesma classe! Tente novamente.\n"
-                     << termcolor::reset;
-                system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
-                cout << "\n\n";
-
-                personagens.second = instancia_personagem(nome, i);
-            }
-        }
+        (i == 1) ? personagens.first = instancia_personagem(nome, op) :
+                   personagens.second = instancia_personagem(nome, op);
 
         cout << endl;
     }
+
     return personagens;
 }
 
@@ -132,32 +95,27 @@ Sistema::Sistema() {}
 
 void Sistema::inicia_menu(){
     system("clear");
-    mostra_menu();
+    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
 
-    int op;
-    while(cin >> _opcao){
-        istringstream is(_opcao);
-        is >> op;
+    Escolhe_menu e(4);
+    int op = e.retorna_opcao();
 
-        if(op == 1){
-            // START GAME
+    switch(op) {
+        case 1:{
             inicia_jogo(); 
             break;
-        } else if(op == 2){
+        }
+        case 2:{
             carrega_jogo(1);
             break;
-        }else if(op == 3){
-            system("clear");
-            mostra_creditos();
-        } else if(op == 4){
-            exit(0);
-        } else{
-            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
-            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
         }
-
-        system("clear");
-        mostra_menu();
+        case 3:{
+            mostra_creditos();
+            inicia_menu();
+        }
+        case 4:{
+            exit(0);
+        }
     }
 }
 
@@ -178,6 +136,7 @@ void Sistema::inicia_jogo(){
     bool continua = true;
 
     cria_personagens();
+
     Combate *combate = new Combate(_herois);
 
     Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
@@ -201,56 +160,48 @@ void Sistema::encerra_jogo(){
     system("clear");
 
     cout << termcolor::red << "GAME OVER SEU OTARIO!" << termcolor::reset << endl;
+    cout << "Deseja tentar de novo?" << endl;
 
-    cout << "Deseja tentar de novo? (1 - Sim, 0 - Não)" << endl;
-    cout << "> ";
+    Escolhe_saida e(2);
+    int op = e.retorna_opcao();
 
-    int op;
-    while(cin >> _opcao){
-        istringstream is(_opcao);
-        is >> op;
-
-        if(op == 1){
-            // RESTART GAME
+    switch(op) {
+        case 1:{
             cout << "Agora vê se faz direito." << endl;
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para recomeçar...'");
-            inicia_menu(); 
-        } else if(op == 0){
+            inicia_menu();
+        }
+        case 2:{
             cout << "fraco." << endl;
-        } else {
-            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
-            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
+            exit(0);
         }
     }
+}
+
+void save(Heroi &heroi1, Heroi &heroi2,int faseatual){
+    ofstream save ("saveslots/save1.txt");
+    if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+
+    save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "
+        <<heroi1.get_exp()<<endl;
+    save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "
+        <<heroi2.get_exp()<<endl;
+    save<<faseatual<<endl;
+        save.close();
 }
 
 void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
     if(numslot >3)
         throw slot_invalido_e();
+
     if(numslot==1){
-        ofstream save ("saveslots/save1.txt");
-        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
-        save<<faseatual<<endl;
-        save.close();
+        save(heroi1, heroi2, faseatual);
     }
     if(numslot==2){
-        ofstream save("saveslots/save2.txt");
-        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
-        save<<faseatual<<endl;
-        save.close();
+        save(heroi1, heroi2, faseatual);
     }
-    if(numslot==3){
-        ofstream save("saveslots/save3.txt");
-        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
-        save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "<<heroi1.get_exp()<<endl;
-        save<<heroi2.get_nome()<< " "<<heroi2.get_classe()<<" "<<heroi2.get_vida()<<" "<<heroi2.get_nivel()<<" "<<heroi2.get_exp()<<endl;
-        save<<faseatual<<endl;
-        save.close();
-    }
+    if(numslot==3)
+        save(heroi1, heroi2, faseatual);
 }
 
 void Sistema::carrega_jogo(unsigned int numslot){
