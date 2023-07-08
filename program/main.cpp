@@ -6,8 +6,6 @@
 #include "../include/herois/guerreiro.h"
 #include "../include/herois/mago/mago.h"
 
-
-
 using namespace std;
 
 int main()

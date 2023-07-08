@@ -7,6 +7,8 @@
 #include "../include/combate.h"
 #include "../include/verifica_opcao.h"
 
+#include <thread>
+#include <chrono>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -14,8 +16,9 @@
 #include <sstream>
 
 using namespace std;
+using namespace chrono;
 
-void mostra_creditos(){
+void texto_credito(){
     system("clear");
     cout << "TRABALHO PRÁTICO DE PDS2\n";
     cout << "JOGO DE RPG COM ENIGMAS\n\n";
@@ -23,9 +26,16 @@ void mostra_creditos(){
     cout << "- Caroline Campos Carvalho\n";
     cout << "- Deborah Brito Yamamoto\n";
     cout << "- Iago Zagnoli Albergaria\n";
-    cout << "- Mateus Cursino Gomes Costa\n";
+    cout << "- Mateus Cursino Gomes Costa\n\n";
+}
 
-    system("read -n 1 -s -r -p 'Aperte qualquer tecla para retornar ao menu...'");
+void mostra_creditos(){
+    for(int i = 5; i > 0; i--){
+        texto_credito();
+        cout << "Voltando para o menu em " << i << "...";
+        cout.flush();
+        this_thread::sleep_for(1s); 
+    }
 }
 
 Heroi* instancia_personagem(string nome, int op){
@@ -95,7 +105,6 @@ Sistema::Sistema() {}
 
 void Sistema::inicia_menu(){
     system("clear");
-    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
 
     Escolhe_menu e(4);
     int op = e.retorna_opcao();
@@ -122,6 +131,7 @@ void Sistema::inicia_menu(){
 void Sistema::cria_personagens(){
     pair<Heroi *,Heroi *> personagens;
 
+    system("clear");
     cout << termcolor::green << "Crie sua equipe:" << termcolor::reset << endl;
     personagens = valida_personagens();
 
@@ -130,18 +140,14 @@ void Sistema::cria_personagens(){
 }
 
 void Sistema::roda_jogo(){
-    system("clear");
-
     Rolar_Dados *dados = new Rolar_Dados();
     bool continua = true;
 
-    
-
     Combate *combate = new Combate(_herois);
 
-    Monstro *m1 = new Monstro("goblin", 10, 10, 1, 1, 1);
-    Monstro *m2 = new Monstro("goblin2", 10, 10, 1, 1, 1);
-    Monstro *m3 = new Monstro("boss", 10, 10, 1, 1, 1);
+    Monstro *m1 = new Monstro("goblin", 10, 11, 1, 1, 1);
+    Monstro *m2 = new Monstro("goblin2", 10, 12, 1, 1, 1);
+    Monstro *m3 = new Monstro("boss", 10, 13, 1, 1, 1);
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
     continua = combate->entra_combate({m1, m2, m3});
@@ -165,7 +171,7 @@ void Sistema::inicia_jogo(){
 void Sistema::encerra_jogo(){
     system("clear");
 
-    cout << termcolor::red << "GAME OVER SEU OTARIO!" << termcolor::reset << endl;
+    cout << termcolor::red << "GAME OVER!" << termcolor::reset << endl;
     cout << "Deseja tentar de novo?" << endl;
 
     Escolhe_saida e(2);
@@ -199,7 +205,7 @@ void save(int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
 }
 
 void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
-    if(numslot >3)
+    if(numslot > 3)
         throw slot_invalido_e();
     save(numslot,heroi1, heroi2, faseatual);
 }

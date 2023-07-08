@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -21,6 +22,9 @@ bool Verifica_opcao::existe_opcao(int i){
 }
 
 void Verifica_opcao::mostra_opcoes(){
+    if(_opcoes.at(1) == "Novo Jogo")
+        cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
+
     for(auto op: _opcoes)
         cout << op.first << " - " << op.second << endl;
 
@@ -44,7 +48,7 @@ int Verifica_opcao::retorna_opcao(){
         cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
 
-        cout << "\n\n";
+        system("clear");
         mostra_opcoes();
     }
 

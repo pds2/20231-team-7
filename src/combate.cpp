@@ -4,6 +4,9 @@
 
 #include "../include/combate.h"
 #include "../include/herois/time_heroi.h"
+#include "../include/rolar_dados.h"
+
+#include <algorithm>
 
 using namespace std;
 
@@ -95,10 +98,23 @@ bool imprime_letra_h(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
     return false;
 }
 
+struct ComparadorDado {
+    bool operator()(Personagem* p1, Personagem* p2){
+        if(p1->get_dado() == p2->get_dado()) return p1->get_dano() > p2->get_dano();
+
+        return p1->get_dado() > p2->get_dado();
+    }
+};
+
+void Combate::organiza_ordem(){
+    sort(_ordem_combate.begin(), _ordem_combate.end(), ComparadorDado());
+}
+
 void Combate::desenha_tabuleiro(){
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
-
+    
+    cout << termcolor::blue << "TABULEIRO: " << termcolor::reset << endl;
     for(int i = 1; i <= 3; i++){
         for(int j = 1; j <= 4; j++){
             if(imprime_letra_h(h1, h2, _monstros, i, j)) continue;
@@ -123,9 +139,18 @@ void Combate::desenha_hud(){
     _time.desenha_hud();
     hud_monstro();
 
-    cout << endl;
     desenha_tabuleiro();
+    
+    h1->set_dado(6);
+    h2->set_dado(3);
+    _monstros.at(0)->set_dado(6);
+    _monstros.at(1)->set_dado(1);
+    _monstros.at(2)->set_dado(5);
+    organiza_ordem();
 
+    cout << "ordem combate: ";
+    for(auto p: _ordem_combate) cout << p->get_nome() << " ";
+    cout << "\n\n";
 
     string op1;
     for(int i = 1; i <= 1; i++){
@@ -148,11 +173,25 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
     bool player_venceu = false;
     while(h1->morto() == false || h2->morto() == false)
     {
+        _ordem_combate = {h1, h2};
+        for(auto m: _monstros) _ordem_combate.push_back(m);
         desenha_hud();
 
+
         h1->recebe_dano(4);
+        sleep(1);
+        cout.flush();
+        desenha_hud();
         h2->recebe_dano(4);
-        for(auto m: _monstros) m->recebe_dano(9);
+        sleep(1);
+        cout.flush();
+        desenha_hud();
+        for(auto m: _monstros){
+            m->recebe_dano(9);
+            sleep(1);
+            cout.flush();
+            desenha_hud();
+        }
 
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 

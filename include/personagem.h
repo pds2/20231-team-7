@@ -20,6 +20,7 @@ class Personagem{
         int _dano;
         bool _morto;
         unsigned int _nivel;
+        int _dado_atual;
         Posicao _lugar;
     public:
         /*
@@ -51,6 +52,16 @@ class Personagem{
          * @brief Altera dano do personagem.
          */
         void set_dano(int dano);
+
+        /*
+         * @brief Retorna o dado atual do personagem.
+         */        
+        int get_dado();
+
+        /*
+         * @brief Seta um valor dado novo para o personagem.
+         */
+        void set_dado(int dado);
 
         /*
          * @brief Retorna o nivel do personagem.

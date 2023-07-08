@@ -34,6 +34,14 @@ void Personagem::set_dano(int dano){
     _dano = dano;
 }
 
+int Personagem::get_dado(){
+    return _dado_atual;
+}
+
+void Personagem::set_dado(int dado){
+    _dado_atual = dado;
+}
+
 Posicao Personagem::get_posicao(){
     return _lugar;
 }
