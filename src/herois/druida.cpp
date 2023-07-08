@@ -14,6 +14,10 @@ Classes Druida::get_classe() const{
     return Classes::DRUIDA;
 }
 
+char const* Druida::get_letra(){
+    return "D";
+}
+
 void Druida::print_habilidades() {
     cout << "a" << endl;
 }

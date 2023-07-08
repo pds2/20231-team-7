@@ -16,6 +16,9 @@ Classes Paladino::get_classe() const{
     return Classes::PALADINO;
 }
 
+char const* Paladino::get_letra(){
+    return "P";
+}
 
 unsigned int Paladino::get_mana(){
     return _mana;

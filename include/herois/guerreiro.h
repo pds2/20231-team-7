@@ -23,6 +23,8 @@ class Guerreiro : public Heroi {
      * @brief Retorna a classe do personagem.
      */
     Classes get_classe() const override;
+
+    char const* get_letra() override;
      
     void aumenta_nivel() override;
 

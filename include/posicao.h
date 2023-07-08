@@ -3,6 +3,8 @@
 
 class posicao_invalida_e {};
 
+#include <utility>
+
 class Posicao{
     private:
         int _x;

@@ -17,6 +17,7 @@ class Combate{
         void seta_posicoes();
         void hud_monstro();
         void desenha_hud();
+        void desenha_tabuleiro();
 };
 
 #endif

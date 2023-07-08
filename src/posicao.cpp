@@ -3,10 +3,10 @@
 
 Posicao::Posicao(
 ):_x(0),
-_y(0){}
+  _y(0) {}
 
 Posicao::Posicao(int x, int y){
-    if((x < 0 || x > 4) || (y < 0 || y > 3)) throw posicao_invalida_e();
+    if((x < 0 || x > 3) || (y < 0 || y > 4)) throw posicao_invalida_e();
     _x = x;
     _y = y;
 }

@@ -4,6 +4,7 @@
 #include <map>
 
 #include "../third_party/termcolor.h"
+#include "../include/herois/heroi.h"
 
 class Verifica_opcao{
     protected:
@@ -13,6 +14,7 @@ class Verifica_opcao{
         virtual ~Verifica_opcao();
         bool existe_opcao(int i);
         void mostra_opcoes();
+        void mostra_ataques(Heroi& h);
         int retorna_opcao();
 };
 

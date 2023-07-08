@@ -27,6 +27,10 @@ Classes Mago::get_classe() const{
     return Classes::MAGO;
 }
 
+char const* Mago::get_letra(){
+    return "M";
+}
+
 int Mago::get_mana(){
     return _mana;
 }

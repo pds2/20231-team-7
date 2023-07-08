@@ -40,6 +40,11 @@ class Heroi: public Personagem {
         virtual Classes get_classe() const = 0;
 
         /*
+         * @brief Retorna a classe do personagem.
+         */        
+        virtual char const* get_letra() = 0;
+
+        /*
          * @brief Retorna a vida maxima do heroi.
          */
         int get_vida_max();

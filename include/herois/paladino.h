@@ -21,6 +21,8 @@ class Paladino: public Heroi{
          */
         Classes get_classe() const override;
 
+        char const* get_letra() override;
+
         /*
          * @brief Aumenta o nivel do paladino e seus atributos base.
          */

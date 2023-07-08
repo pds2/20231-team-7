@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 #include "../include/combate.h"
 #include "../include/herois/time_heroi.h"
@@ -35,13 +36,13 @@ Combate::~Combate(){
 
 void Combate::seta_posicoes(){
     Heroi *h1 = _time.get_h1();
-    h1->set_posicao(0, 0);
+    h1->set_posicao(1, 1);
 
     Heroi *h2 = _time.get_h2();
-    h2->set_posicao(0, 1);
+    h2->set_posicao(1, 2);
 
     for(unsigned i = 0; i < _monstros.size(); i++)
-        _monstros.at(i)->set_posicao(4, i);
+        _monstros.at(i)->set_posicao(4, i+1);
 }
 
 void Combate::hud_monstro(){
@@ -74,6 +75,40 @@ void Combate::hud_monstro(){
     cout << string(79, '-') << endl; 
 }
 
+bool imprime_letra_h(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
+    if(h->get_posicao().get_x() == c && h->get_posicao().get_y() == l){ 
+        cout << termcolor::green << h->get_letra() << termcolor::reset << " ";
+        return true;
+    }
+    if(h1->get_posicao().get_x() == c && h1->get_posicao().get_y() == l){ 
+        cout << termcolor::green << h1->get_letra() << termcolor::reset << " ";
+        return true;
+    }
+
+    for(auto m: _m){
+        if(m->get_posicao().get_x() == c && m->get_posicao().get_y() == l){ 
+            cout << termcolor::red << "M" << termcolor::reset << " ";
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void Combate::desenha_tabuleiro(){
+    Heroi *h1 = _time.get_h1();
+    Heroi *h2 = _time.get_h2();
+
+    for(int i = 1; i <= 3; i++){
+        for(int j = 1; j <= 4; j++){
+            if(imprime_letra_h(h1, h2, _monstros, i, j)) continue;
+            cout << "- ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
 void mostra_habilidades(Heroi* h){
     cout << "Qual ataque " << h->get_nome() << " devera lançar: \n";
     h->print_habilidades();
@@ -88,36 +123,17 @@ void Combate::desenha_hud(){
     _time.desenha_hud();
     hud_monstro();
 
+    cout << endl;
+    desenha_tabuleiro();
+
+
     string op1;
-    int op;
-    for(int i = 1; i <= 2; i++){
+    for(int i = 1; i <= 1; i++){
         mostra_habilidades(h1);
         cout << endl;
         mostra_habilidades(h2);
         cout << endl;
 
-        while(cin >> op1){
-            istringstream is(op1);
-            is >> op;
-
-            if(op == 1){
-                break;
-            } else if(op == 2){
-                break;
-            } else if(op == 3){
-                break;
-            } else if(op == 4){
-                break;
-            } else{
-            cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
-            system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
-            }
-
-            cout << "\n\n";
-            cout << "Qual ataque " << h1->get_nome() << " devera lançar: \n";
-            h1->print_habilidades();
-            cout << "> ";
-        }
     }
 }
 

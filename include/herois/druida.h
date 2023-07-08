@@ -24,6 +24,8 @@ class Druida: public Heroi{
          */
         Classes get_classe() const override;
 
+        char const* get_letra() override;
+
         void aumenta_nivel() override;
 
         /*

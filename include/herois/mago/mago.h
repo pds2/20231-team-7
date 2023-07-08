@@ -24,6 +24,8 @@ class Mago : public Heroi {
         */
         Classes get_classe() const override;
 
+        char const* get_letra() override;
+
         /*
         * @brief retorna a mana
         */
