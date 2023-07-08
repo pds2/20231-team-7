@@ -16,9 +16,11 @@ class Sistema{
         Sistema();
         void inicia_menu();
         void cria_personagens();
+        void roda_jogo();
         void inicia_jogo();
         void encerra_jogo();
         void salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual);
+        void carrega_save(unsigned int numslot);
         void carrega_jogo(unsigned int numslot);
 };
 

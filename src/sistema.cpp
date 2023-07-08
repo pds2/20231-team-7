@@ -129,13 +129,13 @@ void Sistema::cria_personagens(){
     _herois.set_h2(*personagens.second);
 }
 
-void Sistema::inicia_jogo(){
+void Sistema::roda_jogo(){
     system("clear");
 
     Rolar_Dados *dados = new Rolar_Dados();
     bool continua = true;
 
-    cria_personagens();
+    
 
     Combate *combate = new Combate(_herois);
 
@@ -154,6 +154,12 @@ void Sistema::inicia_jogo(){
 
     delete combate;
     delete dados;
+}
+
+void Sistema::inicia_jogo(){
+    cria_personagens();
+
+    roda_jogo();
 }
 
 void Sistema::encerra_jogo(){
@@ -178,8 +184,10 @@ void Sistema::encerra_jogo(){
     }
 }
 
-void save(Heroi &heroi1, Heroi &heroi2,int faseatual){
-    ofstream save ("saveslots/save1.txt");
+void save(int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
+    string val= to_string(numslot);
+    string saveslot="saveslots/save" + val + ".txt";
+    ofstream save (saveslot);
     if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
 
     save<<heroi1.get_nome()<< " "<<heroi1.get_classe()<<" "<<heroi1.get_vida()<<" "<<heroi1.get_nivel()<<" "
@@ -193,34 +201,45 @@ void save(Heroi &heroi1, Heroi &heroi2,int faseatual){
 void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
     if(numslot >3)
         throw slot_invalido_e();
-
-    if(numslot==1){
-        save(heroi1, heroi2, faseatual);
-    }
-    if(numslot==2){
-        save(heroi1, heroi2, faseatual);
-    }
-    if(numslot==3)
-        save(heroi1, heroi2, faseatual);
+    save(numslot,heroi1, heroi2, faseatual);
 }
 
-void Sistema::carrega_jogo(unsigned int numslot){
+void Sistema::carrega_save(unsigned int numslot){
+    string val= to_string(numslot);
+    string saveslot="saveslots/save" + val + ".txt";
     string linha, nome;
     int classe, vida, nivel, exp, faseatual;
-    if(numslot==1){
-        ifstream save("saveslots/save1.txt");
+    pair<Heroi *,Heroi *> personagens;
+        ifstream save(saveslot);
         if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
         for(int i=0;getline(save,linha);i++){
             stringstream str(linha);
             if(i<2){
                 str>>nome>>classe>>vida>>nivel>>exp;
-                cout<<nome<<" "<<classe<<" "<<vida<<" "<<nivel<<" "<<exp<<endl;
+                if(i == 0){
+                    personagens.first = instancia_personagem(nome, classe);
+                    personagens.first->ganha_exp(exp+100*(nivel-1));
+                    personagens.first->recebe_dano(personagens.first->get_vida_max()-vida);
+                } 
+                if(i == 1){
+                    personagens.second = instancia_personagem(nome, classe);
+                    personagens.second->ganha_exp(exp+100*(nivel-1));
+                    personagens.second->recebe_dano(personagens.first->get_vida_max()-vida);
+                } 
             }
             if(i==2){
                 str>>faseatual;
-                cout<<faseatual<<endl;
+                cout<<faseatual<<endl;//subistituir pra carregamento de fase
             }
         }
         save.close();
+    _herois.set_h1(*personagens.first);
+    _herois.set_h2(*personagens.second);
+        
     }
+
+void Sistema::carrega_jogo(unsigned int numslot){
+    carrega_save(numslot);
+
+    roda_jogo();
 }
