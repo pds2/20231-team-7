@@ -1,32 +1,26 @@
-#ifndef DAO_H
-#define DAO_H
-
-#include "monstros.h"
+#include "../../include/monstros/golem_de_carne.h"
+#include <iostream>
 #include <string>
+using namespace std;
 
-class Dao : public Monstro{
-    private:
 
-    public:
-    /*
-    *@brief Cria um Dao
-    */
-    Dao();
-    /*
-    *@brief Destroi um Dao
-    */
-    ~Dao();
-    /*
-    @brief Retorna o tamanho do monstro
-    */
-   virtual tamanho get_tamanho();
-   /*
-   *@brief Retorna a habilidade do monstro
-   */
-   virtual habilidade get_habilidade();
-   /*
-   *@brief Funcao de ataque
-   */
-  void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
-};
-#endif
+
+Golem_de_carne::Golem_de_carne()
+: Monstro("golem_de_carne",93,18,5,9,1){
+
+}
+
+Golem_de_carne::~Golem_de_carne(){
+}
+
+tamanho Golem_de_carne::get_tamanho(){
+    return _MEDIO;
+}
+
+habilidade Golem_de_carne::get_habilidade(){
+    return _FORCA;
+}
+
+void Golem_de_carne::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+
+}
