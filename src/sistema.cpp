@@ -7,7 +7,9 @@
 #include "../include/monstros/pantera_deslocadora.h"
 #include "../include/combate.h"
 #include "../include/verifica_opcao.h"
+#include "../include/rolar_dados.h"
 
+#include <limits>
 #include <thread>
 #include <chrono>
 #include <cstdlib>
@@ -15,6 +17,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <math.h>
 
 using namespace std;
 using namespace chrono;
@@ -117,7 +120,7 @@ void Sistema::inicia_menu(){
             break;
         }
         case 2:{
-            carrega_jogo(1);
+            carrega_jogo();
             break;
         }
         case 3:{
@@ -226,12 +229,12 @@ void Sistema::carrega_save(unsigned int numslot){
                 if(i == 0){
                     personagens.first = instancia_personagem(nome, classe);
                     personagens.first->ganha_exp(exp+100*(nivel-1));
-                    personagens.first->recebe_dano(personagens.first->get_vida_max()-vida);
+                    if(!(personagens.first->get_vida_max()>vida))personagens.first->recebe_dano((personagens.first->get_vida_max())-vida);
                 } 
                 if(i == 1){
                     personagens.second = instancia_personagem(nome, classe);
                     personagens.second->ganha_exp(exp+100*(nivel-1));
-                    personagens.second->recebe_dano(personagens.first->get_vida_max()-vida);
+                    if((personagens.second->get_vida_max()>vida))personagens.second->recebe_dano((personagens.second->get_vida_max())-vida);
                 } 
             }
             if(i==2){
@@ -245,8 +248,40 @@ void Sistema::carrega_save(unsigned int numslot){
         
     }
 
-void Sistema::carrega_jogo(unsigned int numslot){
-    carrega_save(numslot);
+void Sistema::carrega_jogo(){
+    Verifica_opcao *e = new Escolhe_save(3);
+    int op = e->retorna_opcao();
+    carrega_save(op);
 
     roda_jogo();
+}
+
+std::vector<Monstro *> Sistema::gera_fase(int numfase){
+    Rolar_Dados *dados= new Rolar_Dados(); 
+    vector<Monstro*> monstros;
+    if(numfase<3){
+        for(int i=0;i<=numfase;i++){
+            int dado= dados->rolar_d06();
+            if(dado>3) dado=floor(dado/2);
+            switch (dado) {
+                case 1:{
+                    Monstro *m =new CaoInfernal();
+                    monstros.push_back(m);
+                }
+                case 2:{
+                    //gera outro tipo de monstro
+                    //monstros.push_back(m);
+                }
+                case 3:{
+                    //gera outro tipo de monstro
+                    //monstros.push_back(m);
+                }
+            }
+        }
+    }
+    if(numfase==3){
+        Monstro *m= new PanteraDeslocadora();
+        monstros.push_back(m);
+    }
+    return monstros;
 }

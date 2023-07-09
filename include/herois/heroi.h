@@ -15,7 +15,7 @@ class nao_pode_curar_morto_e{};
 class alvos_demais_e{};
 
 enum Classes {
-    DRUIDA, GUERREIRO, MAGO, PALADINO
+    PLACEHOLDER,DRUIDA, GUERREIRO, MAGO, PALADINO
 };
 
 class Heroi: public Personagem {

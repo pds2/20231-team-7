@@ -2,8 +2,10 @@
 #define SISTEMA_H
 
 #include "../include/herois/time_heroi.h"
+#include "monstros/monstros.h"
 
 #include <string>
+#include <vector>
 
 class invalid_option_e{};
 class slot_invalido_e{};
@@ -21,7 +23,8 @@ class Sistema{
         void encerra_jogo();
         void salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual);
         void carrega_save(unsigned int numslot);
-        void carrega_jogo(unsigned int numslot);
+        void carrega_jogo();
+        std::vector<Monstro *> gera_fase(int numfase);
 };
 
 #endif

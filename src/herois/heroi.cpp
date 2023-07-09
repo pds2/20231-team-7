@@ -22,7 +22,7 @@ unsigned int Heroi::get_exp(){
 }
 
 void Heroi::ganha_exp(int exp){
-    if(exp <= 0) throw impossivel_adicionar_exp_negativa_e();
+    if(exp < 0) throw impossivel_adicionar_exp_negativa_e();
 
     _exp += exp;
     while(_exp >= 100){
