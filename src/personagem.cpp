@@ -70,3 +70,15 @@ void Personagem::recebe_dano(int dano){
 bool Personagem::morto(){
     return _morto;
 }
+
+int Personagem::calcula_ataque(int dado){
+    int diferenca = dado - 3;
+    int aumento = 2;
+
+    if(diferenca < 0){
+        diferenca *= -1;
+        aumento *= -1;
+    }
+
+    return (_dano + (aumento * diferenca));
+}

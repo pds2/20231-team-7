@@ -10,6 +10,7 @@ class Paladino: public Heroi{
     private:
         unsigned int _mana; 
         unsigned int _manamax;
+        std::set<std::string> _ataques;
     public:
          /*
          * @brief Cria um paladino.

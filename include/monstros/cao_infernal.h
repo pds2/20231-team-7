@@ -4,8 +4,6 @@
 #include "monstros.h"
 
 class CaoInfernal: public Monstro{
-    private:
-
     public:
     /*
      * @brief Cria o cão infernal.

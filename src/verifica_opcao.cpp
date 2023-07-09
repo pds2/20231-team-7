@@ -40,10 +40,7 @@ int Verifica_opcao::retorna_opcao(){
         istringstream is(op1);
         is >> op;
         
-        if(existe_opcao(op)){
-            _opcoes.erase(op);
-            return op;
-        }
+        if(seleciona(op)) return op;
 
         cout << termcolor::red << "Opção inválida. Tente novamente!\n" << termcolor::reset;
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
@@ -55,6 +52,11 @@ int Verifica_opcao::retorna_opcao(){
     return op;
 }
 
+bool Verifica_opcao::seleciona(int op){
+    if(existe_opcao(op)) return true;
+    return false;
+}
+
 Escolhe_classe::Escolhe_classe(int i):
     Verifica_opcao(i) {
     _opcoes.at(1) = "Druida";
@@ -64,6 +66,14 @@ Escolhe_classe::Escolhe_classe(int i):
 }
 
 Escolhe_classe::~Escolhe_classe() {}
+
+bool Escolhe_classe::seleciona(int op){
+    if(existe_opcao(op)){
+        _opcoes.erase(op);
+        return true;
+    }
+    return false;
+}
 
 Escolhe_menu::Escolhe_menu(int i):
     Verifica_opcao(i) {

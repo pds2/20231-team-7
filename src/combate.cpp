@@ -78,7 +78,7 @@ void Combate::hud_monstro(){
     cout << string(79, '-') << endl; 
 }
 
-bool imprime_letra_h(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
+bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
     if(h->get_posicao().get_x() == c && h->get_posicao().get_y() == l){ 
         cout << termcolor::green << h->get_letra() << termcolor::reset << " ";
         return true;
@@ -117,7 +117,7 @@ void Combate::desenha_tabuleiro(){
     cout << termcolor::blue << "TABULEIRO: " << termcolor::reset << endl;
     for(int i = 1; i <= 3; i++){
         for(int j = 1; j <= 4; j++){
-            if(imprime_letra_h(h1, h2, _monstros, i, j)) continue;
+            if(imprime_letra(h1, h2, _monstros, i, j)) continue;
             cout << "- ";
         }
         cout << endl;
@@ -132,20 +132,24 @@ void mostra_habilidades(Heroi* h){
 }
 
 void Combate::desenha_hud(){
-    Heroi *h1 = _time.get_h1();
-    Heroi *h2 = _time.get_h2();
-
     system("clear");
     _time.desenha_hud();
     hud_monstro();
-
     desenha_tabuleiro();
-    
-    h1->set_dado(6);
-    h2->set_dado(3);
-    _monstros.at(0)->set_dado(6);
-    _monstros.at(1)->set_dado(1);
-    _monstros.at(2)->set_dado(5);
+}
+
+void Combate::rola_dados(){
+    Rolar_Dados *dados = new Rolar_Dados();
+    Heroi *h1 = _time.get_h1();
+    Heroi *h2 = _time.get_h2();
+
+    cout << "Dados para decidir ordem (d20): ";
+    for(auto p: _ordem_combate){
+        int dado = dados->rolar_d20();
+        cout << p->get_nome() << ":" << dado;
+        p->set_dado(dado);
+    }
+    cout << endl;
     organiza_ordem();
 
     cout << "ordem combate: ";
@@ -158,8 +162,9 @@ void Combate::desenha_hud(){
         cout << endl;
         mostra_habilidades(h2);
         cout << endl;
-
     }
+
+    delete dados;
 }
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
@@ -176,7 +181,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         _ordem_combate = {h1, h2};
         for(auto m: _monstros) _ordem_combate.push_back(m);
         desenha_hud();
-
+        rola_dados();
 
         h1->recebe_dano(4);
         sleep(1);

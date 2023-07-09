@@ -53,17 +53,3 @@ void Heroi::recebe_cura(int cura){
     if((_vida_max - _vida)<=cura) _vida = _vida_max;
     else _vida += cura;
 }
-
-void Heroi::adiciona_habilidade(string habilidade){
-    if(_habilidades.count(habilidade) != 0)
-        throw habilidade_ja_existe_e();
-
-    _habilidades.insert(pair<string,bool>(habilidade, false));
-}
-
-void Heroi::desbloqueia_habilidade(string habilidade){
-    if(_habilidades.count(habilidade) == 0)
-        throw habilidade_nao_existe_e();
-
-    _habilidades.at(habilidade) = true;
-}

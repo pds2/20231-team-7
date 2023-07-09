@@ -10,11 +10,13 @@ class Combate{
     private:
         Time_h _time;
         std::vector<Monstro *> _monstros;
+
         std::vector<Personagem *> _ordem_combate;
     public:
         Combate(Time_h &time);
         ~Combate();
         bool entra_combate(std::vector<Monstro *> monstros);
+        void rola_dados();
         void organiza_ordem();
         void seta_posicoes();
         void hud_monstro();

@@ -5,7 +5,6 @@
 #include "../include/herois/paladino.h"
 #include "../include/monstros/cao_infernal.h"
 #include "../include/monstros/pantera_deslocadora.h"
-#include "../include/rolar_dados.h"
 #include "../include/combate.h"
 #include "../include/verifica_opcao.h"
 
@@ -100,6 +99,7 @@ pair<Heroi *,Heroi *> valida_personagens(){
         cout << endl;
     }
 
+    delete e;
     return personagens;
 }
 
@@ -123,6 +123,7 @@ void Sistema::inicia_menu(){
         case 3:{
             mostra_creditos();
             inicia_menu();
+            break;
         }
         case 4:{
             exit(0);
@@ -142,7 +143,6 @@ void Sistema::cria_personagens(){
 }
 
 void Sistema::roda_jogo(){
-    Rolar_Dados *dados = new Rolar_Dados();
     bool continua = true;
 
     Combate *combate = new Combate(_herois);
@@ -161,7 +161,6 @@ void Sistema::roda_jogo(){
     }
 
     delete combate;
-    delete dados;
 }
 
 void Sistema::inicia_jogo(){

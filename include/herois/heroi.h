@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <set>
 
 #include "../personagem.h"
 
@@ -20,7 +21,6 @@ enum Classes {
 class Heroi: public Personagem {
     private:
         unsigned int _exp;
-        std::map<std::string,bool> _habilidades;
     protected:
         int _vida_max;
     public:
@@ -69,16 +69,6 @@ class Heroi: public Personagem {
          * @brief Diminui a vida do personagem de acordo com o dano.
          */
         void recebe_cura(int cura);
-
-        /*
-         * @brief Adiciona habilidade ao personagem, mas ainda bloqueada.
-         */
-        void adiciona_habilidade(std::string habilidade);
-
-        /*
-         * @brief Desbloqueia habilidade do heroi.
-         */
-        void desbloqueia_habilidade(std::string habilidade);
 
         /*
          * @brief Printa todas as habilidades já desbloqueadas pelo heroi.

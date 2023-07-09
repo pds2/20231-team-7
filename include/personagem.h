@@ -89,9 +89,14 @@ class Personagem{
         bool morto();
 
         /*
+         * @brief Calcula o dano do ataque baseado no valor de um dado entre 1 e 6.
+         */
+        int calcula_ataque(int dado);
+
+        /*
          * @brief Retorna o dano de ataque do personagem.
          */
-        virtual void ataque(int valor_dado, std::vector<Personagem *>) = 0;
+        virtual void ataque(int valor_dado, std::vector<Personagem *> inimigos) = 0;
 
         /*
          * @brief Aumenta o nível do personagem.

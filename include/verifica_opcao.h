@@ -13,6 +13,7 @@ class Verifica_opcao{
         Verifica_opcao(int num_opcoes);
         virtual ~Verifica_opcao();
         bool existe_opcao(int i);
+        virtual bool seleciona(int);
         void mostra_opcoes();
         void mostra_ataques(Heroi& h);
         int retorna_opcao();
@@ -22,6 +23,7 @@ class Escolhe_classe: public Verifica_opcao{
     public:
         Escolhe_classe(int i);
         ~Escolhe_classe();
+        bool seleciona(int) override;
 };
 
 class Escolhe_menu: public Verifica_opcao{

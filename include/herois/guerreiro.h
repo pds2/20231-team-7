@@ -3,8 +3,6 @@
 
 #include "heroi.h"
 
-#include <set>
-
 class Guerreiro : public Heroi {
     private:
         std::set<std::string> _ataques;
