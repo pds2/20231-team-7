@@ -3,8 +3,10 @@
 #include <string>
 using namespace std;
 
+int Dao::_id = 1;
 
-Dao::Dao(): Monstro("dao",187,24,11,18,3){
+Dao::Dao(): Monstro("Dao",187,24,11,18,3){
+    _id++;
 }
 
 Dao::~Dao(){

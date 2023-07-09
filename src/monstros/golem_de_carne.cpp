@@ -3,11 +3,11 @@
 #include <string>
 using namespace std;
 
-
+int Golem_de_carne::_id = 1;
 
 Golem_de_carne::Golem_de_carne()
-: Monstro("golem_de_carne",93,18,5,9,1){
-
+: Monstro("Golem de Carne "+to_string(_id),93,18,5,9,1){
+    _id++;
 }
 
 Golem_de_carne::~Golem_de_carne(){

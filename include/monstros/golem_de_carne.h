@@ -6,7 +6,7 @@
 
 class Golem_de_carne : public Monstro{
     private:
-
+        static int _id;
     public:
     /*
     * @brief Cria um Golem de Carne

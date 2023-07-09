@@ -19,6 +19,8 @@
         int _nivel_de_desafio;
         int _classe_de_armadura;
         int _valor_nivel_minimo;
+    protected:
+      static int _id;
     public:
          /*
          * @brief Cria um monstro.

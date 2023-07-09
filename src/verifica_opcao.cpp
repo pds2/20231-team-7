@@ -66,6 +66,11 @@ Escolhe_classe::Escolhe_classe(int i):
     _opcoes.at(4) = "Paladino";
 }
 
+void Escolhe_classe::mostra_menu(){
+    cout << "Qual sera a classe do heroi?" << endl;
+    mostra_opcoes();
+}
+
 Escolhe_classe::~Escolhe_classe() {}
 
 bool Escolhe_classe::seleciona(int op){
@@ -104,6 +109,20 @@ void Escolhe_saida::mostra_menu(){
     mostra_opcoes();
 }
 
+    Escolhe_salvar::Escolhe_salvar(int i):
+        Verifica_opcao(i){
+            _opcoes.at(1)="Continuar";
+            _opcoes.at(2)="Salvar e continuar";
+            _opcoes.at(3)="Sair e salvar";
+            _opcoes.at(4)="Sair sem salvar";
+    }
+
+    Escolhe_salvar::~Escolhe_salvar(){}
+
+    void Escolhe_salvar::mostra_menu(){
+        cout << "O que você deseja fazer?" << endl;
+        mostra_opcoes();
+    }
 
 Escolhe_save::Escolhe_save(int i):
     Verifica_opcao(i) {

@@ -6,7 +6,7 @@
 
 class Dao : public Monstro{
     private:
-
+        static int _id;
     public:
     /*
     *@brief Cria um Dao

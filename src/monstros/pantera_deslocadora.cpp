@@ -1,8 +1,13 @@
 #include "../../include/monstros/pantera_deslocadora.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-PanteraDeslocadora::PanteraDeslocadora():Monstro("pantera",85,18,3,13,4){}
+int PanteraDeslocadora::_id = 1;
+
+PanteraDeslocadora::PanteraDeslocadora():Monstro("pantera "+to_string(_id),85,18,3,13,4){
+    _id++;
+}
 
 PanteraDeslocadora::~PanteraDeslocadora(){
 }

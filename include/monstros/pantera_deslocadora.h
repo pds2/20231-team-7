@@ -4,6 +4,8 @@
 #include "monstros.h"
 
 class PanteraDeslocadora: public Monstro{
+    private:
+        static int _id;
     public:
     /*
      * @brief Cria uma pantera deslocadora.

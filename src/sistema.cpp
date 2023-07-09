@@ -5,6 +5,8 @@
 #include "../include/herois/paladino.h"
 #include "../include/monstros/cao_infernal.h"
 #include "../include/monstros/pantera_deslocadora.h"
+#include "../include/monstros/golem_de_carne.h"
+#include "../include/monstros/dao.h"
 #include "../include/combate.h"
 #include "../include/verifica_opcao.h"
 #include "../include/rolar_dados.h"
@@ -145,22 +147,58 @@ void Sistema::cria_personagens(){
     _herois.set_h2(*personagens.second);
 }
 
+int Sistema::avança_fase(int fase){
+    Verifica_opcao *e= new Escolhe_salvar(4);
+    int op= e->retorna_opcao();
+    switch(op){
+        case 1:{
+            fase++;
+            return fase;
+        }
+        case 2:{
+            salva_jogo(fase);
+            fase++;
+            return fase;
+        }
+        case 3:{
+            salva_jogo(fase);
+            cout<<"Obrigado por jogar!"<<endl;
+            return 0;
+        }
+        case 4:{
+            cout<<"Obrigado por jogar!"<<endl;
+            return 0;
+        }
+    }
+    delete e;
+    return 0;
+}
+
 void Sistema::roda_jogo(){
     bool continua = true;
 
     Combate *combate = new Combate(_herois);
-
-    Monstro *m1 = new CaoInfernal();
-    Monstro *m2 = new CaoInfernal();
-    Monstro *m3 = new PanteraDeslocadora();
-
-    system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
-    continua = combate->entra_combate({m1, m2, m3});
     
-    if(!continua) encerra_jogo();
-    else{
+    int fase=1;
+    while(fase<=3){
+        int vitorias=0;
+        while(vitorias<2){
+            auto monstros=gera_fase(fase);
+            system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
+            continua = combate->entra_combate(monstros);
+            
+            if(!continua) encerra_jogo();
+            else{
+                system("clear");
+                cout << "ganhou combate." << endl;
+                vitorias++;
+                if(fase==3) vitorias++;
+            }
+        }
         system("clear");
-        cout << "ganhou combate." << endl;
+        cout << "Passou de fase!" << endl;
+        fase=avança_fase(fase);
+        if(fase==0) exit(0);
     }
 
     delete combate;
@@ -208,10 +246,13 @@ void save(int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
         save.close();
 }
 
-void Sistema::salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual){
+void Sistema::salva_jogo(int faseatual){
+    Verifica_opcao *e = new Escolhe_save(3);
+    int numslot=e->retorna_opcao();
     if(numslot > 3)
         throw slot_invalido_e();
-    save(numslot,heroi1, heroi2, faseatual);
+    save(numslot,*_herois.get_h1(), *_herois.get_h2(), faseatual);
+    delete e;
 }
 
 void Sistema::carrega_save(unsigned int numslot){
@@ -254,6 +295,7 @@ void Sistema::carrega_jogo(){
     carrega_save(op);
 
     roda_jogo();
+    delete e;
 }
 
 std::vector<Monstro *> Sistema::gera_fase(int numfase){
@@ -266,22 +308,26 @@ std::vector<Monstro *> Sistema::gera_fase(int numfase){
             switch (dado) {
                 case 1:{
                     Monstro *m =new CaoInfernal();
+                    if(numfase==2) m->aumenta_nivel();
                     monstros.push_back(m);
                 }
                 case 2:{
-                    //gera outro tipo de monstro
-                    //monstros.push_back(m);
+                    Monstro *m = new Golem_de_carne();
+                    if(numfase==2) m->aumenta_nivel();
+                    monstros.push_back(m);
                 }
                 case 3:{
-                    //gera outro tipo de monstro
-                    //monstros.push_back(m);
+                    Monstro *m= new PanteraDeslocadora();
+                    if(numfase==2) m->aumenta_nivel();
+                    monstros.push_back(m);
                 }
             }
         }
     }
     if(numfase==3){
-        Monstro *m= new PanteraDeslocadora();
+        Monstro *m = new Dao();
         monstros.push_back(m);
     }
+    delete dados;
     return monstros;
 }

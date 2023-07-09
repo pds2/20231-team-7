@@ -42,6 +42,13 @@ class Escolhe_saida: public Verifica_opcao{
         void mostra_menu() override;
 };
 
+class Escolhe_salvar: public Verifica_opcao{
+    public:
+        Escolhe_salvar(int i);
+        ~Escolhe_salvar();
+        void mostra_menu() override;
+};
+
 class Escolhe_save: public Verifica_opcao{
     public:
         Escolhe_save(int i);

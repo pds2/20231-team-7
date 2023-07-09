@@ -21,7 +21,8 @@ class Sistema{
         void roda_jogo();
         void inicia_jogo();
         void encerra_jogo();
-        void salva_jogo(unsigned int numslot,Heroi &heroi1, Heroi &heroi2,int faseatual);
+        void salva_jogo(int faseatual);
+        int avança_fase(int fase);
         void carrega_save(unsigned int numslot);
         void carrega_jogo();
         std::vector<Monstro *> gera_fase(int numfase);
