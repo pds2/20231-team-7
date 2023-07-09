@@ -19,11 +19,11 @@ class Golem_de_carne : public Monstro{
     /*
     * @brief Retorna o tamanho do monstro.
     */
-    virtual tamanho get_tamanho();
+    virtual tamanho get_tamanho() override;
     /*
     * @brief Retorna a habilidade do monstro.
     */
-    virtual habilidade get_habilidade();
+    virtual habilidade get_habilidade() override;
     /*
     * @brief Funcao de ataque
     */

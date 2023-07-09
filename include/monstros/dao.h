@@ -11,7 +11,7 @@ class Dao : public Monstro{
     /*
     *@brief Cria um Dao
     */
-    Dao(std::string nome, int vida, int dano, int _nivel_de_desafio, int _classe_de_armadura, int _valor_nivel_minimo);
+    Dao();
     /*
     *@brief Destroi um Dao
     */
@@ -19,11 +19,11 @@ class Dao : public Monstro{
     /*
     @brief Retorna o tamanho do monstro
     */
-   virtual tamanho get_tamanho();
+   virtual tamanho get_tamanho() override;
    /*
    *@brief Retorna a habilidade do monstro
    */
-   virtual habilidade get_habilidade();
+   virtual habilidade get_habilidade() override;
    /*
    *@brief Funcao de ataque
    */

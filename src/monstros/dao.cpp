@@ -4,8 +4,7 @@
 using namespace std;
 
 
-Dao::Dao()
-: Monstro("dao",187,24,11,18,3){
+Dao::Dao(): Monstro("dao",187,24,11,18,3){
 }
 
 Dao::~Dao(){
