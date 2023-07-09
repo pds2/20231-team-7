@@ -1,8 +1,13 @@
 #include "../../include/monstros/cao_infernal.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-CaoInfernal::CaoInfernal(): Monstro("cão infernal",45,15,3,15,2){}
+int CaoInfernal::_id = 1;
+
+CaoInfernal::CaoInfernal(): Monstro("cão_infernal "+to_string(_id),45,15,3,15,2){
+    _id++;
+}
 
 CaoInfernal::~CaoInfernal(){
 }

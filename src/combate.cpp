@@ -146,7 +146,7 @@ void Combate::rola_dados(){
     cout << "Dados para decidir ordem (d20): ";
     for(auto p: _ordem_combate){
         int dado = dados->rolar_d20();
-        cout << p->get_nome() << ":" << dado;
+        cout << p->get_nome() << ":" << dado << "  ";
         p->set_dado(dado);
     }
     cout << endl;
@@ -183,6 +183,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         desenha_hud();
         rola_dados();
 
+        /*
         h1->recebe_dano(4);
         sleep(1);
         cout.flush();
@@ -196,7 +197,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
             sleep(1);
             cout.flush();
             desenha_hud();
-        }
+        }*/
 
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 

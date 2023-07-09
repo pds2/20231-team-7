@@ -22,20 +22,21 @@ bool Verifica_opcao::existe_opcao(int i){
 }
 
 void Verifica_opcao::mostra_opcoes(){
-    if(_opcoes.at(1) == "Novo Jogo")
-        cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
-
     for(auto op: _opcoes)
         cout << op.first << " - " << op.second << endl;
 
     cout << "> ";
 }
 
+void Verifica_opcao::mostra_menu(){
+    mostra_opcoes();
+}
+
 int Verifica_opcao::retorna_opcao(){
     std::string op1;
     int op;
 
-    mostra_opcoes();
+    mostra_menu();
     while(cin >> op1){
         istringstream is(op1);
         is >> op;
@@ -46,7 +47,7 @@ int Verifica_opcao::retorna_opcao(){
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para continuar...'");
 
         system("clear");
-        mostra_opcoes();
+        mostra_menu();
     }
 
     return op;
@@ -85,6 +86,11 @@ Escolhe_menu::Escolhe_menu(int i):
 
 Escolhe_menu::~Escolhe_menu() {}
 
+void Escolhe_menu::mostra_menu(){
+    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
+    mostra_opcoes();
+}
+
 Escolhe_saida::Escolhe_saida(int i):
     Verifica_opcao(i) {
     _opcoes.at(1) = "Sim";
@@ -92,6 +98,12 @@ Escolhe_saida::Escolhe_saida(int i):
 }
 
 Escolhe_saida::~Escolhe_saida() {}
+
+void Escolhe_saida::mostra_menu(){
+    cout << "Deseja tentar de novo?" << endl;
+    mostra_opcoes();
+}
+
 
 Escolhe_save::Escolhe_save(int i):
     Verifica_opcao(i) {
