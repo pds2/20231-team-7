@@ -26,6 +26,8 @@ class CaoInfernal: public Monstro{
     * @brief Obter a habilidade do cão infernal.
     */
     habilidade get_habilidade() override;
+
+    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 };
 
 #endif

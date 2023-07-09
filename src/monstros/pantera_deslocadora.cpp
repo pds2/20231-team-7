@@ -14,3 +14,7 @@ tamanho PanteraDeslocadora::get_tamanho(){
 habilidade PanteraDeslocadora::get_habilidade(){
     return _FORCA;
 }
+
+void PanteraDeslocadora::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+    
+}

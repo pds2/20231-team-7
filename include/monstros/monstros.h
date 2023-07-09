@@ -45,11 +45,6 @@
         * @brief Aumenta o nível do personagem.
         */
         void aumenta_nivel() override;
-
-        /*
-        * @brief Retorna o dano de ataque do heroi.
-        */
-        void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
  };
 
 

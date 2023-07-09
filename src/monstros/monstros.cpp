@@ -23,7 +23,3 @@ void Monstro::aumenta_nivel(){
     _dano += 3;
     _nivel_de_desafio++;
 }
-
-void Monstro::ataque(int valor_dado, std::vector<Personagem *> inimigos){
-
-}

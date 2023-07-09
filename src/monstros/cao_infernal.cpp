@@ -14,3 +14,7 @@ tamanho CaoInfernal::get_tamanho(){
 habilidade CaoInfernal::get_habilidade(){
     return _DESTREZA;
 }
+
+void CaoInfernal::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+
+}

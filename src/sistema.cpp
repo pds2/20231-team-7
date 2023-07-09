@@ -3,6 +3,8 @@
 #include "../include/herois/guerreiro.h"
 #include "../include/herois/druida.h"
 #include "../include/herois/paladino.h"
+#include "../include/monstros/cao_infernal.h"
+#include "../include/monstros/pantera_deslocadora.h"
 #include "../include/rolar_dados.h"
 #include "../include/combate.h"
 #include "../include/verifica_opcao.h"
@@ -145,9 +147,9 @@ void Sistema::roda_jogo(){
 
     Combate *combate = new Combate(_herois);
 
-    Monstro *m1 = new Monstro("goblin", 10, 11, 1, 1, 1);
-    Monstro *m2 = new Monstro("goblin2", 10, 12, 1, 1, 1);
-    Monstro *m3 = new Monstro("boss", 10, 13, 1, 1, 1);
+    Monstro *m1 = new CaoInfernal();
+    Monstro *m2 = new CaoInfernal();
+    Monstro *m3 = new PanteraDeslocadora();
 
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
     continua = combate->entra_combate({m1, m2, m3});

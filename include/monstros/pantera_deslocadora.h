@@ -26,6 +26,8 @@ class PanteraDeslocadora: public Monstro{
      * @brief Obter a habilidade da pantera deslocadora.
     */
     habilidade get_habilidade() override;
+
+    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 };
 
 
