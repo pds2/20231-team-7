@@ -19,6 +19,8 @@ class Druida: public Heroi{
          */       
         Druida(std::string nome, int vida, int dano);
 
+        ~Druida();
+
         /*
          * @brief Retorna a classe do personagem.
          */

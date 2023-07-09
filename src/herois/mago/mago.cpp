@@ -11,6 +11,8 @@ Mago::Mago(
 ) : Heroi (nome, vida, dano),
    _mana(10) {}
 
+Mago::~Mago() {}
+
 void Mago::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     for(auto inimigo: inimigos) 
         if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();

@@ -10,6 +10,8 @@ Druida::Druida(
 ):  Heroi(nome, vida, dano),
     _trans(Humano) {}
 
+Druida::~Druida() {}
+
 Classes Druida::get_classe() const{
     return Classes::DRUIDA;
 }

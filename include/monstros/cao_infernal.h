@@ -13,7 +13,7 @@ class CaoInfernal: public Monstro{
     /*
     * @brief Destroi o cão infernal.
     */
-    ~CaoInfernal() override;
+    ~CaoInfernal();
 
     /*
      * @brief Obter o tamanho do cão infernal.

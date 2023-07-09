@@ -17,6 +17,8 @@ class Paladino: public Heroi{
          */       
         Paladino(std::string nome, int vida, int dano);
 
+        ~Paladino();
+
         /*
          * @brief Retorna a classe do personagem.
          */

@@ -14,6 +14,8 @@ class Mago : public Heroi {
         */
         Mago(std::string nome, int vida, int dano);
 
+        ~Mago();
+
         /*
         * @brief Retorna o dano de ataque do heroi.
          */

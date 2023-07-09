@@ -11,7 +11,9 @@ class Guerreiro : public Heroi {
      * @brief Cria um guerreiro
      */
     Guerreiro(std::string nome, int vida, int dano);
-    
+   
+    ~Guerreiro();
+
     /*
      * @brief Retorna o dano de ataque do heroi.
      */

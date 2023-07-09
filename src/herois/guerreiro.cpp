@@ -11,6 +11,8 @@ Guerreiro::Guerreiro(
     _ataques.insert("Investida");
 }
 
+Guerreiro::~Guerreiro() {}
+
 Classes Guerreiro::get_classe() const {
     return Classes::GUERREIRO;
 }

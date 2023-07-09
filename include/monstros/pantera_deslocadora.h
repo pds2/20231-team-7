@@ -13,7 +13,7 @@ class PanteraDeslocadora: public Monstro{
     /*
      * @brief Destroi a pantera deslocadora.
     */
-    ~PanteraDeslocadora() override;
+    ~PanteraDeslocadora();
 
     /*
      * @brief Obter o tamanho da pantera deslocadora.

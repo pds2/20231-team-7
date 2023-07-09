@@ -11,6 +11,7 @@ Paladino::Paladino(
     ): Heroi(nome, vida, dano),
     _mana(10), _manamax(10) {}
 
+Paladino::~Paladino() {}
 
 Classes Paladino::get_classe() const{
     return Classes::PALADINO;
