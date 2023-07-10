@@ -78,7 +78,7 @@ class Druida: public Heroi{
         /*
          * @brief Retorna o dano de ataque do druida baseado na tranformação.
          */
-        void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) override;
+        void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
        /*
         * @brief Retorna as habilidades do druida.

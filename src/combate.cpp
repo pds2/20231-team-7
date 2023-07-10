@@ -223,10 +223,10 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
             vector<Personagem *> p_monstros = retorna_upcast_m(_monstros);
             if(p->eh_heroi()){
-                if(p->get_letra() == h1->get_letra()) p->ataque(op1.second, 6, p_monstros);
-                else p->ataque(op2.second, 6, p_monstros);
+                if(p->get_letra() == h1->get_letra()) p->ataque(6, {p_monstros.at(op1.second-1)});
+                else p->ataque(6, {p_monstros.at(op2.second-1)});
             } else{
-                p->ataque(0, 3, {h1, h2});
+                p->ataque(3, {h1, h2});
             }
         }
 

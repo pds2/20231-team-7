@@ -20,6 +20,6 @@ string PanteraDeslocadora::get_letra(){
     return "P";
 }
 
-void PanteraDeslocadora::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos){
+void PanteraDeslocadora::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     
 }

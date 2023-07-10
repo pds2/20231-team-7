@@ -34,7 +34,7 @@ void Mago::lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> i
     }
 }
 
-void Mago::ataque(int alvo,int valor_dado, std::vector<Personagem *> inimigos){
+void Mago::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     
 }
 

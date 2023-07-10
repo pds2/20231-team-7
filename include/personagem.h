@@ -101,7 +101,7 @@ class Personagem{
         /*
          * @brief Retorna o dano de ataque do personagem.
          */
-        virtual void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) = 0;
+        virtual void ataque(int valor_dado, std::vector<Personagem *> inimigos) = 0;
 
         /*
          * @brief Aumenta o nível do personagem.

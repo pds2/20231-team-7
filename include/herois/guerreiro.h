@@ -20,7 +20,7 @@ class Guerreiro : public Heroi {
     /*
      * @brief Retorna o dano de ataque do heroi.
      */
-    void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) override;
+    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
     /*
      * @brief ativa a habilidade furia
