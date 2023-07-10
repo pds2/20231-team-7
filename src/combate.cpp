@@ -19,12 +19,12 @@ bool verifica_monstros(vector<Monstro *> monstros){
     return(mortos == monstros.size());
 }
 
-void completa_hud_monstro(unsigned tam){
+void completa_hud_monstro(int tam){
     if(tam == 3)
         cout << "|" << endl;
     else{
-        for(unsigned i = 0; i < (3-tam); i++)
-            cout << "|" << string(25, ' ');
+        for(int i = 0; i < (3-tam); i++)
+            cout << "| " << string(23, ' ');
         cout << "|" << endl;
     }
 }
@@ -51,8 +51,7 @@ void Combate::seta_posicoes(){
 
 void Combate::hud_monstro(){
     for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| " << termcolor::red << left << setw(25) << setfill(' ') << _monstros.at(i)->get_nome()
-             << right << termcolor::reset;
+        cout << "| "  << left << setw(25) << setfill(' ') << _monstros.at(i)->get_nome();
     }
     completa_hud_monstro(_monstros.size());
 

@@ -94,7 +94,7 @@ pair<Heroi *,Heroi *> valida_personagens(){
     Verifica_opcao *e = new Escolhe_classe(4);
     for(int i = 1; i <= 2; i++){
         string nome = valida_nome(i);
-        int op = e->retorna_opcao();
+        unsigned op = e->retorna_opcao();
 
         (i == 1) ? personagens.first = instancia_personagem(nome, op) :
                    personagens.second = instancia_personagem(nome, op);
@@ -154,8 +154,8 @@ int Sistema::avança_fase(int fase){
             return fase;
         }
         case 2:{
-            salva_jogo(fase);
             fase++;
+            salva_jogo(fase);
             return fase;
         }
         case 3:{
@@ -175,14 +175,14 @@ int Sistema::avança_fase(int fase){
 void Sistema::roda_jogo(unsigned fase){
     bool continua = true;
 
-    Combate *combate = new Combate(_herois);
+    Combate combate(_herois);
     
-    while(fase<=3){
-        int vitorias=0;
-        while(vitorias<2){
-            auto monstros=gera_fase(fase);
+    while(fase <= 3){
+        int vitorias = 0;
+        while(vitorias < 2){
+            auto monstros = gera_fase(fase);
             system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
-            continua = combate->entra_combate(monstros);
+            continua = combate.entra_combate(monstros);
             
             if(!continua) encerra_jogo();
             else{
@@ -197,7 +197,6 @@ void Sistema::roda_jogo(unsigned fase){
         fase=avança_fase(fase);
         if(fase==0) exit(0);
     }    
-    delete combate;
     cout<<"VENCEU PARABENS!!!!!!1!!"<<endl;
 }
 
@@ -295,7 +294,7 @@ void Sistema::carrega_jogo(){
 }
 
 std::vector<Monstro *> Sistema::gera_fase(int numfase){
-    Rolar_Dados *dados= new Rolar_Dados(); 
+    Rolar_Dados *dados = new Rolar_Dados(); 
     vector<Monstro*> monstros;
     if(numfase<3){
         for(int i=0;i<=numfase;i++){
@@ -306,16 +305,19 @@ std::vector<Monstro *> Sistema::gera_fase(int numfase){
                     Monstro *m =new CaoInfernal();
                     if(numfase==2) m->aumenta_nivel();
                     monstros.push_back(m);
+                    break;
                 }
                 case 2:{
                     Monstro *m = new Golem_de_carne();
                     if(numfase==2) m->aumenta_nivel();
                     monstros.push_back(m);
+                    break;
                 }
                 case 3:{
                     Monstro *m= new PanteraDeslocadora();
                     if(numfase==2) m->aumenta_nivel();
                     monstros.push_back(m);
+                    break;
                 }
             }
         }

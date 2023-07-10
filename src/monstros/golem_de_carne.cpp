@@ -6,7 +6,7 @@ using namespace std;
 int Golem_de_carne::_id = 1;
 
 Golem_de_carne::Golem_de_carne()
-: Monstro("Golem de Carne "+to_string(_id),93,18,5,9,1){
+: Monstro("Golem_"+to_string(_id),93,18,5,9,1){
     _id++;
 }
 
