@@ -181,12 +181,17 @@ pair<unsigned,unsigned> decide_ataque(Heroi* h1, Heroi* h2, vector<Personagem *>
     return {ataque_h, alvo_h};
 }
 
-pair<unsigned,unsigned> Combate::ataque_heroi(int n){
+vector<Personagem *> retorna_upcast_m(vector<Monstro *> _m){
     vector<Personagem *> p_monstros;
-    for(auto m: _monstros){
+    for(auto m: _m){
         Personagem *p = m;
         p_monstros.push_back(p);
     }
+    return p_monstros;
+}
+
+pair<unsigned,unsigned> Combate::ataque_heroi(int n){
+    vector<Personagem *> p_monstros = retorna_upcast_m(_monstros);
 
     if(n == 1)
         return decide_ataque(_time.get_h1(), _time.get_h2(), p_monstros);
@@ -216,13 +221,12 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         for(auto p: _ordem_combate){
             if(p->morto() == true) continue;
 
+            vector<Personagem *> p_monstros = retorna_upcast_m(_monstros);
             if(p->eh_heroi()){
-                Heroi *pHeroi = (Heroi*)&p;
-                if(op1.first == pHeroi->get_num_habilidades()+1)
-                    pHeroi->move();
+                if(p->get_letra() == h1->get_letra()) p->ataque(op1.second, 6, p_monstros);
+                else p->ataque(op2.second, 6, p_monstros);
             } else{
-                Monstro *pMonstro = (Monstro*)&p;
-                pMonstro->ataque(1,1, {h1, h2});
+                p->ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos)
             }
         }
 
