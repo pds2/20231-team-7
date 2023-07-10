@@ -73,6 +73,8 @@ void Paladino::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimig
     if(inimigos.size()>1)
         throw alvos_demais_e();
 
+    if(alvo == 0) move();
+
     for(auto *g :inimigos){
         if(valor_dado == 1) g->recebe_dano(_dano - 2);
         if(valor_dado == 2) g->recebe_dano(_dano - 1);
