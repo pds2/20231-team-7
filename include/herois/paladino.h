@@ -32,7 +32,7 @@ class Paladino: public Heroi{
         /*
         * @brief retorna a letra que representa o heroi
         */
-        char const* get_letra() override;
+        std::string get_letra() override;
 
         /*
          * @brief Aumenta o nivel do paladino e seus atributos base.

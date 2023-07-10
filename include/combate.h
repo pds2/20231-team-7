@@ -18,6 +18,7 @@ class Combate{
         bool entra_combate(std::vector<Monstro *> monstros);
         void rola_dados();
         void organiza_ordem();
+        unsigned ataque_heroi();
         void seta_posicoes();
         void hud_monstro();
         void desenha_hud();
@@ -25,4 +26,3 @@ class Combate{
 };
 
 #endif
-

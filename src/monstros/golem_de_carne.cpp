@@ -17,8 +17,8 @@ tamanho Golem_de_carne::get_tamanho(){
     return _MEDIO;
 }
 
-habilidade Golem_de_carne::get_habilidade(){
-    return _FORCA;
+string Golem_de_carne::get_letra(){
+    return "G";
 }
 
 void Golem_de_carne::ataque(int valor_dado, std::vector<Personagem *> inimigos){

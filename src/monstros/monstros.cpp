@@ -9,14 +9,6 @@ int valor_nivel_minimo): Personagem(nome, vida, dano),_nivel_de_desafio
 _valor_nivel_minimo(valor_nivel_minimo) {}
 
 Monstro::~Monstro() {}
- 
-tamanho Monstro::get_tamanho(){ 
-    return  tamanho::_MIUDO;
- }
-
-habilidade Monstro::get_habilidade(){
-    return habilidade::_INTELIGENCIA;
-}
 
 void Monstro::aumenta_nivel(){
     _vida += 3;

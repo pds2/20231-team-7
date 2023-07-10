@@ -79,6 +79,7 @@ void Combate::hud_monstro(){
     cout << string(77, '-') << endl; 
 }
 
+
 bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
     if(h->get_posicao().get_x() == c && h->get_posicao().get_y() == l){ 
         cout << termcolor::green << h->get_letra() << termcolor::reset << " ";
@@ -91,7 +92,7 @@ bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
 
     for(auto m: _m){
         if(m->get_posicao().get_x() == c && m->get_posicao().get_y() == l){ 
-            cout << termcolor::red << "M" << termcolor::reset << " ";
+            cout << termcolor::red << m->get_letra() << termcolor::reset << " ";
             return true;
         }
     }
@@ -126,12 +127,6 @@ void Combate::desenha_tabuleiro(){
     cout << endl;
 }
 
-void mostra_habilidades(Heroi* h){
-    Escolhe_ataque e(h);
-    unsigned op = e.retorna_opcao();
-    int a; cin >> a;
-}
-
 void Combate::desenha_hud(){
     system("clear");
     _time.desenha_hud();
@@ -139,15 +134,13 @@ void Combate::desenha_hud(){
     desenha_tabuleiro();
 }
 
-
-
 void Combate::rola_dados(){
     Rolar_Dados *dados = new Rolar_Dados();
 
     cout << "Dados para decidir ordem (d20): ";
     for(auto p: _ordem_combate){
         int dado = dados->rolar_d20();
-        cout << p->get_nome() << ":" << dado << "  ";
+        cout << p->get_nome() << ": " << dado << "  ";
         p->set_dado(dado);
     }
     cout << endl;
@@ -157,12 +150,39 @@ void Combate::rola_dados(){
     for(auto p: _ordem_combate) cout << p->get_nome() << " ";
     cout << "\n\n";
 
-    mostra_habilidades(_time.get_h1());
-    cout << endl;
-    mostra_habilidades(_time.get_h2());
-    cout << endl;
-
     delete dados;
+}
+
+unsigned mostra_habilidades(Heroi* h){
+    Escolhe_ataque e(h);
+    return e.retorna_opcao();
+}
+
+unsigned mostra_alvos(vector<Personagem *> personagens){
+    Escolhe_alvo e(personagens);
+    return e.retorna_opcao();
+}
+
+unsigned Combate::ataque_heroi(){
+    vector<Personagem *> p_monstros;
+    for(auto m: _monstros){
+        Personagem *p = m;
+        p_monstros.push_back(p);
+    }
+
+    unsigned ataque_h1 = mostra_habilidades(_time.get_h1());
+    if(_time.get_h1()->get_classe() == Classes::PALADINO)
+        unsigned  alvo_h1 = mostra_alvos({_time.get_h1(), _time.get_h2()});
+    else
+        unsigned alvo_h1 = mostra_alvos(p_monstros);
+
+    desenha_hud(); 
+    if(_time.get_h2()->get_classe() == Classes::PALADINO)
+        unsigned alvo_h2 = mostra_alvos({_time.get_h2(), _time.get_h1()});
+    else
+        unsigned alvo_h2 = mostra_alvos(p_monstros);
+
+    return 1;
 }
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
@@ -180,7 +200,9 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         for(auto m: _monstros) _ordem_combate.push_back(m);
         desenha_hud();
         rola_dados();
-        break;
+
+        unsigned op = ataque_heroi();
+
         /*
         h1->recebe_dano(4);
         sleep(1);

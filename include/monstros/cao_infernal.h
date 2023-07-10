@@ -23,9 +23,9 @@ class CaoInfernal: public Monstro{
     tamanho get_tamanho() override;
 
     /*
-    * @brief Obter a habilidade do cão infernal.
+    * @brief retorna a letra que representa o heroi
     */
-    habilidade get_habilidade() override;
+    std::string get_letra() override;
 
     void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 };

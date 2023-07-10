@@ -20,11 +20,13 @@ class Dao : public Monstro{
     @brief Retorna o tamanho do monstro
     */
    virtual tamanho get_tamanho() override;
-   /*
-   *@brief Retorna a habilidade do monstro
-   */
-   virtual habilidade get_habilidade() override;
-   /*
+
+    /*
+    * @brief retorna a letra que representa o heroi
+    */
+    std::string get_letra() override;
+
+    /*
    *@brief Funcao de ataque
    */
   void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;

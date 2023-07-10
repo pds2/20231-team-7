@@ -33,7 +33,7 @@ unsigned Mago::get_num_habilidades(){
     return grimorio.get_num_magias(); 
 }
 
-char const* Mago::get_letra(){
+string Mago::get_letra(){
     return "M";
 }
 

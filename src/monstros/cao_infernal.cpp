@@ -5,7 +5,7 @@ using namespace std;
 
 int CaoInfernal::_id = 1;
 
-CaoInfernal::CaoInfernal(): Monstro("cão_infernal "+to_string(_id),45,15,3,15,2){
+CaoInfernal::CaoInfernal(): Monstro("Cao_infernal_"+to_string(_id),45,15,3,15,2){
     _id++;
 }
 
@@ -16,8 +16,8 @@ tamanho CaoInfernal::get_tamanho(){
     return _MEDIO;
 }
 
-habilidade CaoInfernal::get_habilidade(){
-    return _DESTREZA;
+string CaoInfernal::get_letra(){
+    return "C";
 }
 
 void CaoInfernal::ataque(int valor_dado, std::vector<Personagem *> inimigos){

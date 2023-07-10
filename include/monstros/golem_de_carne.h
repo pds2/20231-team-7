@@ -20,10 +20,12 @@ class Golem_de_carne : public Monstro{
     * @brief Retorna o tamanho do monstro.
     */
     virtual tamanho get_tamanho() override;
+
     /*
-    * @brief Retorna a habilidade do monstro.
+    * @brief retorna a letra que representa o heroi
     */
-    virtual habilidade get_habilidade() override;
+    std::string get_letra() override;
+
     /*
     * @brief Funcao de ataque
     */

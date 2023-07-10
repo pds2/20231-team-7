@@ -9,11 +9,6 @@
     _MIUDO, _PEQUENO, _MEDIO, _GRANDE, _ENORME, _IMENSO
  };
 
- enum habilidade{
-    _FORCA, _DESTREZA, _INTELIGENCIA, _SABEDORIA
- };
-
-
  class Monstro : public Personagem{
     private:
         int _nivel_de_desafio;
@@ -34,12 +29,7 @@
          /*
          * @brief Retorna o tamanho do monstro.
          */
-        virtual tamanho get_tamanho();
-
-         /*
-         * @brief Retorna a habilidade do monstro.
-         */
-        virtual habilidade get_habilidade();
+        virtual tamanho get_tamanho() = 0;
 
         /*
         * @brief Aumenta o nível do personagem.

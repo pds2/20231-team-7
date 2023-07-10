@@ -21,7 +21,7 @@ unsigned Guerreiro::get_num_habilidades(){
     return _ataques.size();
 }
 
-char const* Guerreiro::get_letra(){
+string Guerreiro::get_letra(){
     return "G";
 }
 

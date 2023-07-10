@@ -74,6 +74,20 @@ void Escolhe_ataque::mostra_menu(){
     mostra_opcoes();
 }
 
+void Escolhe_alvo::mostra_menu(){
+    cout << "Qual monstro o heroi irá atacar: \n";
+    mostra_opcoes();
+}
+
+Escolhe_alvo::Escolhe_alvo(vector<Personagem *> personagens):
+    Verifica_opcao(personagens.size()),
+    _personagens(personagens){
+    for(unsigned i = 1; i <= personagens.size(); i++)
+        _opcoes.at(i) = _personagens.at(i-1)->get_nome();
+}
+
+Escolhe_alvo::~Escolhe_alvo() {}
+
 Escolhe_classe::Escolhe_classe(unsigned i):
     Verifica_opcao(i) {
     _opcoes.at(1) = "Druida";

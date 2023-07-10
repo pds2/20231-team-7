@@ -5,7 +5,7 @@ using namespace std;
 
 int PanteraDeslocadora::_id = 1;
 
-PanteraDeslocadora::PanteraDeslocadora():Monstro("Pantera "+to_string(_id),85,18,3,13,4){
+PanteraDeslocadora::PanteraDeslocadora():Monstro("Pantera_Deslocadora_"+to_string(_id),85,18,3,13,4){
     _id++;
 }
 
@@ -16,8 +16,8 @@ tamanho PanteraDeslocadora::get_tamanho(){
     return _GRANDE;
 }
 
-habilidade PanteraDeslocadora::get_habilidade(){
-    return _FORCA;
+string PanteraDeslocadora::get_letra(){
+    return "P";
 }
 
 void PanteraDeslocadora::ataque(int valor_dado, std::vector<Personagem *> inimigos){

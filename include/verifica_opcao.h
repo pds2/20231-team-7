@@ -66,6 +66,26 @@ class Escolhe_ataque: public Verifica_opcao{
         ~Escolhe_ataque();
 };
 
+class Escolhe_alvo: public Verifica_opcao{
+    private:
+        std::vector<Personagem *> _personagens;
+
+        /*
+        * @brief Mostra as opçoes armazenadas no map do tipo
+        */
+        void mostra_menu() override;
+    public:
+        /*
+        * @brief Cria um escolhe alvo e armazena os possiveis alvos para ataque no map;
+        */ 
+        Escolhe_alvo(std::vector<Personagem *>);
+
+        /*
+        * @brief Destrutor.
+        */ 
+        ~Escolhe_alvo();
+};
+
 class Escolhe_classe: public Verifica_opcao{
     private:
         /*

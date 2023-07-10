@@ -34,6 +34,11 @@ class Personagem{
         std::string get_nome() const;
 
         /*
+         * @brief Retorna a primeira letra da classe do heroi.
+         */        
+        virtual std::string get_letra() = 0;
+
+        /*
          * @brief Retorna a vida do personagem.
          */
         int get_vida();

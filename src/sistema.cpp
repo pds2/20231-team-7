@@ -302,7 +302,7 @@ std::vector<Monstro *> Sistema::gera_fase(int numfase){
             if(dado>3) dado=floor(dado/2);
             switch (dado) {
                 case 1:{
-                    Monstro *m =new CaoInfernal();
+                    Monstro *m = new CaoInfernal();
                     if(numfase==2) m->aumenta_nivel();
                     monstros.push_back(m);
                     break;

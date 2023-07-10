@@ -23,7 +23,7 @@ unsigned Druida::get_num_habilidades(){
     return _ataques.size();
 }
 
-char const* Druida::get_letra(){
+string Druida::get_letra(){
     return "D";
 }
 

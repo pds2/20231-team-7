@@ -23,9 +23,9 @@ class PanteraDeslocadora: public Monstro{
     tamanho get_tamanho() override;
 
     /*
-     * @brief Obter a habilidade da pantera deslocadora.
+    * @brief retorna a letra que representa o heroi
     */
-    habilidade get_habilidade() override;
+    std::string get_letra() override;
 
     /*
     * @brief Funcao de ataque

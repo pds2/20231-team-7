@@ -16,8 +16,8 @@ tamanho Dao::get_tamanho(){
     return _GRANDE;
 }
 
-habilidade Dao::get_habilidade(){
-    return _FORCA;
+string Dao::get_letra(){
+    return "D";
 }
 
 void Dao::ataque(int valor_dado, std::vector<Personagem *> inimigos){

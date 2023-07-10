@@ -24,7 +24,7 @@ unsigned Paladino::get_num_habilidades(){
     return _ataques.size();
 }
 
-char const* Paladino::get_letra(){
+string Paladino::get_letra(){
     return "P";
 }
 
