@@ -181,7 +181,6 @@ void Sistema::roda_jogo(unsigned fase){
         int vitorias = 0;
         while(vitorias < 2){
             auto monstros = gera_fase(fase);
-            system("read -n 1 -s -r -p 'Aperte qualquer tecla para entrar no combate!'");
             continua = combate.entra_combate(monstros);
             
             if(!continua) encerra_jogo();
@@ -197,7 +196,7 @@ void Sistema::roda_jogo(unsigned fase){
         fase=avança_fase(fase);
         if(fase==0) exit(0);
     }    
-    cout<<"VENCEU PARABENS!!!!!!1!!"<<endl;
+    cout<<"VENCEU PARABENS!!!!!!!!!"<<endl;
 }
 
 void Sistema::inicia_jogo(){
@@ -208,9 +207,6 @@ void Sistema::inicia_jogo(){
 
 void Sistema::encerra_jogo(){
     system("clear");
-
-    cout << termcolor::red << "GAME OVER!" << termcolor::reset << endl;
-    cout << "Deseja tentar de novo?" << endl;
 
     Escolhe_saida e(2);
     int op = e.retorna_opcao();

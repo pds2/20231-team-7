@@ -54,14 +54,14 @@ void Time_h::desenha_hud(){
          << termcolor::blue << setw(27) << setfill(' ') << _time.second->get_nome() << right << termcolor::reset
          << "Nível: " << _time.second->get_nivel() << " |" << endl
 
-         << "| Vida: " << left << setw(20) << setfill(' ');
+         << "| Vida: ";
          (_time.first->get_vida() == 0) ? cout << termcolor::red << left << setw(20) << setfill(' ') << _time.first->get_vida() << termcolor::reset
-         : cout << _time.first->get_vida();
+         : cout << left << setw(20) << setfill(' ') << _time.first->get_vida();
          cout << right << setw(9) << setfill(' ') << string_classe(_time.first->get_classe()) << " | "
 
-         << "Vida: " << left << setw(20) << setfill(' ');
-         (_time.second->get_vida() == 0) ? cout << termcolor::red << setw(20) << setfill(' ') << _time.second->get_vida() << termcolor::reset
-         : cout << _time.second->get_vida();
+         << "Vida: ";
+         (_time.second->get_vida() == 0) ? cout << termcolor::red << left << setw(20) << setfill(' ') << _time.second->get_vida() << termcolor::reset
+         : cout << left << setw(20) << setfill(' ') << _time.second->get_vida();
          cout << right << setw(9) << setfill(' ') << string_classe(_time.second->get_classe()) << " | " << endl
          
          << "| Dano: " << left << setw(30) << setfill(' ') << _time.first->get_dano() << "| "

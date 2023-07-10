@@ -75,7 +75,7 @@ void Paladino::ataque(int valor_dado, std::vector<Personagem *> inimigos){
         throw alvos_demais_e();
 
 
-    for(auto *g :inimigos){
+    for(auto g :inimigos){
         g->recebe_dano(calcula_ataque(valor_dado));
     }
 }

@@ -26,7 +26,7 @@ void PanteraDeslocadora::ataque(int valor_dado, std::vector<Personagem *> inimig
     if(valor_dado < 1)
         throw valor_dado_negativo_e();
 
-    for(auto *g :inimigos){
+    for(auto g :inimigos){
         g->recebe_dano(calcula_ataque(valor_dado)/2);
     }
 }

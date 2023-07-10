@@ -22,7 +22,7 @@ TEST_CASE("testa aumenta_nivel") {
     p->ganha_exp(101);
     CHECK_EQ(p->get_nivel(), 2);
     CHECK_EQ(p->get_vida(), 13);
-    CHECK(p->get_habilidades().at(1)=="furia");
+    CHECK(p->get_habilidades().at(1)=="Furia");
     p->ganha_exp(50);
     CHECK_EQ(p->get_nivel(), 2);
     CHECK_EQ(p->get_dano(), 13);

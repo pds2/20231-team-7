@@ -20,7 +20,8 @@ class Personagem{
         int _dano;
         bool _morto;
         unsigned int _nivel;
-        int _dado_atual;
+        int _dado_ordem;
+        int _dado_dano;
         Posicao _lugar;
     public:
         /*
@@ -59,14 +60,24 @@ class Personagem{
         void set_dano(int dano);
 
         /*
-         * @brief Retorna o dado atual do personagem.
+         * @brief Retorna o dado de ordem de combate do personagem.
          */        
-        int get_dado();
+        int get_dado_ordem();
 
         /*
-         * @brief Seta um valor dado novo para o personagem.
+         * @brief Retorna o dado de dano do personagem.
+         */        
+        int get_dado_dano();
+
+        /*
+         * @brief Seta um valor dado novo de ordem para o personagem.
          */
-        void set_dado(int dado);
+        void set_dado_ordem(int dado);
+
+        /*
+         * @brief Seta um valor dado novo de dano para o personagem.
+         */
+        void set_dado_dano(int dado);
 
         /*
          * @brief Retorna o nivel do personagem.

@@ -142,19 +142,19 @@ void Escolhe_saida::mostra_menu(){
 }
 
 Escolhe_salvar::Escolhe_salvar(unsigned i):
-        Verifica_opcao(i){
-            _opcoes.at(1)="Continuar";
-            _opcoes.at(2)="Salvar e continuar";
-            _opcoes.at(3)="Sair e salvar";
-            _opcoes.at(4)="Sair sem salvar";
-    }
+    Verifica_opcao(i){
+    _opcoes.at(1)="Continuar";
+    _opcoes.at(2)="Salvar e continuar";
+    _opcoes.at(3)="Sair e salvar";
+    _opcoes.at(4)="Sair sem salvar";
+}
 
-    Escolhe_salvar::~Escolhe_salvar(){}
+Escolhe_salvar::~Escolhe_salvar(){}
 
-    void Escolhe_salvar::mostra_menu(){
-        cout << "O que você deseja fazer?" << endl;
-        mostra_opcoes();
-    }
+void Escolhe_salvar::mostra_menu(){
+    cout << "O que você deseja fazer?" << endl;
+    mostra_opcoes();
+}
 
 Escolhe_save::Escolhe_save(unsigned i):
     Verifica_opcao(i) {
@@ -164,3 +164,8 @@ Escolhe_save::Escolhe_save(unsigned i):
 }
 
 Escolhe_save::~Escolhe_save(){}
+
+void Escolhe_save::mostra_menu(){
+    cout << "\nEm qual save deseja voltar? " << endl;
+    mostra_opcoes();
+}

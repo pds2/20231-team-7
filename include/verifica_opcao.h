@@ -166,6 +166,11 @@ class Escolhe_salvar: public Verifica_opcao{
 };
 
 class Escolhe_save: public Verifica_opcao{
+    private:
+        /*
+        * @brief Mostra as opçoes armazenadas no map do tipo
+        */ 
+        void mostra_menu() override;
     public:
         /*
         * @brief Cria um escolhe save armazena os save slots nas suas opçoes

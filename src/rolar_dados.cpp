@@ -11,10 +11,6 @@ int calcula_dado(int limite){
 
 Rolar_Dados::Rolar_Dados() {}
 
-int Rolar_Dados::rolar_d04(){
-    return calcula_dado(4);
-}
-
 int Rolar_Dados::rolar_d06(){
     return calcula_dado(6);
 }
@@ -35,6 +31,3 @@ int Rolar_Dados::rolar_d20(){
     return calcula_dado(20);
 }
 
-int Rolar_Dados::rolar_d100(){
-    return calcula_dado(100);
-}

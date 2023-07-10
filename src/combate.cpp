@@ -102,9 +102,9 @@ bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
 
 struct ComparadorDado {
     bool operator()(Personagem* p1, Personagem* p2){
-        if(p1->get_dado() == p2->get_dado()) return p1->get_dano() > p2->get_dano();
+        if(p1->get_dado_ordem() == p2->get_dado_ordem()) return p1->get_dano() > p2->get_dano();
 
-        return p1->get_dado() > p2->get_dado();
+        return p1->get_dado_ordem() > p2->get_dado_ordem();
     }
 };
 
@@ -129,13 +129,11 @@ void Combate::desenha_tabuleiro(){
 
 void printa_ordem(vector<Personagem *> ordem){
     cout << "Ordem combate (D20): ";
-    for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado() << ")" << " ";
+    for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado_ordem() << ")" << " ";
     cout << "\n";
-}
 
-void printa_dano(vector<Personagem *> ordem){
     cout << "Dano (D06):  ";
-    for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado() << ")" << " ";
+    for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado_dano() << ")" << " ";
     cout << "\n\n";
 }
 
@@ -145,27 +143,23 @@ void Combate::desenha_hud(){
     hud_monstro();
     desenha_tabuleiro();
     printa_ordem(_ordem_combate);
-    rola_dados(6);
-    printa_dano(_ordem_combate);
 }
 
-void Combate::rola_dados(int d){
+void Combate::rola_dados(){
     Rolar_Dados *dados = new Rolar_Dados();
     
-    if(d == 20){
-        for(auto p: _ordem_combate){
-            int dado = dados->rolar_d20();
-            p->set_dado(dado);
-        }
-        organiza_ordem();
-    } else{
-        for(auto p: _ordem_combate){
-            int dado = dados->rolar_d06();
-            p->set_dado(dado);
-        }
+    for(auto p: _ordem_combate){
+        int dado = dados->rolar_d20();
+        p->set_dado_ordem(dado);
+    }
+    organiza_ordem();
+
+    for(auto p: _ordem_combate){
+        int dado = dados->rolar_d06();
+        p->set_dado_dano(dado);
     }
 
-    delete dados;
+delete dados;
 }
 
 unsigned mostra_habilidades(Heroi* h){
@@ -184,7 +178,7 @@ pair<unsigned,unsigned> decide_ataque(Heroi* h1, Heroi* h2, vector<Personagem *>
         return {ataque_h, 0};
 
     unsigned alvo_h;
-    if(h1->get_classe() == Classes::PALADINO)
+    if(h1->get_classe() == Classes::PALADINO && ataque_h == 1)
         alvo_h = mostra_alvos({h1, h2});
     else
         alvo_h = mostra_alvos(p);
@@ -211,6 +205,29 @@ pair<unsigned,unsigned> Combate::ataque_heroi(int n){
     return decide_ataque(_time.get_h2(), _time.get_h1(), p_monstros);
 }
 
+void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<unsigned,unsigned> op2){
+    if(p->eh_heroi()){
+        vector<Personagem *> p_monstros = retorna_upcast_m(_monstros);
+
+        if(p->get_letra() == _time.get_h1()->get_letra()){
+            try{
+                if(op1.second == 0) p->move();
+                else p->ataque(p->get_dado_dano(), {p_monstros.at(op1.second-1)});
+            } catch(posicao_invalida_e e){
+                cout << "Não pode mais mover para frente." << endl;
+            }
+        } else{
+            try{
+                if(op2.second == 0) p->move();
+                else p->ataque(p->get_dado_dano(), {p_monstros.at(op2.second-1)});
+            } catch(posicao_invalida_e e){
+                cout << "Não pode mais mover para frente." << endl;
+            }
+        }
+    }         
+    else p->ataque(p->get_dado_dano(), {_time.get_h1(), _time.get_h2()});
+}
+
 bool Combate::entra_combate(vector<Monstro *> monstros){
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
@@ -224,7 +241,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         _ordem_combate = {h1, h2};
         for(auto m: _monstros) _ordem_combate.push_back(m);
 
-        rola_dados(20);
+        rola_dados();
         desenha_hud();
 
         op1 = ataque_heroi(1);
@@ -232,20 +249,8 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
         for(auto p: _ordem_combate){
             if(p->morto() == true) continue;
-
-            vector<Personagem *> p_monstros = retorna_upcast_m(_monstros);
-            if(p->eh_heroi()){
-                if(p->get_letra() == h1->get_letra()){
-                    if(op1.second == 0) p->move();
-                    p->ataque(p->get_dado(), {p_monstros.at(op1.second)});
-                }
-                else{
-                    if(op2.second == 0) p->move();
-                    p->ataque(p->get_dado(), {p_monstros.at(op2.second)});
-                }
-            } else{
-                p->ataque(p->get_dado(), {h1, h2});
-            }
+            
+            ataca_na_ordem(p, op1, op2);
         }
 
         player_venceu = verifica_monstros(_monstros);
