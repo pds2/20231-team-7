@@ -44,4 +44,6 @@ TEST_CASE("furia"){
     CHECK_EQ(g1->get_vida(),14);
     CHECK(g->get_furia()==false);
     
+    delete g;
+    delete g1;
 }

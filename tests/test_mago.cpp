@@ -38,4 +38,7 @@ TEST_CASE("MAGIAS"){
     p->lança_magia(3,2,{p1});
     CHECK_THROWS(p->lança_magia(4,2,{p1}), mana_insuficiente_e());
 
+    delete p;
+    delete p1;
+
 }

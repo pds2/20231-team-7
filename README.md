@@ -6,7 +6,7 @@
 - Iago Zagnoli Albergaria
 - Mateus Cursino Gomes Costa
 
-<h2>JOGO DE RPG</h2>
+<h2>JOGO DE RPG MUITO MANEIRO</h2>
 
 <h4>DESCRICAO</h4>
 

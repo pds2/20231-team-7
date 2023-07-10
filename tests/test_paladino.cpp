@@ -7,7 +7,7 @@ TEST_CASE("testa ataque") {
     CHECK_THROWS_AS(p->ataque(-1, {p1}), valor_dado_negativo_e);
     CHECK_THROWS_AS(p->ataque(-1, {p}), personagem_ataca_a_si_mesmo_e);
     p->ataque(2, {p1});
-    CHECK_EQ(p1->get_vida(), 5);
+    CHECK_EQ(p1->get_vida(), 6);
     p->ataque(2, {p1});
     CHECK_EQ(p1->morto(), true);
     

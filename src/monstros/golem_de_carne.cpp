@@ -22,5 +22,12 @@ string Golem_de_carne::get_letra(){
 }
 
 void Golem_de_carne::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+    if(get_nome() == inimigos[0]->get_nome())
+        throw personagem_ataca_a_si_mesmo_e();
+    if(valor_dado < 1)
+        throw valor_dado_negativo_e();
 
+    for(auto *g :inimigos){
+        g->recebe_dano(calcula_ataque(valor_dado)/2);
+    }
 }

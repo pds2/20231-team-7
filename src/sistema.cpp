@@ -27,7 +27,7 @@ using namespace chrono;
 void texto_credito(){
     system("clear");
     cout << "TRABALHO PRÁTICO DE PDS2\n";
-    cout << "JOGO DE RPG COM ENIGMAS\n\n";
+    cout << "JOGO DE RPG MUITO MANEIRO\n\n";
     cout << "Por:\n";
     cout << "- Caroline Campos Carvalho\n";
     cout << "- Deborah Brito Yamamoto\n";

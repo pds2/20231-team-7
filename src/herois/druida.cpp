@@ -70,14 +70,7 @@ void Druida::ataqueUrso(int valor_dado, std::vector<Personagem *> inimigos){
     if(inimigos.size()>1)
         throw alvos_demais_e();
     for(auto *p:inimigos){
-        if(valor_dado == 1) 
-            p->recebe_dano(get_dano() - 1);
-        if(valor_dado == 2) 
-            p->recebe_dano(get_dano());
-        if(valor_dado == 3) 
-            p->recebe_dano(get_dano()+1);
-        if(valor_dado>3)
-            p->recebe_dano(get_dano()  + (3*valor_dado / 4));
+        p->recebe_dano(calcula_ataque(valor_dado)+2);
     }
 }
 
@@ -85,14 +78,7 @@ void Druida::ataqueHumano(int valor_dado, std::vector<Personagem *> inimigos){
     if(inimigos.size()>1)
         throw alvos_demais_e();
     for(auto *p:inimigos){
-        if(valor_dado == 1) 
-            p->recebe_dano(get_dano() - 3);
-        if(valor_dado == 2) 
-            p->recebe_dano(get_dano() - 2);
-        if(valor_dado == 3) 
-            p->recebe_dano(get_dano());
-        if(valor_dado>3)
-            p->recebe_dano(get_dano()  + (valor_dado / 2));
+        p->recebe_dano(calcula_ataque(valor_dado)+1);
     }
 }
 
@@ -100,14 +86,7 @@ void Druida::ataqueFalcao(int valor_dado, std::vector<Personagem *> inimigos){
     if(inimigos.size()>3)
         throw alvos_demais_e();
     for(auto *p:inimigos){
-        if(valor_dado == 1) 
-            p->recebe_dano(get_dano() - 3);
-        if(valor_dado == 2) 
-            p->recebe_dano(get_dano() - 2);
-        if(valor_dado == 3) 
-            p->recebe_dano(get_dano()-1);
-        if(valor_dado>3) 
-            p->recebe_dano(get_dano()  + (valor_dado / 3));
+        p->recebe_dano(calcula_ataque(valor_dado));;
     }
 }
 
@@ -115,14 +94,7 @@ void Druida::ataqueLobo(int valor_dado, std::vector<Personagem *> inimigos){
     if(inimigos.size()>2)
         throw alvos_demais_e();
     for(auto *g:inimigos){
-        if(valor_dado == 1) 
-            g->recebe_dano(get_dano() - 2);
-        if(valor_dado == 2) 
-            g->recebe_dano(get_dano() - 1);
-        if(valor_dado == 3) 
-            g->recebe_dano(get_dano());
-        if(valor_dado>3)
-            g->recebe_dano(get_dano() + (valor_dado / 2));
+        g->recebe_dano(calcula_ataque(valor_dado)+2);;
     }
 }
 
