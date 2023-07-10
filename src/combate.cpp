@@ -223,12 +223,13 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
     while(h1->morto() == false || h2->morto() == false){
         _ordem_combate = {h1, h2};
         for(auto m: _monstros) _ordem_combate.push_back(m);
+
         rola_dados(20);
         desenha_hud();
 
         op1 = ataque_heroi(1);
         op2 = ataque_heroi(2);
-        cout << "tamo bem";
+
         for(auto p: _ordem_combate){
             if(p->morto() == true) continue;
 
@@ -236,14 +237,14 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
             if(p->eh_heroi()){
                 if(p->get_letra() == h1->get_letra()){
                     if(op1.second == 0) p->move();
-                    p->ataque(6, {p_monstros.at(op1.second)});
+                    p->ataque(p->get_dado(), {p_monstros.at(op1.second)});
                 }
                 else{
                     if(op2.second == 0) p->move();
-                    p->ataque(6, {p_monstros.at(op2.second)});
+                    p->ataque(p->get_dado(), {p_monstros.at(op2.second)});
                 }
             } else{
-                p->ataque(3, {h1, h2});
+                p->ataque(p->get_dado(), {h1, h2});
             }
         }
 
