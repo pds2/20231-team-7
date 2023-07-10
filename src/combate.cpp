@@ -21,10 +21,10 @@ bool verifica_monstros(vector<Monstro *> monstros){
 
 void completa_hud_monstro(int tam){
     if(tam == 3)
-        cout << "|" << endl;
+        cout << " |" << endl;
     else{
         for(int i = 0; i < (3-tam); i++)
-            cout << "| " << string(23, ' ');
+            cout << "| " << string(24, ' ');
         cout << "|" << endl;
     }
 }
@@ -51,34 +51,32 @@ void Combate::seta_posicoes(){
 
 void Combate::hud_monstro(){
     for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| "  << left << setw(25) << setfill(' ') << _monstros.at(i)->get_nome();
+        cout << "| "  << termcolor::red << left << setw(23) << setfill(' ') << _monstros.at(i)->get_nome()
+             << right << termcolor::reset;
     }
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| Vida: " << left << setw(2) << setfill(' ');
-        (_monstros.at(i)->get_vida() == 0) ? cout << termcolor::red << setw(2) << setfill(' ')
+        cout << "| Vida: " << left << setw(17) << setfill(' ');
+        (_monstros.at(i)->get_vida() == 0) ? cout << termcolor::red << setw(17) << setfill(' ')
         << _monstros.at(i)->get_vida() << termcolor::reset
         : cout << _monstros.at(i)->get_vida();
-        cout << string(16, ' ') << right;
+        cout << right;
     }
-    cout << " ";
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++)
-        cout << "| Dano: " << setw(2) << setfill(' ') << _monstros.at(i)->get_dano() << string(16, ' ') << right;
-    cout << " ";
+        cout << "| Dano: " << left << setw(17) << setfill(' ') << _monstros.at(i)->get_dano() << right;
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
         Posicao posicao;
         posicao = _monstros.at(i)->get_posicao();
-        cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(12, ' ');
+        cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(11, ' ');
     }
-    cout << " ";
     completa_hud_monstro(_monstros.size());
 
-    cout << string(80, '-') << endl; 
+    cout << string(77, '-') << endl; 
 }
 
 bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){

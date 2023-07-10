@@ -5,7 +5,7 @@ using namespace std;
 
 int CaoInfernal::_id = 1;
 
-CaoInfernal::CaoInfernal(): Monstro("Cão_"+to_string(_id),45,15,3,15,2){
+CaoInfernal::CaoInfernal(): Monstro("Cão_infernal_"+to_string(_id),45,15,3,15,2){
     _id++;
 }
 
