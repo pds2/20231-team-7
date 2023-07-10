@@ -3,9 +3,12 @@
 
 #include "heroi.h"
 
+class furia_ja_ativa_e {};
+
 class Guerreiro : public Heroi {
     private:
         std::vector<std::string> _ataques;
+        bool _furia;
     public:
     /*
      * @brief Cria um guerreiro
@@ -18,6 +21,16 @@ class Guerreiro : public Heroi {
      * @brief Retorna o dano de ataque do heroi.
      */
     void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
+
+    /*
+     * @brief ativa a habilidade furia
+     */
+    void ativa_furia();
+
+    /*
+     * @brief Retorna estado da furia
+     */
+    bool get_furia();
 
     /*
      * @brief Retorna a classe do personagem.

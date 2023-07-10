@@ -7,7 +7,7 @@ Guerreiro::Guerreiro(
     string nome,
     int vida,
     int dano
-): Heroi(nome, vida, dano) {
+): Heroi(nome, vida, dano),_furia(false) {
     _ataques.push_back("Investida");
 }
 
@@ -31,8 +31,22 @@ void Guerreiro::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     if(valor_dado <= 0)
         throw valor_dado_negativo_e();
 
-    for(auto inimigo: inimigos) 
-        inimigo->recebe_dano(get_dano() + valor_dado);
+    for(auto inimigo: inimigos) {
+        if(_furia==false) inimigo->recebe_dano(get_dano() + valor_dado);
+        if(_furia==true){
+            inimigo->recebe_dano((get_dano() + valor_dado)*2);
+            _furia=false;
+       }
+    }
+}
+
+void Guerreiro::ativa_furia(){
+    if(_furia==true) throw furia_ja_ativa_e();
+    else _furia=true;
+}
+
+bool Guerreiro::get_furia(){
+    return _furia;
 }
 
 void Guerreiro::aumenta_nivel(){
