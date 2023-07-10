@@ -145,7 +145,7 @@ Escolhe_salvar::Escolhe_salvar(unsigned i):
     Verifica_opcao(i){
     _opcoes.at(1)="Continuar";
     _opcoes.at(2)="Salvar e continuar";
-    _opcoes.at(3)="Sair e salvar";
+    _opcoes.at(3)="Salvar e sair";
     _opcoes.at(4)="Sair sem salvar";
 }
 

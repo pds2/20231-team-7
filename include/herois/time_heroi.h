@@ -43,6 +43,11 @@ class Time_h{
         void set_h2(Heroi& h2);
 
         /*
+         * Reseta a vida do heroi para quando o time avançar de fase.
+         */
+        void reseta_time();
+
+        /*
          * @brief Desenha o hud do time.
          */   
         void desenha_hud();

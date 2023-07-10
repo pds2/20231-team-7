@@ -47,6 +47,11 @@ string string_classe(Classes classe){
     }
 }
 
+void Time_h::reseta_time(){
+    _time.first->set_vida(_time.first->get_vida_max());
+    _time.second->set_vida(_time.second->get_vida_max());
+}
+
 void Time_h::desenha_hud(){
     cout << "| " << termcolor::blue << left << setw(27) << setfill(' ') << _time.first->get_nome() 
          << termcolor::reset

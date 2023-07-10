@@ -151,14 +151,17 @@ int Sistema::avança_fase(int fase){
     switch(op){
         case 1:{
             fase++;
+            _herois.reseta_time();
             return fase;
         }
         case 2:{
             fase++;
+            _herois.reseta_time();
             salva_jogo(fase);
             return fase;
         }
         case 3:{
+            _herois.reseta_time();
             salva_jogo(fase);
             cout<<"Obrigado por jogar!"<<endl;
             return 0;
