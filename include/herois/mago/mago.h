@@ -26,8 +26,14 @@ class Mago : public Heroi {
         */
         Classes get_classe() const override;
 
+        /*
+        * @brief retorna o numero de habilidades que o personagem tem
+        */
         unsigned get_num_habilidades() override;
 
+        /*
+        * @brief retorna a letra que representa o heroi
+        */
         char const* get_letra() override;
 
         /*
