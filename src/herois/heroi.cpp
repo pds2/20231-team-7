@@ -54,6 +54,10 @@ void Heroi::recebe_cura(int cura){
     else _vida += cura;
 }
 
+bool Heroi::eh_heroi(){
+    return true;
+}
+
 void Heroi::move(){
     if(_lugar.get_x() < 3) 
         _lugar.set_x(_lugar.get_x()+1);

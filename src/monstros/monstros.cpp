@@ -15,3 +15,7 @@ void Monstro::aumenta_nivel(){
     _dano += 3;
     _nivel_de_desafio++;
 }
+
+bool Monstro::eh_heroi(){
+    return false;
+}

@@ -29,7 +29,7 @@ class Golem_de_carne : public Monstro{
     /*
     * @brief Funcao de ataque
     */
-   void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
+   void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) override;
 };
 
 #endif

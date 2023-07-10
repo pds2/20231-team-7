@@ -79,6 +79,11 @@ class Heroi: public Personagem {
          * @brief Retorna todas as habilidades já desbloqueadas pelo heroi.
          */
         virtual std::vector<std::string> get_habilidades() = 0;
+
+        /*
+        * @brief Retorna falso.
+        */
+        bool eh_heroi() override;
 };
 
 #endif

@@ -35,6 +35,11 @@
         * @brief Aumenta o nível do personagem.
         */
         void aumenta_nivel() override;
+
+        /*
+        * @brief Retorna falso.
+        */
+        bool eh_heroi() override;
  };
 
 

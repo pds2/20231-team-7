@@ -101,12 +101,17 @@ class Personagem{
         /*
          * @brief Retorna o dano de ataque do personagem.
          */
-        virtual void ataque(int valor_dado, std::vector<Personagem *> inimigos) = 0;
+        virtual void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) = 0;
 
         /*
          * @brief Aumenta o nível do personagem.
          */
         virtual void aumenta_nivel() = 0;
+
+        /*
+         * @brief Retorna se o personagem é heroi ou nao.
+         */
+        virtual bool eh_heroi() = 0;
 };
 
 #endif

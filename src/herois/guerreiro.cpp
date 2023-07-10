@@ -25,7 +25,7 @@ string Guerreiro::get_letra(){
     return "G";
 }
 
-void Guerreiro::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Guerreiro::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos){
     for(auto inimigo: inimigos) 
         if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();    
     if(valor_dado <= 0)

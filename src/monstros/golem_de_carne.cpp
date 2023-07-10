@@ -21,6 +21,6 @@ string Golem_de_carne::get_letra(){
     return "G";
 }
 
-void Golem_de_carne::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Golem_de_carne::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos){
 
 }

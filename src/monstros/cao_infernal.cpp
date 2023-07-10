@@ -20,6 +20,6 @@ string CaoInfernal::get_letra(){
     return "C";
 }
 
-void CaoInfernal::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void CaoInfernal::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos){
 
 }

@@ -213,17 +213,18 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         op1 = ataque_heroi(1);
         op2 = ataque_heroi(2);
 
-        /*for(auto p: _ordem_combate){
+        for(auto p: _ordem_combate){
             if(p->morto() == true) continue;
 
             if(p->eh_heroi()){
-                Heroi pHeroi = (Heroi)&p;
-                pHeroi->move();
-            } else {
-                Heroi pHeroi = (Heroi)&p;
-                pHeroi->move();
+                Heroi *pHeroi = (Heroi*)&p;
+                if(op1.first == pHeroi->get_num_habilidades()+1)
+                    pHeroi->move();
+            } else{
+                Monstro *pMonstro = (Monstro*)&p;
+                pMonstro->ataque(1,1, {h1, h2});
             }
-        }*/
+        }
 
         player_venceu = verifica_monstros(_monstros);
         if(player_venceu) break;

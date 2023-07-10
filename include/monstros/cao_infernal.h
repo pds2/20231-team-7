@@ -27,7 +27,7 @@ class CaoInfernal: public Monstro{
     */
     std::string get_letra() override;
 
-    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
+    void ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos) override;
 };
 
 #endif
