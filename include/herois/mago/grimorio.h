@@ -7,6 +7,7 @@
 
 class Grimorio{
     private:
+        std::vector<Magia> _livro;
         Magia _misseis = Magia("misseis_magicos", 1, 4, 1, 2);
         Magia _onda = Magia("onda_trovejante", 1, 18, 4, 3); 
         Magia _marca = Magia("marca_da_punicao", 2, 12, 2, 3);

@@ -25,9 +25,9 @@ TEST_CASE("testa ataque humano") {
     Druida *d = new Druida("d", 10, 8);
     Druida *p1 = new Druida("p1", 12, 5);
 
-    CHECK_THROWS_AS(d->ataque(-1, {p1}), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d->ataque(-1, {d}), personagem_ataca_a_si_mesmo_e);
-    d->ataque(2, {p1});
+    CHECK_THROWS_AS(d->ataque(0,-1, {p1}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(0,-1, {d}), personagem_ataca_a_si_mesmo_e);
+    d->ataque(1,2, {p1});
     CHECK_EQ(p1->get_vida(), 6);
 
     delete d;
@@ -38,10 +38,10 @@ TEST_CASE("testa ataque urso") {
     Druida *d = new Druida("d", 10, 8);
     Druida *p1 = new Druida("p1", 12, 5);
     
-    CHECK_THROWS_AS(d->ataque(-1, {p1}), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d->ataque(-1, {d}), personagem_ataca_a_si_mesmo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {p1}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {d}), personagem_ataca_a_si_mesmo_e);
     d->transformar(Urso);
-    d->ataque(2, {p1});
+    d->ataque(1, 2, {p1});
     CHECK_EQ(p1->get_vida(), 4);
 
     delete d;
@@ -54,10 +54,10 @@ TEST_CASE("testa ataque falcao") {
     Druida *p2 = new Druida("p2", 12, 5);
     Druida *p3 = new Druida("p3", 12, 5);
 
-    CHECK_THROWS_AS(d->ataque(-1, {p1,p2,p3}), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d->ataque(-1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {p1,p2,p3}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {d,p3,p2}), personagem_ataca_a_si_mesmo_e);
     d->transformar(Falcao);
-    d->ataque(2, {p1,p2,p3});
+    d->ataque(1, 2, {p1,p2,p3});
     CHECK_EQ(p1->get_vida(), 6);
     CHECK_EQ(p2->get_vida(), 6);
     CHECK_EQ(p3->get_vida(), 6);
@@ -73,10 +73,10 @@ TEST_CASE("testa ataque lobo") {
     Druida *p1 = new Druida("p1", 12, 5);
     Druida *p2 = new Druida("p2", 12, 5);
 
-    CHECK_THROWS_AS(d->ataque(-1, {p1,p2}), valor_dado_negativo_e);
-    CHECK_THROWS_AS(d->ataque(-1, {d,p2}), personagem_ataca_a_si_mesmo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {p1,p2}), valor_dado_negativo_e);
+    CHECK_THROWS_AS(d->ataque(1, -1, {d,p2}), personagem_ataca_a_si_mesmo_e);
     d->transformar(Lobo);
-    d->ataque(2, {p1,p2});
+    d->ataque(1, 2, {p1,p2});
     CHECK_EQ(p1->get_vida(), 5);
     CHECK_EQ(p2->get_vida(), 5);
 

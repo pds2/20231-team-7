@@ -226,7 +226,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
                 if(p->get_letra() == h1->get_letra()) p->ataque(op1.second, 6, p_monstros);
                 else p->ataque(op2.second, 6, p_monstros);
             } else{
-                p->ataque(0, 3, {h1, h2})
+                p->ataque(0, 3, {h1, h2});
             }
         }
 
