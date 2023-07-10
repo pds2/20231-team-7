@@ -172,12 +172,11 @@ int Sistema::avança_fase(int fase){
     return 0;
 }
 
-void Sistema::roda_jogo(){
+void Sistema::roda_jogo(unsigned fase){
     bool continua = true;
 
     Combate *combate = new Combate(_herois);
     
-    unsigned fase=1;
     while(fase<=3){
         int vitorias=0;
         while(vitorias<2){
@@ -205,7 +204,7 @@ void Sistema::roda_jogo(){
 void Sistema::inicia_jogo(){
     cria_personagens();
 
-    roda_jogo();
+    roda_jogo(1);
 }
 
 void Sistema::encerra_jogo(){
@@ -253,7 +252,7 @@ void Sistema::salva_jogo(int faseatual){
     delete e;
 }
 
-void Sistema::carrega_save(unsigned int numslot){
+unsigned Sistema::carrega_save(unsigned int numslot){
     string val= to_string(numslot);
     string saveslot="saveslots/save" + val + ".txt";
     string linha, nome;
@@ -278,21 +277,20 @@ void Sistema::carrega_save(unsigned int numslot){
             }
             if(i==2){
                 str>>faseatual;
-                cout<<faseatual<<endl;//subistituir pra carregamento de fase
             }
         }
         save.close();
     _herois.set_h1(*personagens.first);
     _herois.set_h2(*personagens.second);
-        
+    return faseatual;
     }
 
 void Sistema::carrega_jogo(){
     Verifica_opcao *e = new Escolhe_save(3);
     int op = e->retorna_opcao();
-    carrega_save(op);
+    int fase=carrega_save(op);
 
-    roda_jogo();
+    roda_jogo(fase);
     delete e;
 }
 

@@ -18,12 +18,12 @@ class Sistema{
         Sistema();
         void inicia_menu();
         void cria_personagens();
-        void roda_jogo();
+        void roda_jogo(unsigned fase);
         void inicia_jogo();
         void encerra_jogo();
         void salva_jogo(int faseatual);
         int avança_fase(int fase);
-        void carrega_save(unsigned int numslot);
+        unsigned carrega_save(unsigned int numslot);
         void carrega_jogo();
         std::vector<Monstro *> gera_fase(int numfase);
 };
