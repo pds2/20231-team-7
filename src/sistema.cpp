@@ -199,9 +199,9 @@ void Sistema::roda_jogo(){
         cout << "Passou de fase!" << endl;
         fase=avança_fase(fase);
         if(fase==0) exit(0);
-    }
-
+    }    
     delete combate;
+    cout<<"VENCEU PARABENS!!!!!!1!!"<<endl;
 }
 
 void Sistema::inicia_jogo(){
@@ -270,12 +270,12 @@ void Sistema::carrega_save(unsigned int numslot){
                 if(i == 0){
                     personagens.first = instancia_personagem(nome, classe);
                     personagens.first->ganha_exp(exp+100*(nivel-1));
-                    if(!(personagens.first->get_vida_max()>vida))personagens.first->recebe_dano((personagens.first->get_vida_max())-vida);
+                    if(!(personagens.first->get_vida_max()!=vida))personagens.first->recebe_dano((personagens.first->get_vida_max())-vida);
                 } 
                 if(i == 1){
                     personagens.second = instancia_personagem(nome, classe);
                     personagens.second->ganha_exp(exp+100*(nivel-1));
-                    if((personagens.second->get_vida_max()>vida))personagens.second->recebe_dano((personagens.second->get_vida_max())-vida);
+                    if((personagens.second->get_vida_max()!=vida))personagens.second->recebe_dano((personagens.second->get_vida_max())-vida);
                 } 
             }
             if(i==2){

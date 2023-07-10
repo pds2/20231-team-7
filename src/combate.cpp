@@ -168,7 +168,7 @@ void Combate::rola_dados(){
 }
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
-    _monstros = monstros;
+    /*_monstros = monstros;
 
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
@@ -183,7 +183,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         desenha_hud();
         rola_dados();
 
-        /*
+        
         h1->recebe_dano(4);
         sleep(1);
         cout.flush();
@@ -197,7 +197,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
             sleep(1);
             cout.flush();
             desenha_hud();
-        }*/
+        }
 
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 
@@ -207,6 +207,9 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
     desenha_hud();
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
+    
 
     return player_venceu;
+    */
+    return true;
 }
