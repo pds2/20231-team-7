@@ -8,50 +8,65 @@
 
 class Verifica_opcao{
     protected:
-        std::map<int, std::string> _opcoes; 
-    public:
-        Verifica_opcao(int num_opcoes);
-        virtual ~Verifica_opcao();
-        bool existe_opcao(int i);
-        virtual bool seleciona(int);
+        std::map<unsigned, std::string> _opcoes;
+        bool existe_opcao(unsigned i);
+        virtual bool seleciona(unsigned);
         virtual void mostra_menu();
         void mostra_opcoes();
-        void mostra_ataques(Heroi& h);
-        int retorna_opcao();
+    public:
+        Verifica_opcao(unsigned num_opcoes);
+        virtual ~Verifica_opcao();
+
+        unsigned retorna_opcao();
+};
+
+class Escolhe_ataque: public Verifica_opcao{
+    private:
+        Heroi* _heroi;
+        void mostra_menu() override;
+    public:
+        Escolhe_ataque(Heroi* h);
+        ~Escolhe_ataque();
 };
 
 class Escolhe_classe: public Verifica_opcao{
-    public:
-        Escolhe_classe(int i);
-        ~Escolhe_classe();
-        bool seleciona(int) override;
+    private:
+        bool seleciona(unsigned) override;
         void mostra_menu() override;
+    public:
+        Escolhe_classe(unsigned i);
+        ~Escolhe_classe();
+
 };
 
 class Escolhe_menu: public Verifica_opcao{
-    public:
-        Escolhe_menu(int i);
-        ~Escolhe_menu();
+    private:
         void mostra_menu() override;
+    public:
+        Escolhe_menu(unsigned i);
+        ~Escolhe_menu();
 };
 
 class Escolhe_saida: public Verifica_opcao{
-    public:
-        Escolhe_saida(int i);
-        ~Escolhe_saida();
+    private:
         void mostra_menu() override;
+    public:
+        Escolhe_saida(unsigned i);
+        ~Escolhe_saida();
 };
 
 class Escolhe_salvar: public Verifica_opcao{
-    public:
-        Escolhe_salvar(int i);
-        ~Escolhe_salvar();
+    private:
         void mostra_menu() override;
+    public:
+        Escolhe_salvar(unsigned i);
+        ~Escolhe_salvar();
+    
 };
 
 class Escolhe_save: public Verifica_opcao{
     public:
-        Escolhe_save(int i);
+        Escolhe_save(unsigned i);
         ~Escolhe_save();
 };
 

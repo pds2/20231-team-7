@@ -94,8 +94,6 @@ pair<Heroi *,Heroi *> valida_personagens(){
     Verifica_opcao *e = new Escolhe_classe(4);
     for(int i = 1; i <= 2; i++){
         string nome = valida_nome(i);
-
-        cout << "Qual será a classe do herói " << i << "?" << endl;
         int op = e->retorna_opcao();
 
         (i == 1) ? personagens.first = instancia_personagem(nome, op) :
@@ -179,7 +177,7 @@ void Sistema::roda_jogo(){
 
     Combate *combate = new Combate(_herois);
     
-    int fase=1;
+    unsigned fase=1;
     while(fase<=3){
         int vitorias=0;
         while(vitorias<2){

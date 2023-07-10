@@ -5,6 +5,7 @@
 #include "../include/combate.h"
 #include "../include/herois/time_heroi.h"
 #include "../include/rolar_dados.h"
+#include "../include/verifica_opcao.h"
 
 #include <algorithm>
 
@@ -50,8 +51,8 @@ void Combate::seta_posicoes(){
 
 void Combate::hud_monstro(){
     for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| " << termcolor::red << left << setw(12) << setfill(' ') << _monstros.at(i)->get_nome()
-             << string(12, ' ') << right << termcolor::reset;
+        cout << "| " << termcolor::red << left << setw(25) << setfill(' ') << _monstros.at(i)->get_nome()
+             << right << termcolor::reset;
     }
     completa_hud_monstro(_monstros.size());
 
@@ -62,10 +63,12 @@ void Combate::hud_monstro(){
         : cout << _monstros.at(i)->get_vida();
         cout << string(16, ' ') << right;
     }
+    cout << " ";
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++)
         cout << "| Dano: " << setw(2) << setfill(' ') << _monstros.at(i)->get_dano() << string(16, ' ') << right;
+    cout << " ";
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
@@ -73,9 +76,10 @@ void Combate::hud_monstro(){
         posicao = _monstros.at(i)->get_posicao();
         cout << "| Posicao: " << posicao.get_x() << " " << posicao.get_y() << string(12, ' ');
     }
+    cout << " ";
     completa_hud_monstro(_monstros.size());
 
-    cout << string(79, '-') << endl; 
+    cout << string(80, '-') << endl; 
 }
 
 bool imprime_letra(Heroi* h, Heroi* h1, vector<Monstro *> _m, int l, int c){
@@ -126,9 +130,9 @@ void Combate::desenha_tabuleiro(){
 }
 
 void mostra_habilidades(Heroi* h){
-    cout << "Qual ataque " << h->get_nome() << " devera lançar: \n";
-    h->print_habilidades();
-    cout << "> ";
+    Escolhe_ataque e(h);
+    unsigned op = e.retorna_opcao();
+    int a; cin >> a;
 }
 
 void Combate::desenha_hud(){
@@ -138,10 +142,10 @@ void Combate::desenha_hud(){
     desenha_tabuleiro();
 }
 
+
+
 void Combate::rola_dados(){
     Rolar_Dados *dados = new Rolar_Dados();
-    Heroi *h1 = _time.get_h1();
-    Heroi *h2 = _time.get_h2();
 
     cout << "Dados para decidir ordem (d20): ";
     for(auto p: _ordem_combate){
@@ -156,19 +160,16 @@ void Combate::rola_dados(){
     for(auto p: _ordem_combate) cout << p->get_nome() << " ";
     cout << "\n\n";
 
-    string op1;
-    for(int i = 1; i <= 1; i++){
-        mostra_habilidades(h1);
-        cout << endl;
-        mostra_habilidades(h2);
-        cout << endl;
-    }
+    mostra_habilidades(_time.get_h1());
+    cout << endl;
+    mostra_habilidades(_time.get_h2());
+    cout << endl;
 
     delete dados;
 }
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
-    /*_monstros = monstros;
+    _monstros = monstros;
 
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
@@ -182,8 +183,8 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
         for(auto m: _monstros) _ordem_combate.push_back(m);
         desenha_hud();
         rola_dados();
-
-        
+        break;
+        /*
         h1->recebe_dano(4);
         sleep(1);
         cout.flush();
@@ -197,7 +198,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
             sleep(1);
             cout.flush();
             desenha_hud();
-        }
+        }*/
 
         system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
 
@@ -207,9 +208,6 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
     desenha_hud();
     system("read -n 1 -s -r -p 'Aperte qualquer tecla para ir para o proximo turno.'");
-    
 
     return player_venceu;
-    */
-    return true;
 }

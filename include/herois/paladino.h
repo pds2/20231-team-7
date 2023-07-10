@@ -10,7 +10,7 @@ class Paladino: public Heroi{
     private:
         unsigned int _mana; 
         unsigned int _manamax;
-        std::set<std::string> _ataques;
+        std::vector<std::string> _ataques;
     public:
          /*
          * @brief Cria um paladino.
@@ -23,6 +23,8 @@ class Paladino: public Heroi{
          * @brief Retorna a classe do personagem.
          */
         Classes get_classe() const override;
+
+        unsigned get_num_habilidades() override;
 
         char const* get_letra() override;
 
@@ -52,9 +54,9 @@ class Paladino: public Heroi{
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
        /*
-        * @brief Retorna as habilidades do guerreiro.
+        * @brief Retorna as habilidades do paladino.
         */
-        void print_habilidades() override;
+        std::vector<std::string> get_habilidades() override;
 };
 
 #endif

@@ -29,6 +29,10 @@ Classes Mago::get_classe() const{
     return Classes::MAGO;
 }
 
+unsigned Mago::get_num_habilidades(){
+    return grimorio.get_num_magias(); 
+}
+
 char const* Mago::get_letra(){
     return "M";
 }
@@ -55,6 +59,6 @@ void Mago::aumenta_nivel(){
     cout << endl;
 }
 
-void Mago::print_habilidades(){
-    grimorio.get_magias();
+vector<string> Mago::get_habilidades(){
+    return grimorio.get_magias();
 }

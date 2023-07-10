@@ -5,7 +5,7 @@
 
 class Guerreiro : public Heroi {
     private:
-        std::set<std::string> _ataques;
+        std::vector<std::string> _ataques;
     public:
     /*
      * @brief Cria um guerreiro
@@ -17,12 +17,14 @@ class Guerreiro : public Heroi {
     /*
      * @brief Retorna o dano de ataque do heroi.
      */
-    void ataque(int valor_dadom, std::vector<Personagem *> inimigos) override;
+    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
     /*
      * @brief Retorna a classe do personagem.
      */
     Classes get_classe() const override;
+
+    unsigned get_num_habilidades() override;
 
     char const* get_letra() override;
      
@@ -30,8 +32,8 @@ class Guerreiro : public Heroi {
 
     /*
      * @brief Retorna as habilidades do guerreiro.
-     */
-    void print_habilidades() override;
+    */
+    std::vector<std::string> get_habilidades() override;
 };
 
 #endif

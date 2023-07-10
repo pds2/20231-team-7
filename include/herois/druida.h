@@ -13,6 +13,7 @@ enum Tranformacao{
 class Druida: public Heroi{
     private:
         Tranformacao _trans;
+        std::vector<std::string> _ataques;
     public:
          /*
          * @brief Cria um duida.
@@ -25,6 +26,8 @@ class Druida: public Heroi{
          * @brief Retorna a classe do personagem.
          */
         Classes get_classe() const override;
+
+        unsigned get_num_habilidades() override;
 
         char const* get_letra() override;
 
@@ -65,10 +68,10 @@ class Druida: public Heroi{
          */
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
-        /*
-         * @brief Retorna as habilidades do druida.
-         */
-        void print_habilidades() override;
+       /*
+        * @brief Retorna as habilidades do druida.
+        */
+        std::vector<std::string> get_habilidades() override;
 };
 
 #endif

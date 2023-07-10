@@ -26,6 +26,8 @@ class Mago : public Heroi {
         */
         Classes get_classe() const override;
 
+        unsigned get_num_habilidades() override;
+
         char const* get_letra() override;
 
         /*
@@ -41,7 +43,7 @@ class Mago : public Heroi {
         /*
         @brief Retorna o grimorio do mago
         */
-        void print_habilidades() override;
+        std::vector<std::string> get_habilidades() override;
 };
 
 #endif

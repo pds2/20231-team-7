@@ -9,12 +9,19 @@ Paladino::Paladino(
     int vida,
     int dano
     ): Heroi(nome, vida, dano),
-    _mana(10), _manamax(10) {}
+    _mana(10), _manamax(10) {
+    _ataques.push_back("Cura");
+}
 
-Paladino::~Paladino() {}
+Paladino::~Paladino() {
+}
 
 Classes Paladino::get_classe() const{
     return Classes::PALADINO;
+}
+
+unsigned Paladino::get_num_habilidades(){
+    return _ataques.size();
 }
 
 char const* Paladino::get_letra(){
@@ -74,4 +81,6 @@ void Paladino::ataque(int valor_dado, std::vector<Personagem *> inimigos){
     }
 }
 
-void Paladino::print_habilidades() {}
+vector<string> Paladino::get_habilidades() {
+    return _ataques;
+}

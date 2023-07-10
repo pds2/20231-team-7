@@ -8,7 +8,10 @@ Druida::Druida(
     int vida,
     int dano
 ):  Heroi(nome, vida, dano),
-    _trans(Humano) {}
+    _trans(Humano) {
+    _ataques.push_back("Ataque humano");
+    _ataques.push_back("Transformar");
+}
 
 Druida::~Druida() {}
 
@@ -16,12 +19,16 @@ Classes Druida::get_classe() const{
     return Classes::DRUIDA;
 }
 
+unsigned Druida::get_num_habilidades(){
+    return _ataques.size();
+}
+
 char const* Druida::get_letra(){
     return "D";
 }
 
-void Druida::print_habilidades() {
-    cout << "a" << endl;
+vector<string> Druida::get_habilidades() {
+    return _ataques;
 }
 
 Tranformacao Druida::get_tranformacao(){

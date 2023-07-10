@@ -20,10 +20,14 @@ void Grimorio::adiciona_magia(int nivel){
     }
 }
 
-void Grimorio::get_magias(){
-    int i = 1;
-    for(auto magia: _livro){
-        cout << i << " - " << magia.get_nome() << std::endl;
-        i++;
-    }
+vector<string> Grimorio::get_magias(){
+    vector<string> magias;
+    for(auto magia: _livro)
+        magias.push_back(magia.get_nome());
+
+    return magias;
+}
+
+int Grimorio::get_num_magias(){
+    return _livro.size();
 }

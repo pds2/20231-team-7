@@ -8,13 +8,17 @@ Guerreiro::Guerreiro(
     int vida,
     int dano
 ): Heroi(nome, vida, dano) {
-    _ataques.insert("Investida");
+    _ataques.push_back("Investida");
 }
 
 Guerreiro::~Guerreiro() {}
 
 Classes Guerreiro::get_classe() const {
     return Classes::GUERREIRO;
+}
+
+unsigned Guerreiro::get_num_habilidades(){
+    return _ataques.size();
 }
 
 char const* Guerreiro::get_letra(){
@@ -41,16 +45,13 @@ void Guerreiro::aumenta_nivel(){
     msg += std::to_string(_nivel);
     msg += "!!";
 
-    _ataques.insert("furia");
+    _ataques.push_back("furia");
 
     // colore a mensagem
 	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
     cout << endl;
 }
 
-void Guerreiro::print_habilidades(){
-    int i = 1;
-    for(auto ataque : _ataques){
-        cout << i << " - " << ataque << endl;
-    }
+vector<string> Guerreiro::get_habilidades() {
+    return _ataques;
 }

@@ -3,7 +3,6 @@
 
 #include <map>
 #include <vector>
-#include <set>
 
 #include "../personagem.h"
 
@@ -24,7 +23,7 @@ class Heroi: public Personagem {
     protected:
         int _vida_max;
     public:
-         /*
+         /*Boa noite Yago vc já está de férias?
          * @brief Cria um heroi.
          */       
         Heroi(std::string nome, int vida, int dano);
@@ -55,6 +54,11 @@ class Heroi: public Personagem {
         unsigned int get_exp();
 
         /*
+         * @brief Retorna quantas habilidades o heroi tem.
+         */
+        virtual unsigned get_num_habilidades() = 0;
+
+        /*
          * @brief Adiciona uma quantidade de experiencia para o heroi.
          *        Verifica se o heroi passou de nivel.
          */
@@ -71,9 +75,9 @@ class Heroi: public Personagem {
         void recebe_cura(int cura);
 
         /*
-         * @brief Printa todas as habilidades já desbloqueadas pelo heroi.
+         * @brief Retorna todas as habilidades já desbloqueadas pelo heroi.
          */
-        virtual void print_habilidades() = 0;
+        virtual std::vector<std::string> get_habilidades() = 0;
 };
 
 #endif

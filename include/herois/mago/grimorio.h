@@ -26,7 +26,12 @@ class Grimorio{
         /*
          * @brief retorna as magias desblqueadas do grimorio.
         */
-        void get_magias();
+        std::vector<std::string> get_magias();
+
+        /*
+         * @brief retorna quantas magias desblqueadas do grimorio.
+        */
+        int get_num_magias();
 };
 
 #endif
