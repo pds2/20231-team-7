@@ -22,6 +22,11 @@ class Mago : public Heroi {
         void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
 
         /*
+        * @brief Aplica o dano de ataque de uma magia.
+         */
+        void lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> inimigos);
+
+        /*
         * @brief Retorna a classe do personagem.
         */
         Classes get_classe() const override;

@@ -20,10 +20,10 @@ void Grimorio::adiciona_magia(int nivel){
     }
 }
 
-vector<string> Grimorio::get_magias(){
-    vector<string> magias;
+vector<Magia> Grimorio::get_magias(){
+    vector<Magia> magias;
     for(auto magia: _livro)
-        magias.push_back(magia.get_nome());
+        magias.push_back(magia);
 
     return magias;
 }

@@ -23,7 +23,7 @@ class Posicao{
         /*
          * @brief Retorna a distancia ate outra posiçao.
          */
-        double distancia(Posicao &adversario);
+        double distancia(Posicao adversario);
 
         /*
          * @brief Retorna o x da posiçao.

@@ -4,7 +4,6 @@
 #include "heroi.h"
 #include "../personagem.h"
 
-class mana_insuficiente_e{};
 
 class Paladino: public Heroi{
     private:

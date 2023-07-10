@@ -12,6 +12,7 @@ class habilidade_nao_existe_e {};
 class cura_negativa_e{};
 class nao_pode_curar_morto_e{};
 class alvos_demais_e{};
+class mana_insuficiente_e{};
 
 enum Classes {
     PLACEHOLDER,DRUIDA, GUERREIRO, MAGO, PALADINO

@@ -9,20 +9,32 @@ Mago::Mago(
     int vida,
     int dano
 ) : Heroi (nome, vida, dano),
-   _mana(10) {}
+   _mana(12) {}
 
 Mago::~Mago() {}
 
-void Mago::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Mago::lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> inimigos){
+    nummagia-=1;
     for(auto inimigo: inimigos) 
         if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();
 
     if(valor_dado <= 0){
         throw valor_dado_negativo_e();
     } else{
-        for(auto inimigo: inimigos)
-            inimigo->recebe_dano(get_dano());
+        for(auto *inimigo: inimigos){
+            if(_mana>grimorio.get_magias().at(nummagia).get_custo()){
+                if(grimorio.get_magias().at(nummagia).get_distancia()>get_posicao().distancia(inimigo->get_posicao()))
+                    inimigo->recebe_dano(grimorio.get_magias().at(nummagia).get_dano()+valor_dado*2);
+                else throw magia_fora_do_range_e();
+                _mana-=grimorio.get_magias().at(nummagia).get_custo();
+            }
+            else throw mana_insuficiente_e();
+        }
     }
+}
+
+void Mago::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+    
 }
 
 Classes Mago::get_classe() const{
@@ -60,5 +72,9 @@ void Mago::aumenta_nivel(){
 }
 
 vector<string> Mago::get_habilidades(){
-    return grimorio.get_magias();
+    vector<string> magias;
+    for(auto m:grimorio.get_magias()){
+        magias.push_back(m.get_nome());
+    }
+    return magias;
 }

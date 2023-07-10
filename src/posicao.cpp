@@ -11,7 +11,7 @@ Posicao::Posicao(int x, int y){
     _y = y;
 }
         
-double Posicao::distancia(Posicao &adversario){
+double Posicao::distancia(Posicao adversario){
     return sqrt(pow(_x-adversario._x,2)+pow(_y-adversario._y,2));
 }
 
