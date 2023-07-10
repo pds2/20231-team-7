@@ -176,7 +176,8 @@ unsigned Combate::ataque_heroi(){
     else
         unsigned alvo_h1 = mostra_alvos(p_monstros);
 
-    desenha_hud(); 
+    desenha_hud();
+    unsigned ataque_h2 = mostra_habilidades(_time.get_h2());
     if(_time.get_h2()->get_classe() == Classes::PALADINO)
         unsigned alvo_h2 = mostra_alvos({_time.get_h2(), _time.get_h1()});
     else
