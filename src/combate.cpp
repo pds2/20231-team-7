@@ -128,8 +128,13 @@ void Combate::desenha_tabuleiro(){
 }
 
 void printa_ordem(vector<Personagem *> ordem){
-    cout << "Dado D20:  \n";
-    cout << "Ordem combate: ";
+    cout << "Ordem combate (D20): ";
+    for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado() << ")" << " ";
+    cout << "\n";
+}
+
+void printa_dano(vector<Personagem *> ordem){
+    cout << "Dano (D06):  ";
     for(auto p: ordem) cout << p->get_nome() << "(" << p->get_dado() << ")" << " ";
     cout << "\n\n";
 }
@@ -140,19 +145,25 @@ void Combate::desenha_hud(){
     hud_monstro();
     desenha_tabuleiro();
     printa_ordem(_ordem_combate);
+    rola_dados(6);
+    printa_dano(_ordem_combate);
 }
 
-void Combate::rola_dados(){
+void Combate::rola_dados(int d){
     Rolar_Dados *dados = new Rolar_Dados();
-
-    cout << "Dado D20:  ";
-    for(auto p: _ordem_combate){
-        int dado = dados->rolar_d20();
-        cout << p->get_nome() << "(" << dado << ")" << "  ";
-        p->set_dado(dado);
+    
+    if(d == 20){
+        for(auto p: _ordem_combate){
+            int dado = dados->rolar_d20();
+            p->set_dado(dado);
+        }
+        organiza_ordem();
+    } else{
+        for(auto p: _ordem_combate){
+            int dado = dados->rolar_d06();
+            p->set_dado(dado);
+        }
     }
-    cout << endl;
-    organiza_ordem();
 
     delete dados;
 }
@@ -212,7 +223,7 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
     while(h1->morto() == false || h2->morto() == false){
         _ordem_combate = {h1, h2};
         for(auto m: _monstros) _ordem_combate.push_back(m);
-        rola_dados();
+        rola_dados(20);
         desenha_hud();
 
         op1 = ataque_heroi(1);

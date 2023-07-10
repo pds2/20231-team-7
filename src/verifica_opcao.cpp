@@ -76,7 +76,7 @@ void Escolhe_ataque::mostra_menu(){
 }
 
 void Escolhe_alvo::mostra_menu(){
-    cout << "Qual monstro o heroi irá atacar: \n";
+    cout << "Em quem: \n";
     mostra_opcoes();
 }
 
@@ -123,7 +123,7 @@ Escolhe_menu::Escolhe_menu(unsigned i):
 Escolhe_menu::~Escolhe_menu() {}
 
 void Escolhe_menu::mostra_menu(){
-    cout << termcolor::green << "JOGO DE RPG COM ENIGMAS\n\n" << termcolor::reset;
+    cout << termcolor::green << "JOGO DE RPG MUITO MANEIRO\n\n" << termcolor::reset;
     mostra_opcoes();
 }
 
