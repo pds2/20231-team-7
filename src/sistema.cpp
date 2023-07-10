@@ -299,7 +299,7 @@ std::vector<Monstro *> Sistema::gera_fase(int numfase){
     if(numfase<3){
         for(int i=0;i<=numfase;i++){
             int dado= dados->rolar_d06();
-            if(dado>3) dado=floor(dado/2);
+            if(dado>3) dado=dado-3;
             switch (dado) {
                 case 1:{
                     Monstro *m = new CaoInfernal();
