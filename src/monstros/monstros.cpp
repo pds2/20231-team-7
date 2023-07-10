@@ -19,3 +19,10 @@ void Monstro::aumenta_nivel(){
 bool Monstro::eh_heroi(){
     return false;
 }
+
+void Monstro::move(){
+    if(_lugar.get_x() > 1) 
+        _lugar.set_x(_lugar.get_x()-1);
+    else 
+        throw posicao_invalida_e();
+}

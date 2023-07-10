@@ -37,6 +37,11 @@
         void aumenta_nivel() override;
 
         /*
+         * @brief Move o monstro uma casa a frente.
+         */
+        void move() override;
+
+        /*
         * @brief Retorna falso.
         */
         bool eh_heroi() override;

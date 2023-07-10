@@ -104,6 +104,11 @@ class Personagem{
         virtual void ataque(int valor_dado, std::vector<Personagem *> inimigos) = 0;
 
         /*
+         * @brief Move o Personagem uma casa a frente.
+         */
+        virtual void move() = 0;
+
+        /*
          * @brief Aumenta o nível do personagem.
          */
         virtual void aumenta_nivel() = 0;
