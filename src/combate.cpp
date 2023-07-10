@@ -199,17 +199,14 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
     Heroi *h1 = _time.get_h1();
     Heroi *h2 = _time.get_h2();
     _monstros = monstros;
-
     seta_posicoes();
 
     bool player_venceu = false;
     pair<unsigned,unsigned> op1;
     pair<unsigned,unsigned> op2;
-    while(h1->morto() == false || h2->morto() == false)
-    {
+    while(h1->morto() == false || h2->morto() == false){
         _ordem_combate = {h1, h2};
         for(auto m: _monstros) _ordem_combate.push_back(m);
-
         rola_dados();
         desenha_hud();
 
@@ -218,10 +215,16 @@ bool Combate::entra_combate(vector<Monstro *> monstros){
 
         for(auto p: _ordem_combate){
             if(p->morto() == true) continue;
-            
+
+            if(p->eh_heroi()){
+                Heroi *pHeroi = (Heroi*)&p;
+                if(op1.first == pHeroi->get_num_habilidades()+1)
+                    pHeroi->move();
+            } else{
+                Monstro *pMonstro = (Monstro*)&p;
+                pMonstro->ataque(1, {h1, h2});
+            }
         }
-        if(op2.first == h2->get_num_habilidades()+1) 
-            h2->move();
 
         player_venceu = verifica_monstros(_monstros);
         if(player_venceu) break;

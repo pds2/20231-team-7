@@ -8,10 +8,10 @@
 class Grimorio{
     private:
         std::vector<Magia> _livro;
-        Magia _misseis = Magia("misseis_magicos", 1, 4, 1);
-        Magia _onda = Magia("onda_trovejante", 1, 18, 4); 
-        Magia _marca = Magia("marca_da_punicao", 2, 12, 2);
-        Magia _flecha = Magia("flecha_relampejante", 3, 32, 3);
+        Magia _misseis = Magia("Misseis_magicos", 1, 4, 1);
+        Magia _onda = Magia("Onda_trovejante", 1, 18, 4); 
+        Magia _marca = Magia("Marca_da_punicao", 2, 12, 2);
+        Magia _flecha = Magia("Flecha_relampejante", 3, 32, 3);
     public:
         /*
         * @brief constroi um grimorio

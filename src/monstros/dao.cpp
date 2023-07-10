@@ -20,6 +20,6 @@ string Dao::get_letra(){
     return "D";
 }
 
-void Dao::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Dao::ataque(int alvo, int valor_dado, std::vector<Personagem *> inimigos){
 
 }
