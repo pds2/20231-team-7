@@ -31,6 +31,21 @@ Heroi* Time_h::get_h2(){
 void Time_h::set_h2(Heroi& h2){
     _time.second = &h2;
 }
+// PLACEHOLDER,DRUIDA, GUERREIRO, MAGO, PALADINO
+string string_classe(Classes classe){
+    switch(classe){
+        case 1:
+            return "Druida";
+        case 2:
+            return "Guerreiro";
+        case 3:
+            return "Mago";
+        case 4:
+            return "Paladino";
+        default:
+            return "";
+    }
+}
 
 void Time_h::desenha_hud(){
     cout << "| " << termcolor::blue << left << setw(27) << setfill(' ') << _time.first->get_nome() 
@@ -39,15 +54,15 @@ void Time_h::desenha_hud(){
          << termcolor::blue << setw(27) << setfill(' ') << _time.second->get_nome() << right << termcolor::reset
          << "Nível: " << _time.second->get_nivel() << " |" << endl
 
-         << "| Vida: " << left << setw(30) << setfill(' ');
-         (_time.first->get_vida() == 0) ? cout << termcolor::red << left << setw(30) << setfill(' ') << _time.first->get_vida() << termcolor::reset
+         << "| Vida: " << left << setw(20) << setfill(' ');
+         (_time.first->get_vida() == 0) ? cout << termcolor::red << left << setw(20) << setfill(' ') << _time.first->get_vida() << termcolor::reset
          : cout << _time.first->get_vida();
-         cout << "| "
+         cout << right << setw(9) << setfill(' ') << string_classe(_time.first->get_classe()) << " | "
 
-         << "Vida: " << setw(30) << setfill(' ');
-         (_time.second->get_vida() == 0) ? cout << termcolor::red << setw(30) << setfill(' ') << _time.second->get_vida() << termcolor::reset
+         << "Vida: " << left << setw(20) << setfill(' ');
+         (_time.second->get_vida() == 0) ? cout << termcolor::red << setw(20) << setfill(' ') << _time.second->get_vida() << termcolor::reset
          : cout << _time.second->get_vida();
-         cout <<  right << "|" << endl
+         cout << right << setw(9) << setfill(' ') << string_classe(_time.second->get_classe()) << " | " << endl
          
          << "| Dano: " << left << setw(30) << setfill(' ') << _time.first->get_dano() << "| "
          << "Dano: " << setw(30) << setfill(' ') << _time.second->get_dano() << right << "|" << endl;

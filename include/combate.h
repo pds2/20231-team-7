@@ -18,7 +18,7 @@ class Combate{
         bool entra_combate(std::vector<Monstro *> monstros);
         void rola_dados();
         void organiza_ordem();
-        unsigned ataque_heroi();
+        std::pair<unsigned,unsigned> ataque_heroi(int n);
         void seta_posicoes();
         void hud_monstro();
         void desenha_hud();

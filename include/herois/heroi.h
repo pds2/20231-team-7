@@ -70,6 +70,11 @@ class Heroi: public Personagem {
         void recebe_cura(int cura);
 
         /*
+         * @brief Move o heroi uma casa a frente.
+         */
+        void move();
+
+        /*
          * @brief Retorna todas as habilidades já desbloqueadas pelo heroi.
          */
         virtual std::vector<std::string> get_habilidades() = 0;

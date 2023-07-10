@@ -59,18 +59,19 @@ bool Verifica_opcao::seleciona(unsigned op){
 }
 
 Escolhe_ataque::Escolhe_ataque(Heroi* h):
-    Verifica_opcao(h->get_num_habilidades()),
+    Verifica_opcao(h->get_num_habilidades() + 1),
     _heroi(h){
     vector<string> habilidades = h->get_habilidades();
 
     for(unsigned i = 1; i <= h->get_num_habilidades(); i++)
         _opcoes.at(i) = habilidades.at(i-1);
+    _opcoes.at(h->get_num_habilidades()+1) = "Mover";
 }
 
 Escolhe_ataque::~Escolhe_ataque() {}
 
 void Escolhe_ataque::mostra_menu(){
-    cout << "Qual ataque " << _heroi->get_nome() << " devera lançar: \n";
+    cout << "O que " << _heroi->get_nome() << " devera fazer: \n";
     mostra_opcoes();
 }
 

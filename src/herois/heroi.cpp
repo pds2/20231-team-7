@@ -53,3 +53,10 @@ void Heroi::recebe_cura(int cura){
     if((_vida_max - _vida)<=cura) _vida = _vida_max;
     else _vida += cura;
 }
+
+void Heroi::move(){
+    if(_lugar.get_x() < 3) 
+        _lugar.set_x(_lugar.get_x()+1);
+    else 
+        throw posicao_invalida_e();
+}
