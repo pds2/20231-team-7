@@ -11,15 +11,12 @@
 
  class Monstro : public Personagem{
     private:
-        int _nivel_de_desafio;
-        int _classe_de_armadura;
-        int _valor_nivel_minimo;
+        int _exp;
     public:
          /*
          * @brief Cria um monstro.
          */  
-        Monstro(std::string nome, int vida, int dano,int nivel_de_desafio,
-                 int classe_de_armadura, int valor_nivel_minimo);
+        Monstro(std::string nome, int vida, int dano,int exp);
        
          /*
          * @brief Destroi um monstro.

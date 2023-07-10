@@ -5,7 +5,7 @@ using namespace std;
 
 int Dao::_id = 1;
 
-Dao::Dao(): Monstro("Dao",187,24,11,18,3){
+Dao::Dao(): Monstro("Dao",187,24,150){
     _id++;
 }
 

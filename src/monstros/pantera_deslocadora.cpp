@@ -5,7 +5,7 @@ using namespace std;
 
 int PanteraDeslocadora::_id = 1;
 
-PanteraDeslocadora::PanteraDeslocadora():Monstro("Pantera_deslocadora_"+to_string(_id),85,18,3,13,4){
+PanteraDeslocadora::PanteraDeslocadora():Monstro("Pantera_deslocadora_"+to_string(_id),85,18,60){
     _id++;
 }
 

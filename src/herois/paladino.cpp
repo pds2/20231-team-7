@@ -11,6 +11,7 @@ Paladino::Paladino(
     ): Heroi(nome, vida, dano),
     _mana(10), _manamax(10) {
     _ataques.push_back("Cura");
+    _ataques.push_back("Ataque");
 }
 
 Paladino::~Paladino() {

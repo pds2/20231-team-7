@@ -47,19 +47,19 @@ void mostra_creditos(){
 Heroi* instancia_personagem(string nome, int op){
     switch(op) {
         case 1:{
-            Heroi *p = new Druida(nome, 10, 10); 
+            Heroi *p = new Druida(nome, 25, 15); 
             return p;
         }
         case 2:{
-            Heroi *p = new Guerreiro(nome, 10, 10); 
+            Heroi *p = new Guerreiro(nome, 35, 18); 
             return p;
         }
         case 3:{
-            Heroi *p = new Mago(nome, 10, 10); 
+            Heroi *p = new Mago(nome, 20, 5); 
             return p;
         }
         case 4:{
-            Heroi *p = new Paladino(nome, 10, 10); 
+            Heroi *p = new Paladino(nome, 30, 15); 
             return p;
         }
         default:{

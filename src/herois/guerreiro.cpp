@@ -59,7 +59,7 @@ void Guerreiro::aumenta_nivel(){
     msg += std::to_string(_nivel);
     msg += "!!";
 
-    _ataques.push_back("furia");
+    _ataques.push_back("Furia");
 
     // colore a mensagem
 	cout << "\033[" << 31 << ";" << 3 << ";" << 92 << "m" << msg << "\033[0m";
