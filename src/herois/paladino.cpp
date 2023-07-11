@@ -68,6 +68,10 @@ void Paladino::magia_cura(Heroi &alvo, int valor_dado){
 }
    
 void Paladino::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
+    if(num_ataque==1){
+        inimigos.at(0)->set_vida(inimigos.at(0)->get_vida());
+    }
+    if(num_ataque==2){
         if(get_nome() == inimigos[0]->get_nome())
             throw personagem_ataca_a_si_mesmo_e();
         if(valor_dado < 1)
@@ -79,6 +83,8 @@ void Paladino::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> 
         for(auto g :inimigos){
             g->recebe_dano(calcula_ataque(valor_dado));
         }
+    }
+    else if(num_ataque==3) recuperar_mana();
 }
 
 vector<string> Paladino::get_habilidades() {
