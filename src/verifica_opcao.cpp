@@ -4,7 +4,6 @@
 #include <string>
 
 #include <algorithm>
-#include <set>
 #include "../include/verifica_opcao.h"
 #include "../include/herois/druida.h"
 
@@ -78,22 +77,10 @@ void Escolhe_ataque::mostra_menu(){
     mostra_opcoes();
 }
 
-static const char *enum_to_string[] = { 
-    "Humano", 
-    "Urso", 
-    "Lobo", 
-    "Falcao" 
-};
-
 Escolhe_transformacao_druida::Escolhe_transformacao_druida(Heroi* h):
-    Verifica_opcao(3),
+    Verifica_opcao(4),
     _heroi(h){
-    Heroi* heroi = new Druida(h->get_nome(), h->get_vida(), h->get_dano());
-    Druida* druida = dynamic_cast<Druida*>(heroi);
-
-    set<string> habilidades = {"Humano", "Falcao", "Lobo", "Urso"};
-    habilidades.erase(enum_to_string[druida->get_tranformacao()]);
-
+    vector<string> habilidades = {"Humano", "Falcao", "Lobo", "Urso"};
     int i = 1;
     for(auto h: habilidades){
         _opcoes.at(i) = h;
