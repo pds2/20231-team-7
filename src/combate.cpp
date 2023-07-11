@@ -179,6 +179,11 @@ pair<unsigned,unsigned> decide_ataque(Heroi* h1, Heroi* h2, vector<Personagem *>
         return {ataque_h, 0};
 
     unsigned alvo_h;
+    if(h1->get_classe() == 1 && ataque_h == 2){
+        Escolhe_transformacao_druida e(h1);
+        alvo_h = e.retorna_opcao();
+        return {ataque_h, alvo_h};
+    }
     if(h1->get_classe() == Classes::PALADINO && ataque_h == 1)
         alvo_h = mostra_alvos({h1, h2});
     else
@@ -244,7 +249,6 @@ void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<u
     } catch(furia_ja_ativa_e){
         cout<< "Furia ja esta ativa insuficiente!!"<<endl;
     }
-}
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
     Heroi *h1 = _time.get_h1();
