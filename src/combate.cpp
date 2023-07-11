@@ -174,6 +174,35 @@ unsigned mostra_alvos(vector<Personagem *> personagens){
     return e.retorna_opcao();
 }
 
+Tranformacao retorna_transformacao(unsigned alvo_h){
+    Tranformacao transformacao;
+    switch (alvo_h) {
+        case 1:
+            transformacao = Tranformacao::Humano;
+            break;
+        case 2:
+            transformacao = Tranformacao::Falcao;
+            break;
+        case 3:
+            transformacao = Tranformacao::Lobo;
+            break;
+        case 4:
+            transformacao = Tranformacao::Urso;
+            break;
+        default:
+            transformacao = Tranformacao::Humano;
+            break;
+    }
+    return transformacao;
+}
+
+void faz_transformacao(Heroi *d, unsigned alvo_h){
+    Heroi* heroi = new Druida(d->get_nome(), d->get_vida(), d->get_dano());
+    Druida* druida = dynamic_cast<Druida*>(heroi);
+    Tranformacao t = retorna_transformacao(alvo_h);
+    druida->transformar(t);
+}
+
 pair<unsigned,unsigned> decide_ataque(Heroi* h1, Heroi* h2, vector<Personagem *> p){
     unsigned ataque_h = mostra_habilidades(h1);
     if(ataque_h == h1->get_num_habilidades()+1) 
