@@ -5,6 +5,7 @@
 #include "../include/herois/guerreiro.h"
 #include "../include/combate.h"
 #include "../include/herois/time_heroi.h"
+#include "../include/herois/druida.h"
 #include "../include/rolar_dados.h"
 #include "../include/verifica_opcao.h"
 
