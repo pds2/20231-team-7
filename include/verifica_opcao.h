@@ -66,6 +66,26 @@ class Escolhe_ataque: public Verifica_opcao{
         ~Escolhe_ataque();
 };
 
+class Escolhe_transformacao_druida: public Verifica_opcao{
+    private:
+        Heroi* _heroi;
+
+        /*
+        * @brief Mostra as opçoes armazenadas no map do tipo
+        */ 
+        void mostra_menu() override;
+    public:
+        /*
+        * @brief Cria um escolhe ataque armazena os ataques do heroi nas suas opçoes
+        */ 
+        Escolhe_transformacao_druida(Heroi* h);
+
+        /*
+        * @brief Destrutor
+        */ 
+        ~Escolhe_transformacao_druida();
+};
+
 class Escolhe_alvo: public Verifica_opcao{
     private:
         std::vector<Personagem *> _personagens;

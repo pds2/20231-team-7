@@ -1,5 +1,4 @@
 /build
 /bin
-/saveslots/*
 /coverage-html
-coverage.info
+coverage.info 

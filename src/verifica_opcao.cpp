@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include "../include/verifica_opcao.h"
+#include "../include/herois/druida.h"
 
 using namespace std;
 
@@ -75,6 +76,36 @@ void Escolhe_ataque::mostra_menu(){
     if(_heroi->get_classe()==MAGO || _heroi->get_classe()==PALADINO) cout<<"Mana atual "<< _heroi->get_mana()<<endl;
     mostra_opcoes();
 }
+
+static const char *enum_to_string[] = { 
+    "Humano", 
+    "Urso", 
+    "Lobo", 
+    "Falcao" 
+};
+
+Escolhe_transformacao_druida::Escolhe_transformacao_druida(Heroi* h):
+    Verifica_opcao(3),
+    _heroi(h){
+    Heroi* heroi = new Druida(h->get_nome(), h->get_vida(), h->get_dano());
+    Druida* druida = dynamic_cast<Druida*>(heroi);
+
+    vector<string> habilidades = {"Humano", "Falcao", "Lobo", "Urso"};
+    for(unsigned i = 1; i <= h->get_num_habilidades(); i++)
+        if(enum_to_string[druida->get_tranformacao()] == habilidades.at(i)){
+            i--;
+            continue;
+        }
+        else _opcoes.at(i) = habilidades.at(i-1);
+}
+
+Escolhe_transformacao_druida::~Escolhe_transformacao_druida() {}
+
+void Escolhe_transformacao_druida::mostra_menu(){
+    cout << "Em que " << _heroi->get_nome() << " se transformará: \n";
+    mostra_opcoes();
+}
+
 
 void Escolhe_alvo::mostra_menu(){
     cout << "Em quem: \n";
