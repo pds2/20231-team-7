@@ -12,6 +12,7 @@ Paladino::Paladino(
     _mana(10), _manamax(10) {
     _ataques.push_back("Cura");
     _ataques.push_back("Ataque");
+    _ataques.push_back("Recuperar Mana");
 }
 
 Paladino::~Paladino() {
@@ -67,17 +68,17 @@ void Paladino::magia_cura(Heroi &alvo, int valor_dado){
 }
    
 void Paladino::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
-    if(get_nome() == inimigos[0]->get_nome())
-        throw personagem_ataca_a_si_mesmo_e();
-    if(valor_dado < 1)
-        throw valor_dado_negativo_e();
-    if(inimigos.size()>1)
-        throw alvos_demais_e();
+        if(get_nome() == inimigos[0]->get_nome())
+            throw personagem_ataca_a_si_mesmo_e();
+        if(valor_dado < 1)
+            throw valor_dado_negativo_e();
+        if(inimigos.size()>1)
+            throw alvos_demais_e();
 
 
-    for(auto g :inimigos){
-        g->recebe_dano(calcula_ataque(valor_dado));
-    }
+        for(auto g :inimigos){
+            g->recebe_dano(calcula_ataque(valor_dado));
+        }
 }
 
 vector<string> Paladino::get_habilidades() {

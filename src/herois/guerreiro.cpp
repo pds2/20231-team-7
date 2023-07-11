@@ -26,7 +26,7 @@ string Guerreiro::get_letra(){
 }
 
 void Guerreiro::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
-    {
+    if(num_ataque==1){
         for(auto inimigo: inimigos) 
             if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();    
         if(valor_dado <= 0)
@@ -40,6 +40,7 @@ void Guerreiro::ataque(int num_ataque, int valor_dado, std::vector<Personagem *>
         }
         }
     }
+    else if(num_ataque==2) ativa_furia();
 }
 
 void Guerreiro::ativa_furia(){

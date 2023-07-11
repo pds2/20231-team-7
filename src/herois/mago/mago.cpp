@@ -16,27 +16,31 @@ Mago::~Mago() {}
 
 
 void Mago::lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> inimigos){
-    nummagia-=1;
-    for(auto inimigo: inimigos) 
-        if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();
+    if(nummagia<=grimorio.get_num_magias()){
+        nummagia-=1;
+        for(auto inimigo: inimigos) 
+            if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();
 
-    if(valor_dado <= 0){
-        throw valor_dado_negativo_e();
-    } else{
-        for(auto inimigo: inimigos){
-            if(_mana>grimorio.get_magias().at(nummagia).get_custo()){
-                if(grimorio.get_magias().at(nummagia).get_distancia()>get_posicao().distancia(inimigo->get_posicao()))
-                    inimigo->recebe_dano(grimorio.get_magias().at(nummagia).get_dano()+valor_dado*2);
-                else throw magia_fora_do_range_e();
-                _mana-=grimorio.get_magias().at(nummagia).get_custo();
+        if(valor_dado <= 0){
+            throw valor_dado_negativo_e();
+        } else{
+            for(auto inimigo: inimigos){
+                if(_mana>grimorio.get_magias().at(nummagia).get_custo()){
+                    if(grimorio.get_magias().at(nummagia).get_distancia()>get_posicao().distancia(inimigo->get_posicao()))
+                        inimigo->recebe_dano(grimorio.get_magias().at(nummagia).get_dano()+valor_dado*2);
+                    else throw magia_fora_do_range_e();
+                    _mana-=grimorio.get_magias().at(nummagia).get_custo();
+                }
+                else throw mana_insuficiente_e();
             }
-            else throw mana_insuficiente_e();
         }
     }
+    else if(nummagia==(grimorio.get_num_magias()+1)) recuperar_mana();
 }
 
 void Mago::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
-    lança_magia(num_ataque, valor_dado, inimigos); 
+    if(num_ataque==(get_num_habilidades()+1)) recuperar_mana();
+    else lança_magia(num_ataque, valor_dado, inimigos); 
 }
 
 void Mago::recuperar_mana(){
@@ -49,7 +53,7 @@ Classes Mago::get_classe() const{
 }
 
 unsigned Mago::get_num_habilidades(){
-    return grimorio.get_num_magias(); 
+    return grimorio.get_num_magias()+1; 
 }
 
 string Mago::get_letra(){
@@ -82,6 +86,6 @@ vector<string> Mago::get_habilidades(){
     vector<string> magias;
     for(auto m:grimorio.get_magias())
         magias.push_back(m.get_nome());
-
+    magias.push_back("Recuperar mana");
     return magias;
 }
