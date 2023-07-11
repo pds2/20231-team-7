@@ -189,6 +189,10 @@ void Sistema::roda_jogo(unsigned fase){
                 cout << "ganhou combate." << endl;
                 vitorias++;
                 if(fase==3) vitorias++;
+                for(auto m :monstros){
+                    _herois.get_h1()->ganha_exp(m->get_exp());
+                    _herois.get_h2()->ganha_exp(m->get_exp());
+                }
             }
         }
         system("clear");
@@ -255,7 +259,10 @@ unsigned Sistema::carrega_save(unsigned int numslot){
     int classe, vida, nivel, exp, faseatual;
     pair<Heroi *,Heroi *> personagens;
         ifstream save(saveslot);
-        if(!save.is_open()) std::cout<<"Save nao foi aberto corretamente"<<std::endl;
+        if(!save.is_open()){
+             std::cout<<"Save inexistente, por favor escolha um save disponivel ou inicie novo jogo"<<std::endl;
+            inicia_menu();
+        }
         for(int i=0;getline(save,linha);i++){
             stringstream str(linha);
             if(i<2){

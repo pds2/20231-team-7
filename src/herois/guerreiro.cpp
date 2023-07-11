@@ -49,6 +49,10 @@ bool Guerreiro::get_furia(){
     return _furia;
 }
 
+unsigned int Guerreiro::get_mana(){
+    
+}
+
 void Guerreiro::aumenta_nivel(){
     _nivel ++;
     _vida += 3;

@@ -71,6 +71,11 @@ class Heroi: public Personagem {
         void recebe_cura(int cura);
 
         /*
+         * @brief Retorna a mana atual do heroi caso ele a tenha.
+         */
+        virtual unsigned int get_mana()=0;
+
+        /*
          * @brief Retorna todas as habilidades já desbloqueadas pelo heroi.
          */
         virtual std::vector<std::string> get_habilidades() = 0;

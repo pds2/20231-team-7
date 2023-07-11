@@ -41,7 +41,7 @@ class Paladino: public Heroi{
         /*
          * @brief Retorna a mana atual do paladino.
          */
-        unsigned int get_mana();
+        unsigned int get_mana() override;
 
         /*
          * @brief Recupera mana num valor fixo.

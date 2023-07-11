@@ -35,6 +35,10 @@ Tranformacao Druida::get_tranformacao(){
     return _trans;
 }
 
+unsigned int Druida::get_mana(){
+    return 0;
+}
+
 void Druida::aumenta_nivel(){
     _nivel ++;
     _vida += 3;

@@ -21,6 +21,10 @@ int Monstro::retorna_alvo(){
     return alvo-1;
 }
 
+int Monstro::get_exp(){
+    return _exp;
+}
+
 bool Monstro::eh_heroi(){
     return false;
 }

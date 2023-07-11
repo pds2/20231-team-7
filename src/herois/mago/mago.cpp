@@ -9,7 +9,8 @@ Mago::Mago(
     int vida,
     int dano
 ) : Heroi (nome, vida, dano),
-   _mana(12) {}
+   _mana(12),
+   _manamax(12) {}
 
 Mago::~Mago() {}
 
@@ -38,6 +39,11 @@ void Mago::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inim
     lança_magia(num_ataque, valor_dado, inimigos); 
 }
 
+void Mago::recuperar_mana(){
+    if(_mana <= (_manamax-5)) _mana=_mana+5;
+    if(_mana > (_manamax-5)) _mana=_manamax;
+}
+
 Classes Mago::get_classe() const{
     return Classes::MAGO;
 }
@@ -50,7 +56,7 @@ string Mago::get_letra(){
     return "M";
 }
 
-int Mago::get_mana(){
+unsigned int Mago::get_mana(){
     return _mana;
 }
 

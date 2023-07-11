@@ -56,6 +56,11 @@ class Druida: public Heroi{
         void transformar(Tranformacao trans);
 
         /*
+        * @brief Nao faz nada.
+        */
+        unsigned int get_mana() override;
+
+        /*
          * @brief Retorna o dano de ataque do urso.
          */
         void ataqueUrso(int valor_dado, std::vector<Personagem *> inimigos);

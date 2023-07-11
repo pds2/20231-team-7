@@ -28,6 +28,11 @@ class Guerreiro : public Heroi {
     void ativa_furia();
 
     /*
+    * @brief Nao faz nada.
+    */
+    unsigned int get_mana() override;
+
+    /*
      * @brief Retorna estado da furia
      */
     bool get_furia();

@@ -8,6 +8,7 @@ class Mago : public Heroi {
     private:
         int _mana;
         Grimorio grimorio;
+        int _manamax;
     public:
         /*
         * @brief cria um mago 
@@ -32,6 +33,11 @@ class Mago : public Heroi {
         Classes get_classe() const override;
 
         /*
+         * @brief Recupera mana num valor fixo.
+         */
+        void recuperar_mana();
+
+        /*
         * @brief retorna o numero de habilidades que o personagem tem
         */
         unsigned get_num_habilidades() override;
@@ -44,7 +50,7 @@ class Mago : public Heroi {
         /*
         * @brief retorna a mana
         */
-        int get_mana();
+        unsigned int get_mana() override;
 
         /*
         * @brief aumenta o nivel do mago.

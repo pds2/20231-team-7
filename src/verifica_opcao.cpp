@@ -72,6 +72,7 @@ Escolhe_ataque::~Escolhe_ataque() {}
 
 void Escolhe_ataque::mostra_menu(){
     cout << "O que " << _heroi->get_nome() << " devera fazer: \n";
+    if(_heroi->get_classe()==MAGO || _heroi->get_classe()==PALADINO) cout<<"Mana atual "<< _heroi->get_mana()<<endl;
     mostra_opcoes();
 }
 

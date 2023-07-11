@@ -29,6 +29,11 @@
         virtual tamanho get_tamanho() = 0;
 
         /*
+         * @brief Retorna o exp do monstro.
+         */
+        int get_exp();
+
+        /*
         * @brief Aumenta o nível do personagem.
         */
         void aumenta_nivel() override;
