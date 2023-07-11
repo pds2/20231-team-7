@@ -182,6 +182,11 @@ pair<unsigned,unsigned> decide_ataque(Heroi* h1, Heroi* h2, vector<Personagem *>
     if(h1->get_classe() == 1 && ataque_h == 2){
         Escolhe_transformacao_druida e(h1);
         alvo_h = e.retorna_opcao();
+        try{
+            faz_transformacao(h1, alvo_h);
+        } catch(nao_pode_transformar_para_transformacao_atual_e){
+            cout << "Ja é dessa forma" << endl;
+        }
         return {ataque_h, alvo_h};
     }
     if(h1->get_classe() == Classes::PALADINO && ataque_h == 1)
