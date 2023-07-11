@@ -7,7 +7,7 @@
 class nao_pode_transformar_para_transformacao_atual_e{};
 
 enum Tranformacao{
-    Humano, Urso, Lobo, Falcao
+    Humano, Falcao, Lobo, Urso
 };
 
 class Druida: public Heroi{
