@@ -26,17 +26,19 @@ string Guerreiro::get_letra(){
 }
 
 void Guerreiro::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
-    for(auto inimigo: inimigos) 
-        if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();    
-    if(valor_dado <= 0)
-        throw valor_dado_negativo_e();
+    {
+        for(auto inimigo: inimigos) 
+            if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();    
+        if(valor_dado <= 0)
+            throw valor_dado_negativo_e();
 
-    for(auto inimigo: inimigos) {
-        if(_furia==false) inimigo->recebe_dano(get_dano() + valor_dado);
-        if(_furia==true){
-            inimigo->recebe_dano((get_dano() + valor_dado)*2);
-            _furia=false;
-       }
+        for(auto inimigo: inimigos) {
+            if(_furia==false) inimigo->recebe_dano(get_dano() + valor_dado);
+            if(_furia==true){
+                inimigo->recebe_dano((get_dano() + valor_dado)*2);
+                _furia=false;
+        }
+        }
     }
 }
 
@@ -50,7 +52,7 @@ bool Guerreiro::get_furia(){
 }
 
 unsigned int Guerreiro::get_mana(){
-    
+    return 0;
 }
 
 void Guerreiro::aumenta_nivel(){

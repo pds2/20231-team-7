@@ -226,9 +226,8 @@ void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<u
         } else{
             try{
                 if(op2.second == 0) p->move();
-                else try{
-                     p->ataque(op2.first, p->get_dado_dano(), {p_monstros.at(op2.second-1)});
-                    } catch(mana_insuficiente_e){
+                else try{ p->ataque(op2.first, p->get_dado_dano(), {p_monstros.at(op2.second-1)});
+                } catch(mana_insuficiente_e){
                     cout<< "Mana insuficiente!!"<<endl;
                     } catch(furia_ja_ativa_e){
                     cout<< "Furia ja esta ativa insuficiente!!"<<endl;
