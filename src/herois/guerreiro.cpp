@@ -50,7 +50,7 @@ bool Guerreiro::get_furia(){
 }
 
 unsigned int Guerreiro::get_mana(){
-    
+    return 0; 
 }
 
 void Guerreiro::aumenta_nivel(){

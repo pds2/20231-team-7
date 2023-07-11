@@ -4,6 +4,7 @@
 #include <string>
 
 #include <algorithm>
+#include <set>
 #include "../include/verifica_opcao.h"
 #include "../include/herois/druida.h"
 
@@ -90,13 +91,14 @@ Escolhe_transformacao_druida::Escolhe_transformacao_druida(Heroi* h):
     Heroi* heroi = new Druida(h->get_nome(), h->get_vida(), h->get_dano());
     Druida* druida = dynamic_cast<Druida*>(heroi);
 
-    vector<string> habilidades = {"Humano", "Falcao", "Lobo", "Urso"};
-    for(unsigned i = 1; i <= h->get_num_habilidades(); i++)
-        if(enum_to_string[druida->get_tranformacao()] == habilidades.at(i)){
-            i--;
-            continue;
-        }
-        else _opcoes.at(i) = habilidades.at(i-1);
+    set<string> habilidades = {"Humano", "Falcao", "Lobo", "Urso"};
+    habilidades.erase(enum_to_string[druida->get_tranformacao()]);
+
+    int i = 1;
+    for(auto h: habilidades){
+        _opcoes.at(i) = h;
+        i++;
+    }
 }
 
 Escolhe_transformacao_druida::~Escolhe_transformacao_druida() {}
