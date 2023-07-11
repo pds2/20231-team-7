@@ -30,7 +30,7 @@ class PanteraDeslocadora: public Monstro{
     /*
     * @brief Funcao de ataque
     */
-    void ataque(int valor_dado, std::vector<Personagem *> inimigos) override;
+    void ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos) override;
 };
 
 

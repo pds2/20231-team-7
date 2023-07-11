@@ -1,5 +1,5 @@
 #include "../../include/monstros/monstros.h"
-
+#include "../../include/rolar_dados.h"
 using namespace std;
 
 Monstro::Monstro(std::string nome, int vida, int dano,
@@ -13,6 +13,12 @@ void Monstro::aumenta_nivel(){
     _vida += 3;
     _dano += 3;
     _nivel++;
+}
+
+int Monstro::retorna_alvo(){
+    Rolar_Dados d;
+    int alvo = d.calcula_dado(2);
+    return alvo-1;
 }
 
 bool Monstro::eh_heroi(){

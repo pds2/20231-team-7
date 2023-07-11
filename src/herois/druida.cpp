@@ -98,7 +98,7 @@ void Druida::ataqueLobo(int valor_dado, std::vector<Personagem *> inimigos){
     }
 }
 
-void Druida::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Druida::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
     for(Personagem *p: inimigos){
         if(get_nome() ==p->get_nome())
             throw personagem_ataca_a_si_mesmo_e();

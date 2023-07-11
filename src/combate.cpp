@@ -57,10 +57,10 @@ void Combate::hud_monstro(){
     completa_hud_monstro(_monstros.size());
 
     for(unsigned i = 0; i < _monstros.size(); i++){
-        cout << "| Vida: " << left << setw(17) << setfill(' ');
-        (_monstros.at(i)->get_vida() == 0) ? cout << termcolor::red << setw(17) << setfill(' ')
+        cout << "| Vida: ";
+        (_monstros.at(i)->get_vida() == 0) ? cout << termcolor::red << left << setw(17) << setfill(' ')
         << _monstros.at(i)->get_vida() << termcolor::reset
-        : cout << _monstros.at(i)->get_vida();
+        : cout << left << setw(17) << setfill(' ') << _monstros.at(i)->get_vida();
         cout << right;
     }
     completa_hud_monstro(_monstros.size());
@@ -212,20 +212,20 @@ void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<u
         if(p->get_letra() == _time.get_h1()->get_letra()){
             try{
                 if(op1.second == 0) p->move();
-                else p->ataque(p->get_dado_dano(), {p_monstros.at(op1.second-1)});
+                else p->ataque(op1.first, p->get_dado_dano(), {p_monstros.at(op1.second-1)});
             } catch(posicao_invalida_e e){
                 cout << "Não pode mais mover para frente." << endl;
             }
         } else{
             try{
                 if(op2.second == 0) p->move();
-                else p->ataque(p->get_dado_dano(), {p_monstros.at(op2.second-1)});
+                else p->ataque(op2.first, p->get_dado_dano(), {p_monstros.at(op2.second-1)});
             } catch(posicao_invalida_e e){
                 cout << "Não pode mais mover para frente." << endl;
             }
         }
     }         
-    else p->ataque(p->get_dado_dano(), {_time.get_h1(), _time.get_h2()});
+    else p->ataque(1, p->get_dado_dano(), {_time.get_h1(), _time.get_h2()});
 }
 
 bool Combate::entra_combate(vector<Monstro *> monstros){

@@ -47,19 +47,19 @@ void mostra_creditos(){
 Heroi* instancia_personagem(string nome, int op){
     switch(op) {
         case 1:{
-            Heroi *p = new Druida(nome, 25, 15); 
+            Heroi *p = new Druida(nome, 75, 20); 
             return p;
         }
         case 2:{
-            Heroi *p = new Guerreiro(nome, 35, 18); 
+            Heroi *p = new Guerreiro(nome, 100, 18); 
             return p;
         }
         case 3:{
-            Heroi *p = new Mago(nome, 20, 5); 
+            Heroi *p = new Mago(nome, 60,35); 
             return p;
         }
         case 4:{
-            Heroi *p = new Paladino(nome, 30, 15); 
+            Heroi *p = new Paladino(nome, 65, 30); 
             return p;
         }
         default:{
@@ -151,24 +151,21 @@ int Sistema::avança_fase(int fase){
     switch(op){
         case 1:{
             fase++;
-            _herois.reseta_time();
             return fase;
         }
         case 2:{
             fase++;
-            _herois.reseta_time();
             salva_jogo(fase);
             return fase;
         }
         case 3:{
-            _herois.reseta_time();
             salva_jogo(fase);
             cout<<"Obrigado por jogar!"<<endl;
-            return 0;
+           exit(0); 
         }
         case 4:{
             cout<<"Obrigado por jogar!"<<endl;
-            return 0;
+            exit(0);
         }
     }
     delete e;
@@ -196,6 +193,7 @@ void Sistema::roda_jogo(unsigned fase){
         }
         system("clear");
         cout << "Passou de fase!" << endl;
+        _herois.reseta_time();
         fase=avança_fase(fase);
         if(fase==0) exit(0);
     }    

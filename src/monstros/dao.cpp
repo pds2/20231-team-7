@@ -20,7 +20,7 @@ string Dao::get_letra(){
     return "D";
 }
 
-void Dao::ataque(int valor_dado, std::vector<Personagem *> inimigos){
+void Dao::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
     if(get_nome() == inimigos[0]->get_nome())
         throw personagem_ataca_a_si_mesmo_e();
     if(valor_dado < 1)

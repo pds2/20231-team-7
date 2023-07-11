@@ -39,6 +39,11 @@
         void move() override;
 
         /*
+         * @brief Retorna um heroi aleatorio para o monstro atacar.
+         */
+        int retorna_alvo();
+
+        /*
         * @brief Retorna falso.
         */
         bool eh_heroi() override;

@@ -13,6 +13,11 @@ class Rolar_Dados{
     Rolar_Dados();
 
     /*
+    * @brief Gera um valor aleatorio entre 1 e um limite.
+    */
+    int calcula_dado(int limite);
+
+    /*
     * @brief Retorna um valor aleatorio entre 1 e 6.
     */  
     int rolar_d06();
@@ -30,12 +35,12 @@ class Rolar_Dados{
     /*
     * @brief Retorna um valor aleatorio entre 1 e 12.
     */  
-    int rolar_d12();
-
-    /*
+    int rolar_d12();    /*
     * @brief Retorna um valor aleatorio entre 1 e 20.
     */  
     int rolar_d20();
 };
+
+
 
 #endif
