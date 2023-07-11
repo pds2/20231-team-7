@@ -6,6 +6,7 @@
 #include "../include/combate.h"
 #include "../include/herois/time_heroi.h"
 #include "../include/herois/druida.h"
+#include "../include/herois/mago/mago.h"
 #include "../include/rolar_dados.h"
 #include "../include/verifica_opcao.h"
 
@@ -259,6 +260,8 @@ void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<u
                     cout<< "Mana insuficiente!!"<<endl;
                     } catch(furia_ja_ativa_e){
                     cout<< "Furia ja esta ativa insuficiente!!"<<endl;
+                    } catch(magia_fora_do_range_e){
+                    cout << "Mago muito longe do inimigo!!" << endl;
                     }
             } catch(posicao_invalida_e e){
                 cout << "Não pode mais mover para frente." << endl;
