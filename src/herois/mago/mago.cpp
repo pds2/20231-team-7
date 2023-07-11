@@ -16,7 +16,7 @@ Mago::~Mago() {}
 
 
 void Mago::lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> inimigos){
-    if(nummagia<=grimorio.get_num_magias()){
+    if(nummagia<grimorio.get_num_magias()){
         nummagia-=1;
         for(auto inimigo: inimigos) 
             if(get_nome()==inimigo->get_nome()) throw personagem_ataca_a_si_mesmo_e();
@@ -35,7 +35,7 @@ void Mago::lança_magia(int nummagia,int valor_dado, std::vector<Personagem *> i
             }
         }
     }
-    else if(nummagia==(grimorio.get_num_magias()+1)) recuperar_mana();
+    else if(nummagia==(grimorio.get_num_magias())) recuperar_mana();
 }
 
 void Mago::ataque(int num_ataque, int valor_dado, std::vector<Personagem *> inimigos){
