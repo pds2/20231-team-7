@@ -9,7 +9,7 @@ Druida::Druida(
     int dano
 ):  Heroi(nome, vida, dano),
     _trans(Humano) {
-    _ataques.push_back("Ataque humano");
+    _ataques.push_back("Ataque");
     _ataques.push_back("Transformar");
 }
 
@@ -66,7 +66,7 @@ void Druida::transformar(Tranformacao trans){
     if(trans==Lobo) _vida += 3;
     if(trans==Falcao) _vida++;
 
-    _trans= trans;
+    _trans = trans;
     if(_vida<=0) _vida=1;
 }
 
