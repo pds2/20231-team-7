@@ -249,6 +249,7 @@ void Combate::ataca_na_ordem(Personagem * p, pair<unsigned,unsigned> op1, pair<u
     } catch(furia_ja_ativa_e){
         cout<< "Furia ja esta ativa insuficiente!!"<<endl;
     }
+}
 
 bool Combate::entra_combate(vector<Monstro *> monstros){
     Heroi *h1 = _time.get_h1();
