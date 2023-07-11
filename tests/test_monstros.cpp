@@ -12,13 +12,13 @@ TEST_CASE("ataque"){
     Monstro *p= new PanteraDeslocadora();
 
     Monstro *m= new Golem_de_carne();
-    c->ataque(3,{m});
+    c->ataque(1, 3,{m});
     CHECK_EQ(m->get_vida(), 86);
-    d->ataque(3,{m});
+    d->ataque(1, 3,{m});
     CHECK_EQ(m->get_vida(), 74);
-    g->ataque(3,{m});
+    g->ataque(1, 3,{m});
     CHECK_EQ(m->get_vida(), 65);
-    p->ataque(3,{m});
+    p->ataque(1, 3,{m});
     CHECK_EQ(m->get_vida(), 56);
 
 
